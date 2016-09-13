@@ -6,6 +6,7 @@ namespace PersonMatcher.IO
 {
     public abstract class ImportExportStrategy
     {
+       
         protected StreamWriter Writer { get; set; }
         protected StreamReader Reader { get; set; }
         public abstract List<Person> Import(string filename);

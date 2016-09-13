@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using PersonMatcher.IO;
 
 namespace PersonMatcher
@@ -19,13 +20,13 @@ namespace PersonMatcher
                 if (openFileDialog1.FileName.Contains(".xml"))
                 {
                     personMatcher.StorageStrategy = new XmlImportExportStrategy();
-                    importResultsTextBox.Text = personMatcher.Import(openFileDialog1.FileName).ToString();
+                    List<Person> personList = personMatcher.Import(openFileDialog1.FileName);
                 }
-                //else
-                //{
-                //    personMatcher.StorageStrategy = new JsonImportExportStrategy();
-                //    personMatcher.Import(openFileDialog1.FileName);
-                //}
+                else if(openFileDialog1.FileName.Contains(".json"))
+                {
+                    personMatcher.StorageStrategy = new JsonImportExportStrategy();
+                    List < Person > personList = personMatcher.Import(openFileDialog1.FileName);
+                }
             }
             else
             {

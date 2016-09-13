@@ -12,7 +12,7 @@ namespace PersonMatcher
         {
             personSet = new PersonSet();
             personSet.StorageStrategy = StorageStrategy;
-            return personSet.Load(inputFileName);
+            return personSet.Import(inputFileName);
         }
 
         public void Run()
