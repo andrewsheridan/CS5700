@@ -1,13 +1,23 @@
-﻿using System;
+﻿using PersonMatcher.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonMatcher
 {
-    class PersonMatcher
+    public class PersonMatcher
     {
-        List<Person> personList;
+        private PersonSet personSet;
+        public ImportExportStrategy StorageStrategy { get; set; }
+
+        public List<Person> Import(string inputFileName)
+        {
+            personSet = new PersonSet();
+            personSet.StorageStrategy = StorageStrategy;
+            return personSet.Load(inputFileName);
+        }
+
+        public void Run()
+        {
+            personSet.StorageStrategy = StorageStrategy;
+        }
     }
 }

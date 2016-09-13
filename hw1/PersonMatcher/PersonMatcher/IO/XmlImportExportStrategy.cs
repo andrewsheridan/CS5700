@@ -13,12 +13,14 @@ namespace PersonMatcher.IO
 
         public override List<Person> Import(string filename)
         {
+            List<Person> personList = null;
             XmlSerializer serializer = new XmlSerializer(typeof(List<Person>), new Type[] { typeof(Person)/*, typeof(Adult), typeof(Child)*/});
             if (OpenReader(filename))
             {
-                
-
+                personList = serializer.Deserialize(Reader) as List<Person>;
+                Reader.Close();
             }
+            return personList;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace PersonMatcher.IO
 {
-    abstract class ImportExportStrategy
+    public abstract class ImportExportStrategy
     {
         protected StreamWriter Writer { get; set; }
         protected StreamReader Reader { get; set; }
@@ -38,5 +38,7 @@ namespace PersonMatcher.IO
                 return false;
             }
         }
+
+     
     }
 }

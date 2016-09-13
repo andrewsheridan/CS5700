@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+using PersonMatcher.IO;
 
 namespace PersonMatcher
 {
     public partial class Form1 : Form
     {
+        private PersonMatcher personMatcher = new PersonMatcher();
         public Form1()
         {
             InitializeComponent();
@@ -22,10 +16,21 @@ namespace PersonMatcher
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                
+                if (openFileDialog1.FileName.Contains(".xml"))
+                {
+                    personMatcher.StorageStrategy = new XmlImportExportStrategy();
+                    importResultsTextBox.Text = personMatcher.Import(openFileDialog1.FileName).ToString();
+                }
+                //else
+                //{
+                //    personMatcher.StorageStrategy = new JsonImportExportStrategy();
+                //    personMatcher.Import(openFileDialog1.FileName);
+                //}
+            }
+            else
+            {
 
             }
         }
-        
     }
 }
