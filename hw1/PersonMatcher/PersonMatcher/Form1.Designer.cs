@@ -30,11 +30,10 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.importButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.importResultsTextBox = new System.Windows.Forms.TextBox();
             this.matchResultsTextBox = new System.Windows.Forms.TextBox();
-            this.personListLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -52,61 +51,51 @@
             this.importButton.UseVisualStyleBackColor = true;
             this.importButton.Click += new System.EventHandler(this.importButton_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(199, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(181, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Find Matches";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // importResultsTextBox
-            // 
-            this.importResultsTextBox.Location = new System.Drawing.Point(12, 83);
-            this.importResultsTextBox.Multiline = true;
-            this.importResultsTextBox.Name = "importResultsTextBox";
-            this.importResultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.importResultsTextBox.Size = new System.Drawing.Size(181, 229);
-            this.importResultsTextBox.TabIndex = 2;
-            // 
             // matchResultsTextBox
             // 
-            this.matchResultsTextBox.Location = new System.Drawing.Point(199, 83);
+            this.matchResultsTextBox.Location = new System.Drawing.Point(10, 83);
             this.matchResultsTextBox.Multiline = true;
             this.matchResultsTextBox.Name = "matchResultsTextBox";
             this.matchResultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.matchResultsTextBox.Size = new System.Drawing.Size(181, 229);
+            this.matchResultsTextBox.Size = new System.Drawing.Size(181, 356);
             this.matchResultsTextBox.TabIndex = 3;
-            // 
-            // personListLabel
-            // 
-            this.personListLabel.AutoSize = true;
-            this.personListLabel.Location = new System.Drawing.Point(65, 67);
-            this.personListLabel.Name = "personListLabel";
-            this.personListLabel.Size = new System.Drawing.Size(74, 13);
-            this.personListLabel.TabIndex = 4;
-            this.personListLabel.Text = "Import Results";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(255, 67);
+            this.label1.Location = new System.Drawing.Point(68, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Match Results";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(234, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(254, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Match Strategies";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 332);
+            this.ClientSize = new System.Drawing.Size(408, 458);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.personListLabel);
             this.Controls.Add(this.matchResultsTextBox);
-            this.Controls.Add(this.importResultsTextBox);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.importButton);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -119,11 +108,10 @@
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button importButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox importResultsTextBox;
         private System.Windows.Forms.TextBox matchResultsTextBox;
-        private System.Windows.Forms.Label personListLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

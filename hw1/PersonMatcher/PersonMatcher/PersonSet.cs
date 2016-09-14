@@ -30,6 +30,11 @@ namespace PersonMatcher
                 StorageStrategy.Export(filename, _personList);
         }
 
+        public int GetCount()
+        {
+            return _personList.Count;
+        }
+
         public IEnumerator<Person> GetEnumerator()
         {
             return ((IEnumerable<Person>)_personList).GetEnumerator();

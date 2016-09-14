@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace PersonMatcher.IO
@@ -17,7 +20,8 @@ namespace PersonMatcher.IO
             XmlSerializer serializer = new XmlSerializer(typeof(List<Person>), new Type[] { typeof(Person)/*, typeof(Adult), typeof(Child)*/});
             if (OpenReader(filename))
             {
-                personList = serializer.Deserialize(Reader) as List<Person>;
+                Reader.BaseStream.Position = 0;
+                personList = serializer.Deserialize(Reader.BaseStream) as List<Person>;
                 Reader.Close();
             }
             return personList;

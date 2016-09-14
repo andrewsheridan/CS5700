@@ -25,13 +25,18 @@ namespace PersonMatcher
                 else if(openFileDialog1.FileName.Contains(".json"))
                 {
                     personMatcher.StorageStrategy = new JsonImportExportStrategy();
-                    List < Person > personList = personMatcher.Import(openFileDialog1.FileName);
+                    List<Person> personList = personMatcher.Import(openFileDialog1.FileName);
                 }
             }
             else
             {
 
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
