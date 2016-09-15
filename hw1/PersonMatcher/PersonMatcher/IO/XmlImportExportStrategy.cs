@@ -9,11 +9,6 @@ namespace PersonMatcher.IO
 {
     class XmlImportExportStrategy : ImportExportStrategy
     {
-        public override void Export(string filename, List<Person> personList)
-        {
-            throw new NotImplementedException();
-        }
-
         public override List<Person> Import(string filename)
         {
             List<Person> personList = null;

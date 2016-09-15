@@ -6,12 +6,9 @@ namespace PersonMatcher.IO
 {
     public abstract class ImportExportStrategy
     {
-       
         protected StreamWriter Writer { get; set; }
         protected StreamReader Reader { get; set; }
         public abstract List<Person> Import(string filename);
-        public abstract void Export(string filename, List<Person> personList);
-
         protected virtual bool OpenReader(string filename)
         {
             try
@@ -25,7 +22,6 @@ namespace PersonMatcher.IO
                 return false;
             }
         }
-
         protected virtual bool OpenWriter(string filename)
         {
             try
@@ -39,7 +35,5 @@ namespace PersonMatcher.IO
                 return false;
             }
         }
-
-     
     }
 }

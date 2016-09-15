@@ -1,13 +1,14 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace PersonMatcher
 {
     [DataContract]
     public class Person
     {
-        [DataMember()]
+        [DataMember, XmlElement(DataType = "ObjectId")]
         public int ObjectId { get; set; }
-        [DataMember()]
+        [DataMember]
         public string StateFileNumber { get; set; }
         [DataMember]
         public string SocialSecurityNumber { get; set; }

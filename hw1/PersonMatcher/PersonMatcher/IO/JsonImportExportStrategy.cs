@@ -6,10 +6,6 @@ namespace PersonMatcher.IO
 {
     public class JsonImportExportStrategy : ImportExportStrategy
     {
-        public override void Export(string filename, List<Person> personList)
-        {
-            throw new NotImplementedException();
-        }
 
         public override List<Person> Import(string filename)
         {

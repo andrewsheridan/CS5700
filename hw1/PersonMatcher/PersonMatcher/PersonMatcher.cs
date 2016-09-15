@@ -1,15 +1,17 @@
 ﻿using PersonMatcher.IO;
 using PersonMatcher.Matching;
 using System.Collections.Generic;
+using System;
 
 namespace PersonMatcher
 {
+    public enum MatchStrategyEnum { BirthInfo, ContactInfo, FullName, GovernmentInfo };
     public class PersonMatcher
     {
         //private PersonSet personSet;
         private List<Person> personList;
         public ImportExportStrategy StorageStrategy { get; set; }
-
+        
         public MatchStrategy Matcher { get; set; }
 
         public PersonMatcher()
@@ -17,14 +19,47 @@ namespace PersonMatcher
             Matcher = new FullNameMatchStrategy();
         }
 
-        public List<Person> Import(string inputFileName)
+        public void setMatchStrategyByEnum(MatchStrategyEnum strategy)
         {
-            personList = StorageStrategy.Import(inputFileName);
-            Run();
-            return personList;
+            switch (strategy)
+            {
+                case MatchStrategyEnum.BirthInfo:
+                    Matcher = new BirthInfoMatchStrategy();
+                    break;
+                case MatchStrategyEnum.ContactInfo:
+                    Matcher = new ContactInfoMatchStrategy();
+                    break;
+                case MatchStrategyEnum.FullName:
+                    Matcher = new FullNameMatchStrategy();
+                    break;
+                case MatchStrategyEnum.GovernmentInfo:
+                    Matcher = new GovernmentInfoMatchStrategy();
+                    break;
+                default:
+                    Matcher = new FullNameMatchStrategy();
+                    break;
+            }
         }
 
-        public List<Match> Run()
+        public void Import(string inputFileName)
+        {
+            personList = StorageStrategy.Import(inputFileName);
+        }
+
+        public string GetMatchesAsString()
+        {
+            string output = "";
+            List<Match> matches = FindMatches();
+
+            for(int i = 0; i < matches.Count; i++)
+            {
+                output += matches[i].ToString() + Environment.NewLine;
+            }
+
+            return output;
+        }
+
+        public List<Match> FindMatches()
         {
             int personCount = personList.Count;
             List<Match> matchList = new List<Match>();
@@ -42,5 +77,7 @@ namespace PersonMatcher
 
             return matchList;
         }
+
+        
     }
 }
