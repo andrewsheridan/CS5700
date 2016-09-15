@@ -17,7 +17,7 @@ namespace PersonMatcher.Matching
 
         public override string ToString()
         {
-            return $"{ObjectId1}, {ObjectId2}";
+            return $"({ObjectId1}), ({ObjectId2})";
         }
     }
 }

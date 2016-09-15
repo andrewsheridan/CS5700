@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace PersonMatcher
+namespace PersonMatcher.DataObjects
 {
     [DataContract]
     public class Adult : Person

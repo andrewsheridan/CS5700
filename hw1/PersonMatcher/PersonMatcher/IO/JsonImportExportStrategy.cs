@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
+using PersonMatcher.DataObjects;
 
 namespace PersonMatcher.IO
 {
@@ -14,7 +15,15 @@ namespace PersonMatcher.IO
             if (OpenReader(filename))
             {
                 Reader.BaseStream.Position = 0;
-                personList = serializer.ReadObject(Reader.BaseStream) as List<Person>;
+                try
+                {
+                    personList = serializer.ReadObject(Reader.BaseStream) as List<Person>;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Could not import the selected JSON file.");
+                    Console.WriteLine($"ERROR: {e.Message}");
+                }
                 Reader.Close();
             }
             return personList;

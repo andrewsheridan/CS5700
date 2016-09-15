@@ -1,5 +1,6 @@
 ﻿using PersonMatcher.IO;
 using PersonMatcher.Matching;
+using PersonMatcher.DataObjects;
 using System.Collections.Generic;
 using System;
 
@@ -17,6 +18,7 @@ namespace PersonMatcher
         public PersonMatcher()
         {
             Matcher = new FullNameMatchStrategy();
+            personList = new List<Person>();
         }
 
         public void setMatchStrategyByEnum(MatchStrategyEnum strategy)
@@ -62,8 +64,14 @@ namespace PersonMatcher
         public List<Match> FindMatches()
         {
             int personCount = personList.Count;
-            List<Match> matchList = new List<Match>();
             
+            List<Match> matchList = new List<Match>();
+
+            if (personCount == 0)
+            {
+                return matchList;
+            }
+
             for (int i = 0; i < personCount; i++)
             {
                 for(int j = i + 1; j < personCount; j++)

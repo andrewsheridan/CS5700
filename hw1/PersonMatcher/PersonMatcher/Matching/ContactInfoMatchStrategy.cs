@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PersonMatcher.DataObjects;
 
 namespace PersonMatcher.Matching
 {
@@ -10,7 +7,20 @@ namespace PersonMatcher.Matching
     {
         public override bool Match(Person a, Person b)
         {
-            throw new NotImplementedException();
+            if(a.GetType() == typeof(Adult) && b.GetType() == typeof(Adult))
+            {
+                return Match(a as Adult, b as Adult);
+            }
+            return false;
+        }
+        
+        private bool Match(Adult a, Adult b)
+        {
+            if ((String.IsNullOrWhiteSpace(a.Phone1) && String.IsNullOrWhiteSpace(a.Phone2)) || (String.IsNullOrWhiteSpace(b.Phone1) && String.IsNullOrWhiteSpace(b.Phone2)))
+                return false;
+            else if (a.Phone1 == b.Phone1 || a.Phone2 == b.Phone1 || a.Phone1 == b.Phone2 || a.Phone2 == b.Phone2)
+                return true;
+            else return false;
         }
     }
 }

@@ -44,7 +44,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "JSON files (*.json)|*.json|XML (*.xml*)|*.xml*";
+            this.openFileDialog1.Filter = "All files(*.*)|*.*|JSON files (*.json)|*.json|XML (*.xml)|*.xml";
             // 
             // importButton
             // 
@@ -161,7 +161,6 @@
             this.Controls.Add(this.importButton);
             this.Name = "Form1";
             this.Text = "Person Matcher";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

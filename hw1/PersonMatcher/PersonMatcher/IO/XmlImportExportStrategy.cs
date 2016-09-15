@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using PersonMatcher.DataObjects;
 
 namespace PersonMatcher.IO
 {

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace PersonMatcher
+namespace PersonMatcher.DataObjects
 {
     [DataContract]
     public class Child : Person
@@ -9,7 +9,7 @@ namespace PersonMatcher
         public string NewbornScreeningNumber { get; set; }
 
         [DataMember]
-        public bool IsPartOfMultipleBirth { get; set; }
+        public string IsPartOfMultipleBirth { get; set; }
 
         [DataMember]
         public int BirthOrder { get; set; }
