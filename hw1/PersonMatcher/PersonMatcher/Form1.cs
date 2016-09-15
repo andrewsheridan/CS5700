@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.IO;
 using PersonMatcher.IO;
 using PersonMatcher.Matching;
 
@@ -41,9 +42,24 @@ namespace PersonMatcher
             personMatcher.setMatchStrategyByEnum(strategy);
         }
 
+
+
         private void findMatchesButton_Click(object sender, EventArgs e)
         {
             matchResultsTextBox.Text = personMatcher.GetMatchesAsString();
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if(saveFileDialog1.FileName != "")
+                {
+                    StreamWriter file = new StreamWriter(saveFileDialog1.FileName);
+                    file.Write(matchResultsTextBox.Text);
+                    file.Close();
+                }
+            }
         }
     }
 }

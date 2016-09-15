@@ -39,6 +39,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.currentFileLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.exportButton = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -62,7 +64,7 @@
             this.matchResultsTextBox.Multiline = true;
             this.matchResultsTextBox.Name = "matchResultsTextBox";
             this.matchResultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.matchResultsTextBox.Size = new System.Drawing.Size(161, 228);
+            this.matchResultsTextBox.Size = new System.Drawing.Size(181, 143);
             this.matchResultsTextBox.TabIndex = 3;
             // 
             // label1
@@ -144,11 +146,22 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Step 3: Run the matcher!";
             // 
+            // exportButton
+            // 
+            this.exportButton.Location = new System.Drawing.Point(199, 216);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(181, 40);
+            this.exportButton.TabIndex = 13;
+            this.exportButton.Text = "Export Results";
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 271);
+            this.ClientSize = new System.Drawing.Size(390, 271);
+            this.Controls.Add(this.exportButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.currentFileLabel);
             this.Controls.Add(this.label4);
@@ -179,6 +192,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label currentFileLabel;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
