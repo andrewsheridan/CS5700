@@ -60,17 +60,17 @@
             // 
             // matchResultsTextBox
             // 
-            this.matchResultsTextBox.Location = new System.Drawing.Point(199, 28);
+            this.matchResultsTextBox.Location = new System.Drawing.Point(216, 28);
             this.matchResultsTextBox.Multiline = true;
             this.matchResultsTextBox.Name = "matchResultsTextBox";
             this.matchResultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.matchResultsTextBox.Size = new System.Drawing.Size(181, 143);
+            this.matchResultsTextBox.Size = new System.Drawing.Size(181, 182);
             this.matchResultsTextBox.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(238, 12);
+            this.label1.Location = new System.Drawing.Point(272, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 5;
@@ -148,7 +148,7 @@
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(199, 216);
+            this.exportButton.Location = new System.Drawing.Point(216, 216);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(181, 40);
             this.exportButton.TabIndex = 13;
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 271);
+            this.ClientSize = new System.Drawing.Size(411, 271);
             this.Controls.Add(this.exportButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.currentFileLabel);

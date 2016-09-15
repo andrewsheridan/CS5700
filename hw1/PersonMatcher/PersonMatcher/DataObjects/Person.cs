@@ -26,5 +26,37 @@ namespace PersonMatcher.DataObjects
         public int BirthDay { get; set; }
         [DataMember]
         public string Gender { get; set; }
+
+        public Person(int objectId, string stateFileNumber, string socialSecurityNumber
+            , string firstName, string middleName, string lastName, int birthYear, int birthMonth
+            , int birthDay, string gender)
+        {
+            ObjectId = objectId;
+            StateFileNumber = stateFileNumber;
+            SocialSecurityNumber = socialSecurityNumber;
+            FirstName = firstName;
+            MiddleName = middleName;
+            LastName = lastName;
+            BirthYear = birthYear;
+            BirthMonth = birthMonth;
+            BirthDay = birthDay;
+            Gender = gender;
+        }
+
+        public Person(Person person)
+        {
+            ObjectId = person.ObjectId;
+            StateFileNumber = person.StateFileNumber;
+            SocialSecurityNumber = person.SocialSecurityNumber;
+            FirstName = person.FirstName;
+            MiddleName = person.MiddleName;
+            LastName = person.LastName;
+            BirthYear = person.BirthYear;
+            BirthMonth = person.BirthMonth;
+            BirthDay = person.BirthDay;
+            Gender = person.Gender;
+        }
+
+        public Person() { }
     }
 }

@@ -26,6 +26,21 @@ namespace PersonMatcher.DataObjects
         [DataMember]
         public string MotherLastName { get; set; }
        
+        public Child(string newbornScreeningNumber, string isPartOfMultipleBirth, int birthOrder, string birthCountry
+            , string motherFirstName, string motherMiddleName, string motherLastName, int objectId, string stateFileNumber
+            , string socialSecurityNumber, string firstName, string middleName, string lastName, int birthYear, int birthMonth
+            , int birthDay, string gender)
+            :base(new Person(objectId, stateFileNumber, socialSecurityNumber, firstName, middleName, lastName, birthYear, birthMonth, birthDay, gender))
+        {
+            NewbornScreeningNumber = newbornScreeningNumber;
+            IsPartOfMultipleBirth = isPartOfMultipleBirth;
+            BirthOrder = birthOrder;
+            BirthCountry = birthCountry;
+            MotherFirstName = motherFirstName;
+            MotherMiddleName = motherMiddleName;
+            MotherLastName = MotherLastName;
+        }
 
+        public Child() { }
     }
 }
