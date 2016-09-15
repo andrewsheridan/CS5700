@@ -156,6 +156,10 @@
             this.exportButton.UseVisualStyleBackColor = true;
             this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Text File (*.txt)|*.txt";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
