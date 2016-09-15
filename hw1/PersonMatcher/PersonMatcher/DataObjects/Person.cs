@@ -3,10 +3,10 @@ using System.Xml.Serialization;
 
 namespace PersonMatcher.DataObjects
 {
-    [DataContract]
+    [DataContract, XmlType("Person")]
     public class Person
     {
-        [DataMember, XmlElement(DataType = "ObjectId")]
+        [DataMember]
         public int ObjectId { get; set; }
         [DataMember]
         public string StateFileNumber { get; set; }
