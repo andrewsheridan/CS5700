@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="IO\XmlImportExportStrategyTests.cs" />
     <Compile Include="Matching\BirthInfoMatchStrategyTests.cs" />
     <Compile Include="Matching\ContactInfoMatchStrategyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
