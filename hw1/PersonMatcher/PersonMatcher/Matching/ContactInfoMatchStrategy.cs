@@ -3,7 +3,7 @@ using PersonMatcher.DataObjects;
 
 namespace PersonMatcher.Matching
 {
-    class ContactInfoMatchStrategy : MatchStrategy
+    public class ContactInfoMatchStrategy : MatchStrategy
     {
         public override bool Match(Person a, Person b)
         {
@@ -18,7 +18,13 @@ namespace PersonMatcher.Matching
         {
             if ((String.IsNullOrWhiteSpace(a.Phone1) && String.IsNullOrWhiteSpace(a.Phone2)) || (String.IsNullOrWhiteSpace(b.Phone1) && String.IsNullOrWhiteSpace(b.Phone2)))
                 return false;
-            else if (a.Phone1 == b.Phone1 || a.Phone2 == b.Phone1 || a.Phone1 == b.Phone2 || a.Phone2 == b.Phone2)
+            else if ((!String.IsNullOrEmpty(a.Phone1) && !String.IsNullOrEmpty(b.Phone1)) && (a.Phone1 == b.Phone1))
+                return true;
+            else if ((!String.IsNullOrEmpty(a.Phone1) && !String.IsNullOrEmpty(b.Phone2)) && (a.Phone1 == b.Phone2))
+                return true;
+            else if ((!String.IsNullOrEmpty(a.Phone2) && !String.IsNullOrEmpty(b.Phone1)) && (a.Phone2 == b.Phone1))
+                return true;
+            else if ((!String.IsNullOrEmpty(a.Phone2) && !String.IsNullOrEmpty(b.Phone2)) && (a.Phone2 == b.Phone2))
                 return true;
             else return false;
         }

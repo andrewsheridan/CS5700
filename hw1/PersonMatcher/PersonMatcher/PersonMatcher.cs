@@ -6,10 +6,9 @@ using System;
 
 namespace PersonMatcher
 {
-    public enum MatchStrategyEnum { BirthInfo, ContactInfo, FullName, GovernmentInfo };
+    public enum MatchStrategyEnum { AllStrategies, BirthInfo, ContactInfo, FullName, GovernmentInfo  };
     public class PersonMatcher
     {
-        //private PersonSet personSet;
         private List<Person> personList;
         public ImportExportStrategy StorageStrategy { get; set; }
         
@@ -37,6 +36,9 @@ namespace PersonMatcher
                 case MatchStrategyEnum.GovernmentInfo:
                     Matcher = new GovernmentInfoMatchStrategy();
                     break;
+                case MatchStrategyEnum.AllStrategies:
+                    Matcher = new AllMatchStrategy();
+                    break;
                 default:
                     Matcher = new FullNameMatchStrategy();
                     break;
@@ -62,7 +64,7 @@ namespace PersonMatcher
         }
 
         public List<Match> FindMatches()
-        {
+        {   
             int personCount = personList.Count;
             
             List<Match> matchList = new List<Match>();
@@ -85,7 +87,5 @@ namespace PersonMatcher
 
             return matchList;
         }
-
-        
     }
 }

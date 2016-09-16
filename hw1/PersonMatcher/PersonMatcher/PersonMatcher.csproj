@@ -61,6 +61,7 @@
     <Compile Include="IO\ImportExportStrategy.cs" />
     <Compile Include="IO\JsonImportExportStrategy.cs" />
     <Compile Include="IO\XmlImportExportStrategy.cs" />
+    <Compile Include="Matching\AllMatchStrategy.cs" />
     <Compile Include="Matching\BirthInfoMatchStrategy.cs" />
     <Compile Include="Matching\ContactInfoMatchStrategy.cs" />
     <Compile Include="Matching\FullNameMatchStrategy.cs" />

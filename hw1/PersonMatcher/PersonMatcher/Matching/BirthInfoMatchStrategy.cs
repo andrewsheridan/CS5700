@@ -16,12 +16,12 @@ namespace PersonMatcher.Matching
 
         private bool Match(Child a, Child b)
         {
-            if (String.IsNullOrWhiteSpace(a.NewbornScreeningNumber)
-                || String.IsNullOrWhiteSpace(b.NewbornScreeningNumber))
+            if (String.IsNullOrEmpty(a.NewbornScreeningNumber)
+                || String.IsNullOrEmpty(b.NewbornScreeningNumber))
                 return false;
             else if (a.NewbornScreeningNumber == b.NewbornScreeningNumber)
             {
-                if (String.IsNullOrWhiteSpace(a.IsPartOfMultipleBirth) && String.IsNullOrWhiteSpace(b.IsPartOfMultipleBirth))
+                if (String.IsNullOrEmpty(a.IsPartOfMultipleBirth) && String.IsNullOrEmpty(b.IsPartOfMultipleBirth))
                 {
                     return true;
                 }
