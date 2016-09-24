@@ -17,7 +17,7 @@ namespace PersonMatcher.Matching
         }
 
 
-        public override bool Match(Person a, Person b)
+        public bool Match(Person a, Person b)
         {
             for(int i = 0; i < matchList.Count; i++)
             {

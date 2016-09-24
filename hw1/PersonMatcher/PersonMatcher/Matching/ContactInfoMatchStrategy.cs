@@ -5,7 +5,7 @@ namespace PersonMatcher.Matching
 {
     public class ContactInfoMatchStrategy : MatchStrategy
     {
-        public override bool Match(Person a, Person b)
+        public bool Match(Person a, Person b)
         {
             if(a.GetType() == typeof(Adult) && b.GetType() == typeof(Adult))
             {

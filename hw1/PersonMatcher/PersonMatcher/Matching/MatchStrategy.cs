@@ -2,8 +2,8 @@
 
 namespace PersonMatcher.Matching
 {
-    public abstract class MatchStrategy
+    public interface MatchStrategy
     {
-        public abstract bool Match(Person a, Person b);
+        bool Match(Person a, Person b);
     }
 }

@@ -5,7 +5,7 @@ namespace PersonMatcher.Matching
 {
     public class GovernmentInfoMatchStrategy : MatchStrategy
     {
-        public override bool Match(Person a, Person b)
+        public bool Match(Person a, Person b)
         {
             if (String.IsNullOrWhiteSpace(a.StateFileNumber)
                 || String.IsNullOrWhiteSpace(b.StateFileNumber)
