@@ -1,4 +1,4 @@
-﻿namespace HW2
+﻿namespace StockMonitor
 {
     partial class Form1
     {
@@ -28,60 +28,152 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.stockTabControl = new System.Windows.Forms.TabControl();
+            this.portfolioTab = new System.Windows.Forms.TabPage();
+            this.panelManagerTab = new System.Windows.Forms.TabPage();
+            this.portfolioLabel = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.savePortfolioButton = new System.Windows.Forms.Button();
+            this.loadPortfolioButton = new System.Windows.Forms.Button();
+            this.managePanelsLabel = new System.Windows.Forms.Label();
+            this.currentPanelListBox = new System.Windows.Forms.ListBox();
+            this.stockSearchTextBox = new System.Windows.Forms.TextBox();
+            this.stockTabControl.SuspendLayout();
+            this.portfolioTab.SuspendLayout();
+            this.panelManagerTab.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // stockTabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(407, 265);
-            this.tabControl1.TabIndex = 0;
+            this.stockTabControl.Controls.Add(this.portfolioTab);
+            this.stockTabControl.Controls.Add(this.panelManagerTab);
+            this.stockTabControl.Location = new System.Drawing.Point(12, 12);
+            this.stockTabControl.Name = "stockTabControl";
+            this.stockTabControl.SelectedIndex = 0;
+            this.stockTabControl.Size = new System.Drawing.Size(297, 537);
+            this.stockTabControl.TabIndex = 0;
             // 
-            // tabPage1
+            // portfolioTab
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(399, 239);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.portfolioTab.Controls.Add(this.stockSearchTextBox);
+            this.portfolioTab.Controls.Add(this.loadPortfolioButton);
+            this.portfolioTab.Controls.Add(this.savePortfolioButton);
+            this.portfolioTab.Controls.Add(this.checkedListBox1);
+            this.portfolioTab.Controls.Add(this.portfolioLabel);
+            this.portfolioTab.Location = new System.Drawing.Point(4, 22);
+            this.portfolioTab.Name = "portfolioTab";
+            this.portfolioTab.Padding = new System.Windows.Forms.Padding(3);
+            this.portfolioTab.Size = new System.Drawing.Size(289, 511);
+            this.portfolioTab.TabIndex = 0;
+            this.portfolioTab.Text = "Portfolio";
+            this.portfolioTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // panelManagerTab
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 74);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.panelManagerTab.Controls.Add(this.currentPanelListBox);
+            this.panelManagerTab.Controls.Add(this.managePanelsLabel);
+            this.panelManagerTab.Location = new System.Drawing.Point(4, 22);
+            this.panelManagerTab.Name = "panelManagerTab";
+            this.panelManagerTab.Padding = new System.Windows.Forms.Padding(3);
+            this.panelManagerTab.Size = new System.Drawing.Size(289, 511);
+            this.panelManagerTab.TabIndex = 1;
+            this.panelManagerTab.Text = "Panels";
+            this.panelManagerTab.UseVisualStyleBackColor = true;
+            // 
+            // portfolioLabel
+            // 
+            this.portfolioLabel.AutoSize = true;
+            this.portfolioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioLabel.Location = new System.Drawing.Point(27, 18);
+            this.portfolioLabel.Name = "portfolioLabel";
+            this.portfolioLabel.Size = new System.Drawing.Size(229, 26);
+            this.portfolioLabel.TabIndex = 1;
+            this.portfolioLabel.Text = "Manage Your Portfolio";
+            this.portfolioLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(32, 87);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.ScrollAlwaysVisible = true;
+            this.checkedListBox1.Size = new System.Drawing.Size(224, 349);
+            this.checkedListBox1.TabIndex = 2;
+            // 
+            // savePortfolioButton
+            // 
+            this.savePortfolioButton.Location = new System.Drawing.Point(32, 460);
+            this.savePortfolioButton.Name = "savePortfolioButton";
+            this.savePortfolioButton.Size = new System.Drawing.Size(107, 23);
+            this.savePortfolioButton.TabIndex = 1;
+            this.savePortfolioButton.Text = "Save Portfolio";
+            this.savePortfolioButton.UseVisualStyleBackColor = true;
+            this.savePortfolioButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // loadPortfolioButton
+            // 
+            this.loadPortfolioButton.Location = new System.Drawing.Point(149, 460);
+            this.loadPortfolioButton.Name = "loadPortfolioButton";
+            this.loadPortfolioButton.Size = new System.Drawing.Size(107, 23);
+            this.loadPortfolioButton.TabIndex = 3;
+            this.loadPortfolioButton.Text = "Load Portfolio";
+            this.loadPortfolioButton.UseVisualStyleBackColor = true;
+            // 
+            // managePanelsLabel
+            // 
+            this.managePanelsLabel.AutoSize = true;
+            this.managePanelsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.managePanelsLabel.Location = new System.Drawing.Point(36, 20);
+            this.managePanelsLabel.Name = "managePanelsLabel";
+            this.managePanelsLabel.Size = new System.Drawing.Size(216, 26);
+            this.managePanelsLabel.TabIndex = 0;
+            this.managePanelsLabel.Text = "Manage Your Panels";
+            // 
+            // currentPanelListBox
+            // 
+            this.currentPanelListBox.FormattingEnabled = true;
+            this.currentPanelListBox.Location = new System.Drawing.Point(41, 65);
+            this.currentPanelListBox.Name = "currentPanelListBox";
+            this.currentPanelListBox.Size = new System.Drawing.Size(211, 160);
+            this.currentPanelListBox.TabIndex = 1;
+            // 
+            // stockSearchTextBox
+            // 
+            this.stockSearchTextBox.Location = new System.Drawing.Point(32, 61);
+            this.stockSearchTextBox.Name = "stockSearchTextBox";
+            this.stockSearchTextBox.Size = new System.Drawing.Size(224, 20);
+            this.stockSearchTextBox.TabIndex = 4;
+            this.stockSearchTextBox.Text = "Search";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 289);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(321, 561);
+            this.Controls.Add(this.stockTabControl);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.tabControl1.ResumeLayout(false);
+            this.stockTabControl.ResumeLayout(false);
+            this.portfolioTab.ResumeLayout(false);
+            this.portfolioTab.PerformLayout();
+            this.panelManagerTab.ResumeLayout(false);
+            this.panelManagerTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl stockTabControl;
+        private System.Windows.Forms.TabPage portfolioTab;
+        private System.Windows.Forms.TabPage panelManagerTab;
+        private System.Windows.Forms.Label portfolioLabel;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Button savePortfolioButton;
+        private System.Windows.Forms.TextBox stockSearchTextBox;
+        private System.Windows.Forms.Button loadPortfolioButton;
+        private System.Windows.Forms.ListBox currentPanelListBox;
+        private System.Windows.Forms.Label managePanelsLabel;
     }
 }
 

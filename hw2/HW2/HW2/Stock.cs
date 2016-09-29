@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW2
+namespace StockMonitor
 {
-    class Portfolio
+    public class Stock
     {
 
+        public void Update(TickerMessage message)
+        {
+
+
+        }
     }
 }

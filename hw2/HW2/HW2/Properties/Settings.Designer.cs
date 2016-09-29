@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HW2.Properties
+namespace StockMonitor.Properties
 {
 
 
