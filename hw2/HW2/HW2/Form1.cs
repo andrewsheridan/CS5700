@@ -30,27 +30,34 @@ namespace StockMonitor
 
         private void savePortfolioButton_Click(object sender, EventArgs e)
         {
-            List<string> output = new List<string>();
+            List<string> companyNames = new List<string>();
             for(int i = 0; i < companyCheckedListBox.CheckedItems.Count; i++)
             {
-                output.Add((string)companyCheckedListBox.CheckedItems[i]);
+                companyNames.Add((string)companyCheckedListBox.CheckedItems[i]);
             }
 
             savePortfolioDialog.ShowDialog();
             if (savePortfolioDialog.FileName != "")
             {
-                System.IO.File.WriteAllLines(savePortfolioDialog.FileName, output);
+                portfolioManager.SavePortfolio(savePortfolioDialog.FileName, companyNames);
             }
         }
 
         private void loadPortfolioButton_Click(object sender, EventArgs e)
         {
+            loadPortfolioDialog.ShowDialog();
+            if(loadPortfolioDialog.FileName != "")
+            {
+                foreach (int i in companyCheckedListBox.CheckedIndices)
+                    companyCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
 
-
-            foreach(int i in companyCheckedListBox.CheckedIndices)
-                companyCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
-            
-            
+                List<string> companyNames = portfolioManager.LoadPortfolio(loadPortfolioDialog.FileName);
+                foreach(string name in companyNames)
+                {
+                    int index = companyCheckedListBox.Items.IndexOf((object)name);
+                    companyCheckedListBox.SetItemCheckState(index, CheckState.Checked);
+                }
+            }
         }
     }
 }
