@@ -1,4 +1,6 @@
-﻿namespace StockMonitor
+﻿using System.Collections.Generic;
+
+namespace StockMonitor
 {
     partial class Form1
     {
@@ -30,14 +32,15 @@
         {
             this.stockTabControl = new System.Windows.Forms.TabControl();
             this.portfolioTab = new System.Windows.Forms.TabPage();
-            this.panelManagerTab = new System.Windows.Forms.TabPage();
-            this.portfolioLabel = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.savePortfolioButton = new System.Windows.Forms.Button();
             this.loadPortfolioButton = new System.Windows.Forms.Button();
-            this.managePanelsLabel = new System.Windows.Forms.Label();
+            this.savePortfolioButton = new System.Windows.Forms.Button();
+            this.companyCheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.portfolioLabel = new System.Windows.Forms.Label();
+            this.panelManagerTab = new System.Windows.Forms.TabPage();
             this.currentPanelListBox = new System.Windows.Forms.ListBox();
-            this.stockSearchTextBox = new System.Windows.Forms.TextBox();
+            this.managePanelsLabel = new System.Windows.Forms.Label();
+            this.savePortfolioDialog = new System.Windows.Forms.SaveFileDialog();
+            this.loadPortfolioDialog = new System.Windows.Forms.OpenFileDialog();
             this.stockTabControl.SuspendLayout();
             this.portfolioTab.SuspendLayout();
             this.panelManagerTab.SuspendLayout();
@@ -55,10 +58,9 @@
             // 
             // portfolioTab
             // 
-            this.portfolioTab.Controls.Add(this.stockSearchTextBox);
             this.portfolioTab.Controls.Add(this.loadPortfolioButton);
             this.portfolioTab.Controls.Add(this.savePortfolioButton);
-            this.portfolioTab.Controls.Add(this.checkedListBox1);
+            this.portfolioTab.Controls.Add(this.companyCheckedListBox);
             this.portfolioTab.Controls.Add(this.portfolioLabel);
             this.portfolioTab.Location = new System.Drawing.Point(4, 22);
             this.portfolioTab.Name = "portfolioTab";
@@ -67,6 +69,46 @@
             this.portfolioTab.TabIndex = 0;
             this.portfolioTab.Text = "Portfolio";
             this.portfolioTab.UseVisualStyleBackColor = true;
+            // 
+            // loadPortfolioButton
+            // 
+            this.loadPortfolioButton.Location = new System.Drawing.Point(149, 460);
+            this.loadPortfolioButton.Name = "loadPortfolioButton";
+            this.loadPortfolioButton.Size = new System.Drawing.Size(107, 23);
+            this.loadPortfolioButton.TabIndex = 3;
+            this.loadPortfolioButton.Text = "Load Portfolio";
+            this.loadPortfolioButton.UseVisualStyleBackColor = true;
+            this.loadPortfolioButton.Click += new System.EventHandler(this.loadPortfolioButton_Click);
+            // 
+            // savePortfolioButton
+            // 
+            this.savePortfolioButton.Location = new System.Drawing.Point(32, 460);
+            this.savePortfolioButton.Name = "savePortfolioButton";
+            this.savePortfolioButton.Size = new System.Drawing.Size(107, 23);
+            this.savePortfolioButton.TabIndex = 1;
+            this.savePortfolioButton.Text = "Save Portfolio";
+            this.savePortfolioButton.UseVisualStyleBackColor = true;
+            this.savePortfolioButton.Click += new System.EventHandler(this.savePortfolioButton_Click);
+            // 
+            // companyCheckedListBox
+            // 
+            this.companyCheckedListBox.FormattingEnabled = true;
+            this.companyCheckedListBox.Location = new System.Drawing.Point(6, 57);
+            this.companyCheckedListBox.Name = "companyCheckedListBox";
+            this.companyCheckedListBox.ScrollAlwaysVisible = true;
+            this.companyCheckedListBox.Size = new System.Drawing.Size(277, 379);
+            this.companyCheckedListBox.TabIndex = 2;
+            // 
+            // portfolioLabel
+            // 
+            this.portfolioLabel.AutoSize = true;
+            this.portfolioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioLabel.Location = new System.Drawing.Point(27, 18);
+            this.portfolioLabel.Name = "portfolioLabel";
+            this.portfolioLabel.Size = new System.Drawing.Size(229, 26);
+            this.portfolioLabel.TabIndex = 1;
+            this.portfolioLabel.Text = "Manage Your Portfolio";
+            this.portfolioLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // panelManagerTab
             // 
@@ -80,44 +122,13 @@
             this.panelManagerTab.Text = "Panels";
             this.panelManagerTab.UseVisualStyleBackColor = true;
             // 
-            // portfolioLabel
+            // currentPanelListBox
             // 
-            this.portfolioLabel.AutoSize = true;
-            this.portfolioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioLabel.Location = new System.Drawing.Point(27, 18);
-            this.portfolioLabel.Name = "portfolioLabel";
-            this.portfolioLabel.Size = new System.Drawing.Size(229, 26);
-            this.portfolioLabel.TabIndex = 1;
-            this.portfolioLabel.Text = "Manage Your Portfolio";
-            this.portfolioLabel.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(32, 87);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(224, 349);
-            this.checkedListBox1.TabIndex = 2;
-            // 
-            // savePortfolioButton
-            // 
-            this.savePortfolioButton.Location = new System.Drawing.Point(32, 460);
-            this.savePortfolioButton.Name = "savePortfolioButton";
-            this.savePortfolioButton.Size = new System.Drawing.Size(107, 23);
-            this.savePortfolioButton.TabIndex = 1;
-            this.savePortfolioButton.Text = "Save Portfolio";
-            this.savePortfolioButton.UseVisualStyleBackColor = true;
-            this.savePortfolioButton.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // loadPortfolioButton
-            // 
-            this.loadPortfolioButton.Location = new System.Drawing.Point(149, 460);
-            this.loadPortfolioButton.Name = "loadPortfolioButton";
-            this.loadPortfolioButton.Size = new System.Drawing.Size(107, 23);
-            this.loadPortfolioButton.TabIndex = 3;
-            this.loadPortfolioButton.Text = "Load Portfolio";
-            this.loadPortfolioButton.UseVisualStyleBackColor = true;
+            this.currentPanelListBox.FormattingEnabled = true;
+            this.currentPanelListBox.Location = new System.Drawing.Point(41, 65);
+            this.currentPanelListBox.Name = "currentPanelListBox";
+            this.currentPanelListBox.Size = new System.Drawing.Size(211, 160);
+            this.currentPanelListBox.TabIndex = 1;
             // 
             // managePanelsLabel
             // 
@@ -129,21 +140,18 @@
             this.managePanelsLabel.TabIndex = 0;
             this.managePanelsLabel.Text = "Manage Your Panels";
             // 
-            // currentPanelListBox
+            // savePortfolioDialog
             // 
-            this.currentPanelListBox.FormattingEnabled = true;
-            this.currentPanelListBox.Location = new System.Drawing.Point(41, 65);
-            this.currentPanelListBox.Name = "currentPanelListBox";
-            this.currentPanelListBox.Size = new System.Drawing.Size(211, 160);
-            this.currentPanelListBox.TabIndex = 1;
+            this.savePortfolioDialog.DefaultExt = "txt";
+            this.savePortfolioDialog.Filter = "Text Files (*.txt)|*.txt";
+            this.savePortfolioDialog.Title = "Save Portfolio";
             // 
-            // stockSearchTextBox
+            // loadPortfolioDialog
             // 
-            this.stockSearchTextBox.Location = new System.Drawing.Point(32, 61);
-            this.stockSearchTextBox.Name = "stockSearchTextBox";
-            this.stockSearchTextBox.Size = new System.Drawing.Size(224, 20);
-            this.stockSearchTextBox.TabIndex = 4;
-            this.stockSearchTextBox.Text = "Search";
+            this.loadPortfolioDialog.DefaultExt = "txt";
+            this.loadPortfolioDialog.FileName = "loadPortfolioDialog";
+            this.loadPortfolioDialog.Filter = "Text Files (*.txt) | *.txt";
+            this.loadPortfolioDialog.Title = "Load Portfolio";
             // 
             // Form1
             // 
@@ -161,19 +169,20 @@
             this.ResumeLayout(false);
 
         }
-
+        
         #endregion
 
         private System.Windows.Forms.TabControl stockTabControl;
         private System.Windows.Forms.TabPage portfolioTab;
         private System.Windows.Forms.TabPage panelManagerTab;
         private System.Windows.Forms.Label portfolioLabel;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox companyCheckedListBox;
         private System.Windows.Forms.Button savePortfolioButton;
-        private System.Windows.Forms.TextBox stockSearchTextBox;
         private System.Windows.Forms.Button loadPortfolioButton;
         private System.Windows.Forms.ListBox currentPanelListBox;
         private System.Windows.Forms.Label managePanelsLabel;
+        private System.Windows.Forms.SaveFileDialog savePortfolioDialog;
+        private System.Windows.Forms.OpenFileDialog loadPortfolioDialog;
     }
 }
 

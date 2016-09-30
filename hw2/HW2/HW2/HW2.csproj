@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Communicator.cs" />
+    <Compile Include="Company.cs" />
     <Compile Include="EndPointParser.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
