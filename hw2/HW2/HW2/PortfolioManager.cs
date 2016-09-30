@@ -13,6 +13,7 @@ namespace StockMonitor
         public PortfolioManager(string filename)
         {
             CompanyList = LoadCompanyList(filename);
+            Portfolio = new StockPortfolio();
         }
         
         public void SavePortfolio(string filename, List<string> companyNames) {
@@ -57,6 +58,25 @@ namespace StockMonitor
             }
             
             return companyList;
+        }
+
+        public void AddStock(string companyName)
+        {
+            Company match = CompanyList.Find(e => e.NameWithSymbol == companyName);
+            if(match != null)
+            {
+                Stock stock = new Stock(match.Symbol, match.Name);
+                Portfolio.Add(match.Symbol, stock);
+            }
+        }
+
+        public void RemoveStock(string companyName)
+        {
+            Company match = CompanyList.Find(e => e.NameWithSymbol == companyName);
+            if(match != null)
+            {
+                Portfolio.Remove(match.Symbol);
+            }
         }
     }
 }

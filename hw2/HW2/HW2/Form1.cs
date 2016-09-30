@@ -59,5 +59,17 @@ namespace StockMonitor
                 }
             }
         }
+
+        private void companyCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if(e.NewValue == CheckState.Checked)
+            {
+                portfolioManager.AddStock((string)companyCheckedListBox.Items[e.Index]);
+            } 
+            else
+            {
+                portfolioManager.RemoveStock((string)companyCheckedListBox.Items[e.Index]);
+            }
+        }
     }
 }

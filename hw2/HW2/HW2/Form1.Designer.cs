@@ -98,6 +98,7 @@ namespace StockMonitor
             this.companyCheckedListBox.ScrollAlwaysVisible = true;
             this.companyCheckedListBox.Size = new System.Drawing.Size(277, 379);
             this.companyCheckedListBox.TabIndex = 2;
+            this.companyCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.companyCheckedListBox_ItemCheck);
             // 
             // portfolioLabel
             // 
