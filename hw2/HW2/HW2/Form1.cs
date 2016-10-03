@@ -13,11 +13,13 @@ namespace StockMonitor
     public partial class Form1 : Form
     {
         PortfolioManager portfolioManager;
+        PanelManager panelManager;
         public Form1()
         {
             InitializeComponent();
             Communicator communicator = new Communicator();
             portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
+            panelManager = new PanelManager();
             foreach (Company c in portfolioManager.CompanyList)
             {
                 companyCheckedListBox.Items.Add(c.NameWithSymbol);
@@ -25,11 +27,7 @@ namespace StockMonitor
             communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099");
             communicator.Start();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void savePortfolioButton_Click(object sender, EventArgs e)
         {
@@ -68,11 +66,28 @@ namespace StockMonitor
             if(e.NewValue == CheckState.Checked)
             {
                 portfolioManager.AddStock((string)companyCheckedListBox.Items[e.Index]);
+                stocksListBox.Items.Add((string)companyCheckedListBox.Items[e.Index]);
             } 
             else
             {
                 portfolioManager.RemoveStock((string)companyCheckedListBox.Items[e.Index]);
+                stocksListBox.Items.Remove((string)companyCheckedListBox.Items[e.Index]);
             }
+        }
+
+        private void panelTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+      
+
+        private void newPanelButton_Click(object sender, EventArgs e)
+        {
+            if((string)panelTypeComboBox.SelectedItem == "Portfolio Stock Prices")
+            {
+                stockTabControl.TabPages.Add("Stock Prices");
+            }
+            
         }
     }
 }

@@ -72,7 +72,8 @@ namespace StockMonitor
             {
                 Stock stock = new Stock(match.Symbol, match.Name);
                 Portfolio.Add(match.Symbol, stock);
-                //TODO: Restart the communicator.
+                communicator.Stop();
+                communicator.Start();
             }
         }
 
@@ -82,6 +83,8 @@ namespace StockMonitor
             if(match != null)
             {
                 Portfolio.Remove(match.Symbol);
+                communicator.Stop();
+                communicator.Start();
             }
         }
     }
