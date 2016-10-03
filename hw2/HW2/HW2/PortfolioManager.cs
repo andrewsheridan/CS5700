@@ -7,13 +7,18 @@ namespace StockMonitor
 {
     public class PortfolioManager
     {
+        private Communicator communicator;
         public List<Company> CompanyList { get; set; }
         private StockPortfolio Portfolio { get; set; }
 
-        public PortfolioManager(string filename)
+
+
+        public PortfolioManager(string filename, Communicator com)
         {
             CompanyList = LoadCompanyList(filename);
+            communicator = com;
             Portfolio = new StockPortfolio();
+            communicator.Portfolio = Portfolio;
         }
         
         public void SavePortfolio(string filename, List<string> companyNames) {
@@ -67,6 +72,7 @@ namespace StockMonitor
             {
                 Stock stock = new Stock(match.Symbol, match.Name);
                 Portfolio.Add(match.Symbol, stock);
+                //TODO: Restart the communicator.
             }
         }
 

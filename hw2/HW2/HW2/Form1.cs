@@ -16,11 +16,14 @@ namespace StockMonitor
         public Form1()
         {
             InitializeComponent();
-            portfolioManager = new PortfolioManager("../../../CompanyList.csv");
+            Communicator communicator = new Communicator();
+            portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
             foreach (Company c in portfolioManager.CompanyList)
             {
                 companyCheckedListBox.Items.Add(c.NameWithSymbol);
             }
+            communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099");
+            communicator.Start();
         }
 
         private void label1_Click(object sender, EventArgs e)
