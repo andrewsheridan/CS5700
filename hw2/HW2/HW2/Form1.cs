@@ -14,12 +14,14 @@ namespace StockMonitor
     {
         PortfolioManager portfolioManager;
         PanelManager panelManager;
+        public List<Panel> panels;
         public Form1()
         {
             InitializeComponent();
             Communicator communicator = new Communicator();
             portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
-            panelManager = new PanelManager();
+            panels = new List<Panel>();
+            panelManager = new PanelManager(this);
             foreach (Company c in portfolioManager.CompanyList)
             {
                 companyCheckedListBox.Items.Add(c.NameWithSymbol);
@@ -89,5 +91,7 @@ namespace StockMonitor
             }
             
         }
+        
+
     }
 }

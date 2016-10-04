@@ -55,7 +55,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panel.cs" />
+    <Compile Include="CustomPanel.cs" />
     <Compile Include="PanelManager.cs" />
     <Compile Include="PortfolioManager.cs" />
     <Compile Include="Program.cs" />

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace StockMonitor
 {
-    public class Panel
+    public class CustomPanel
     {
+        public virtual void Create() {
+
+        }
     }
 }
