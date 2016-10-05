@@ -13,6 +13,7 @@ namespace StockMonitor
     public partial class Form1 : Form
     {
         PortfolioManager portfolioManager;
+        PanelManager panelManager;
         public List<CustomPanel> Panels { get; set; }
         public enum PanelType { PorfolioStockPrices, IndividualStockPriceGraph, IndividualStockVolumeGraph };
         public Form1()
@@ -20,6 +21,7 @@ namespace StockMonitor
             InitializeComponent();
             Communicator communicator = new Communicator();
             portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
+            panelManager = new PanelManager(this);
             foreach (Company c in portfolioManager.CompanyList)
             {
                 companyCheckedListBox.Items.Add(c.NameWithSymbol);
@@ -77,7 +79,15 @@ namespace StockMonitor
 
         private void panelTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            switch ((string)panelTypeComboBox.SelectedItem)
+            {
+                case "Portfolio Stock Prices" :
+                    stocksListBox.SelectionMode = SelectionMode.MultiSimple;
+                    break;
+                default:
+                    stocksListBox.SelectionMode = SelectionMode.One;
+                    break;
+            }
         }
       
 
@@ -89,8 +99,9 @@ namespace StockMonitor
             {
                 case "Portfolio Stock Prices":
                     //TODO: check if there is already a portfolio stock prices panel
-                    TabPage newTab = createNewTab();
-                    stockTabControl.TabPages.Add(newTab);
+                    TabPage newTab = panelManager.createNewTab();
+                    if(newTab != null)
+                        stockTabControl.TabPages.Add(newTab);
                 
                     newLabel.Text = "Portfolio Stock Prices";
                     newLabel.Name = "porfolioStockPricesLabel";
@@ -108,28 +119,6 @@ namespace StockMonitor
             
         }
 
-        private TabPage createNewTab()
-        {
-            string selectedItem = (string)panelTypeComboBox.SelectedItem;
-            if (selectedItem == "Select Panel Type")
-                return null;
-            if (newPanelNameTextBox.Text == null || newPanelNameTextBox.Text == "Input panel name here")
-                return null;
-            
-            TabPage myTabPage = new TabPage(newPanelNameTextBox.Text);
-            myTabPage.Name = newPanelNameTextBox.Text;
-            myTabPage.Location = new System.Drawing.Point(4, 22);
-            myTabPage.Padding = new System.Windows.Forms.Padding(3);
-            myTabPage.Size = new System.Drawing.Size(289, 511);
-            myTabPage.TabIndex = 1;
-            myTabPage.UseVisualStyleBackColor = true;
-            
-
-            currentPanelListBox.Items.Add(newPanelNameTextBox.Text);
-
-            return myTabPage;
-        }
-
         private void removePanelButton_Click(object sender, EventArgs e)
         {
             object item = currentPanelListBox.SelectedItem;
@@ -140,5 +129,36 @@ namespace StockMonitor
             }
             
         }
+
+        public class PanelManager
+        {
+            private Form1 form;
+            public PanelManager(Form1 f)
+            {
+                form = f;
+            }
+            public TabPage createNewTab()
+            {
+                string selectedItem = (string)form.panelTypeComboBox.SelectedItem;
+                if (selectedItem == "Select Panel Type")
+                    return null;
+                if (form.newPanelNameTextBox.Text == null || form.newPanelNameTextBox.Text == "Input panel name here")
+                    return null;
+
+                TabPage myTabPage = new TabPage(form.newPanelNameTextBox.Text);
+                myTabPage.Name = form.newPanelNameTextBox.Text;
+                myTabPage.Location = new System.Drawing.Point(4, 22);
+                myTabPage.Padding = new System.Windows.Forms.Padding(3);
+                myTabPage.Size = new System.Drawing.Size(289, 511);
+                myTabPage.TabIndex = 1;
+                myTabPage.UseVisualStyleBackColor = true;
+
+
+                form.currentPanelListBox.Items.Add(form.newPanelNameTextBox.Text);
+
+                return myTabPage;
+            }
+        }
+        
     }
 }
