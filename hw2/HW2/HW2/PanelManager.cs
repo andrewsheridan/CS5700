@@ -14,15 +14,19 @@ namespace StockMonitor
         {
             form = f;
         }
-        public enum PanelType { PorfolioStockPrices, IndividualStockPriceGraph, IndividualStockVolumeGraph };
+        
         List<Panel> Panels { get; set; }
 
-        public void createPanel(PanelType panelType, string panelName, List<string> stockNames)
-        {
-            Panel newPanel = new Panel();
+        //public void createPanel(PanelType panelType, string panelName, List<string> stockNames)
+        //{
+        //    //Create new tab.
+        //    //Create new panel.
+        //    //Create title for panel.
+        //    // Add additional components in the decorators.
+        //    Panel newPanel = new Panel();
 
-            newPanel.Name = panelName;
+        //    newPanel.Name = panelName;
 
-        }
+        //}
     }
 }

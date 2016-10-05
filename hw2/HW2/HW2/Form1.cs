@@ -13,15 +13,13 @@ namespace StockMonitor
     public partial class Form1 : Form
     {
         PortfolioManager portfolioManager;
-        PanelManager panelManager;
-        public List<Panel> panels;
+        public List<CustomPanel> Panels { get; set; }
+        public enum PanelType { PorfolioStockPrices, IndividualStockPriceGraph, IndividualStockVolumeGraph };
         public Form1()
         {
             InitializeComponent();
             Communicator communicator = new Communicator();
             portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
-            panels = new List<Panel>();
-            panelManager = new PanelManager(this);
             foreach (Company c in portfolioManager.CompanyList)
             {
                 companyCheckedListBox.Items.Add(c.NameWithSymbol);
@@ -85,13 +83,62 @@ namespace StockMonitor
 
         private void newPanelButton_Click(object sender, EventArgs e)
         {
-            if((string)panelTypeComboBox.SelectedItem == "Portfolio Stock Prices")
+            Label newLabel = new Label();
+
+            switch ((string)panelTypeComboBox.SelectedItem)
             {
-                stockTabControl.TabPages.Add("Stock Prices");
+                case "Portfolio Stock Prices":
+                    //TODO: check if there is already a portfolio stock prices panel
+                    TabPage newTab = createNewTab();
+                    stockTabControl.TabPages.Add(newTab);
+                
+                    newLabel.Text = "Portfolio Stock Prices";
+                    newLabel.Name = "porfolioStockPricesLabel";
+                    newLabel.AutoSize = true;
+                    newLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    newLabel.Location = new System.Drawing.Point(41, 19);
+                    newLabel.Size = new System.Drawing.Size(207, 26);
+
+                    newTab.Controls.Add(newLabel);
+                    break;
+                default:
+
+                    break;
             }
             
         }
-        
 
+        private TabPage createNewTab()
+        {
+            string selectedItem = (string)panelTypeComboBox.SelectedItem;
+            if (selectedItem == "Select Panel Type")
+                return null;
+            if (newPanelNameTextBox.Text == null || newPanelNameTextBox.Text == "Input panel name here")
+                return null;
+            
+            TabPage myTabPage = new TabPage(newPanelNameTextBox.Text);
+            myTabPage.Name = newPanelNameTextBox.Text;
+            myTabPage.Location = new System.Drawing.Point(4, 22);
+            myTabPage.Padding = new System.Windows.Forms.Padding(3);
+            myTabPage.Size = new System.Drawing.Size(289, 511);
+            myTabPage.TabIndex = 1;
+            myTabPage.UseVisualStyleBackColor = true;
+            
+
+            currentPanelListBox.Items.Add(newPanelNameTextBox.Text);
+
+            return myTabPage;
+        }
+
+        private void removePanelButton_Click(object sender, EventArgs e)
+        {
+            object item = currentPanelListBox.SelectedItem;
+            if(item != null)
+            {
+                stockTabControl.TabPages.RemoveByKey((string)currentPanelListBox.SelectedItem);
+                currentPanelListBox.Items.Remove(item);
+            }
+            
+        }
     }
 }

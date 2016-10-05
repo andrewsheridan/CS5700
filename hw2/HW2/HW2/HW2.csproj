@@ -56,8 +56,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomPanel.cs" />
+    <Compile Include="PanelDecorator.cs" />
     <Compile Include="PanelManager.cs" />
     <Compile Include="PortfolioManager.cs" />
+    <Compile Include="PortfolioStockPricesPanel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock.cs" />
