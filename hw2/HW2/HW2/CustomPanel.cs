@@ -28,7 +28,7 @@ namespace StockMonitor
         }
 
 
-        public abstract void Update(Stock stock);
+        public abstract void Update();
 
         protected UInt32 GetNextId()
         {

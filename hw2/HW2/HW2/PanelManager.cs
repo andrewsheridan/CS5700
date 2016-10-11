@@ -11,7 +11,7 @@ namespace StockMonitor
     {
         public PanelManager() { }
 
-        List<Panel> Panels { get; set; }
+        List<CustomPanel> Panels { get; set; }
         
         public List<Control> CreatePanel(string panelType, string panelName, List<Stock> stocks)
         {
@@ -20,19 +20,18 @@ namespace StockMonitor
             {
                 case "Portfolio Stock Prices":
                     newPanel = new PortfolioStockPricesPanel(panelName, stocks);
-                    return newPanel.GetControls();
+                    break;
                 case "Stock Volume Graph":
                     newPanel = new StockVolumePanel(panelName, stocks);
-                    return newPanel.GetControls();
+                    break;
                 case "Stock Price Graph":
                     newPanel = new StockPricePanel(panelName, stocks);
-                    return newPanel.GetControls() ;                    
-                default:
-
                     break;
+                default:
+                    return null;
             }
-
-            return new List<Control>();
+            Panels.Add(newPanel);
+            return newPanel.GetControls();
         }
     }
 }
