@@ -107,9 +107,18 @@ namespace StockMonitor
             if (newLabel != null)
                 newTab.Controls.Add(newLabel);
             else return;
-
-            //TODO: Get the correct stocks.
+            
             List<Stock> panelStocks = new List<Stock>();
+            for(int i = 0; i < stocksListBox.SelectedItems.Count; i++)
+            {
+                string stockName = stocksListBox.SelectedItems[i].ToString();
+                Stock toAdd = portfolioManager.GetStockByFullName(stockName);
+                if(toAdd != null)
+                    panelStocks.Add(toAdd);
+            }
+
+            if (panelStocks.Count == 0)
+                return;
 
             List<Control> newControls = panelManager.CreatePanel((string)panelTypeComboBox.SelectedItem, newPanelNameTextBox.Text, panelStocks);
             if(newControls != null)

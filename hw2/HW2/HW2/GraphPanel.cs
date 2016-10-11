@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Drawing;
 
 namespace StockMonitor
 {
     public class GraphPanel : CustomPanel
     {
-        private Series newSeries;
-        private ChartArea chartArea;
-        private Chart newChart;
-        private UInt32 nextPointIndex = 0;
+        protected Series newSeries;
+        protected ChartArea chartArea;
+        protected Chart newChart;
+        private static UInt32 nextPointIndex = 0;
 
         public GraphPanel(string panelName, List<Stock> stocks): base(panelName, stocks)
         {
@@ -28,15 +29,14 @@ namespace StockMonitor
             newSeries.ChartType = SeriesChartType.Line;
             
             newChart.Series.Add(newSeries);
-            newChart.Size = new System.Drawing.Size(271, 458);
+            newChart.Size = new System.Drawing.Size(271, 400);
             newChart.TabIndex = 5;
             newChart.Text = panelName;
+
+            panelControls.Add(newChart);
         }
 
-        public override void Update()
-        {
-            throw new NotImplementedException();
-        }
+        public override void Update() { }
 
         protected UInt32 GetNextPointIndex()
         {

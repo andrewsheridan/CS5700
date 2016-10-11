@@ -17,7 +17,7 @@ namespace StockMonitor
             newBox.Size = new System.Drawing.Size(271, 447);
             System.Drawing.Font boldFont = new System.Drawing.Font("VVerdana", 10f, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 178, false);
             newBox.Text = "Stock \t Current \t Bid \t Ask" + System.Environment.NewLine;
-
+            newBox.Enabled = false;
             panelControls.Add(newBox);
         }
 

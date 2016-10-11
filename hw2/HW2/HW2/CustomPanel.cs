@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace StockMonitor
 {
-    public abstract class CustomPanel // : Observer
+    public abstract class CustomPanel : StockObserver
     {
         
         private static UInt32 _nextPanelId = 0;
@@ -20,15 +20,16 @@ namespace StockMonitor
             Name = panelName;
             panelControls = new List<Control>();
             stocks = panelStocks;
+            foreach(Stock s in stocks)
+            {
+                s.Subscribe(this);
+            }
         }
 
         public UInt32 PanelId {
             get;
             private set;
         }
-
-
-        public abstract void Update();
 
         protected UInt32 GetNextId()
         {
@@ -41,5 +42,7 @@ namespace StockMonitor
         }
 
         public List<Control> GetControls() { return panelControls; }
+
+        public abstract void Update();
     }
 }

@@ -10,8 +10,7 @@ namespace StockMonitor
         private Communicator communicator;
         public List<Company> CompanyList { get; set; }
         private StockPortfolio Portfolio { get; set; }
-
-
+        
 
         public PortfolioManager(string filename, Communicator com)
         {
@@ -86,6 +85,18 @@ namespace StockMonitor
                 communicator.Stop();
                 communicator.Start();
             }
+        }
+
+        public Stock GetStockByFullName(string fullName)
+        {
+            Company company = CompanyList.Find(x => x.NameWithSymbol == fullName);
+            Stock stock = Portfolio[company.Symbol];
+            return stock;
+        }
+
+        public Stock GetStockBySymbol(string symbol)
+        {
+            return Portfolio[symbol];
         }
     }
 }

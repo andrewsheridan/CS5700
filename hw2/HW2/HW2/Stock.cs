@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockMonitor
 {
-    public class Stock
+    public class Stock : Subject
     {
         public string Symbol { get; set; }
         public string Name { get; set; }
@@ -33,6 +33,7 @@ namespace StockMonitor
             AskPrice = message.AskPrice;
             CurrentVolume = message.CurrentVolume;
             AverageVolume = message.AverageVolume;
+            Notify();
         }
     }
 }
