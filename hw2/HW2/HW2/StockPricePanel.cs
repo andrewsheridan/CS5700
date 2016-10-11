@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
 using System.Drawing;
+using System;
+
 
 namespace StockMonitor
 {
@@ -15,9 +17,17 @@ namespace StockMonitor
 
         public override void Update()
         {
-            UpdateTextBox("Current Price: $" + stocks[0].CurrentPrice);
-            newSeries.Points.Add(new DataPoint(GetNextPointIndex(), stocks[0].CurrentPrice));
-            newChart.Update();
+            
+            try
+            {
+                ChangeTextDelegate(UpdateTextBox("Current Price: $" + stocks[0].CurrentPrice));
+                newSeries.Points.Add(new DataPoint(GetNextPointIndex(), stocks[0].CurrentPrice));
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
             //newChart.Parent.Update();
             //newChart.Parent.Parent.Update();
         }

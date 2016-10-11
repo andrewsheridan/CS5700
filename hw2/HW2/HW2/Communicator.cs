@@ -91,6 +91,7 @@ namespace StockMonitor
                 }
                 catch (Exception)
                 {
+
                     // TODO: Handle the error.  For example, you may want to Stop the communicator and log the error
                 }
             }
