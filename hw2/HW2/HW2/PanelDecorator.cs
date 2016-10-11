@@ -1,15 +1,31 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Drawing;
+
 
 namespace StockMonitor
 {
-    //public abstract class PanelDecorator : CustomPanel
-    //{
-    //    //public abstract void Create(List<Stock> stocks);
+    public abstract class
+        GraphPanelDecorator : GraphPanel
+    {
+        protected TextBox decoratorTextBox;
+        public GraphPanelDecorator(string panelName, List<Stock> stocks) : base(panelName, stocks)
+        {
+            decoratorTextBox = new TextBox();
+            decoratorTextBox.ReadOnly = true;
+            decoratorTextBox.Location = new Point(50, 450);
+            decoratorTextBox.Size = new Size(200, 50);
+            panelControls.Add(decoratorTextBox);
+        }
 
-    //    //public abstract void Update(Stock stock);
-    //}
+        protected void UpdateTextBox(string newText)
+        {
+            //decoratorTextBox.ReadOnly = false;
+            decoratorTextBox.Text = newText;
+            //decoratorTextBox.ReadOnly = true;
+        }
+
+        public override void Update() { }
+    }
 }
