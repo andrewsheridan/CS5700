@@ -12,7 +12,7 @@ namespace StockMonitor
         }
         
 
-        public override void Update(Stock stock)
+        public override void Update()
         {
             throw new NotImplementedException();
         }

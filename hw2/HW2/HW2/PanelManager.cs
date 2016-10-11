@@ -9,7 +9,9 @@ namespace StockMonitor
 {
     public class PanelManager
     {
-        public PanelManager() { }
+        public PanelManager() {
+            Panels = new List<CustomPanel>();
+        }
 
         List<CustomPanel> Panels { get; set; }
         

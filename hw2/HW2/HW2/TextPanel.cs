@@ -21,7 +21,7 @@ namespace StockMonitor
             panelControls.Add(newBox);
         }
 
-        public override void Update(Stock stock)
+        public override void Update()
         {
             throw new NotImplementedException();
         }

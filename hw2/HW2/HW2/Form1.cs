@@ -94,12 +94,14 @@ namespace StockMonitor
 
         private void newPanelButton_Click(object sender, EventArgs e)
         {
-            if ((string)panelTypeComboBox.SelectedItem == "Select Panel Type")
+            if ((string)panelTypeComboBox.SelectedItem == "Select Panel Type" || panelTypeComboBox.SelectedItem == null)
                 return;
 
-            TabPage newTab = createNewTab();
-            if (newTab != null)
-                stockTabControl.TabPages.Add(newTab);
+            if (newPanelNameTextBox.Text == null || newPanelNameTextBox.Text == "Input panel name here")
+                return;
+
+            TabPage newTab = createNewTab(newPanelNameTextBox.Text);
+            stockTabControl.TabPages.Add(newTab);
 
             Label newLabel = createNewLabel(newPanelNameTextBox.Text);
             if (newLabel != null)
@@ -110,10 +112,12 @@ namespace StockMonitor
             List<Stock> panelStocks = new List<Stock>();
 
             List<Control> newControls = panelManager.CreatePanel((string)panelTypeComboBox.SelectedItem, newPanelNameTextBox.Text, panelStocks);
-            
-            foreach(Control c in newControls)
+            if(newControls != null)
             {
-                newTab.Controls.Add(c);
+                foreach (Control c in newControls)
+                {
+                    newTab.Controls.Add(c);
+                }
             }
         }
 
@@ -128,11 +132,11 @@ namespace StockMonitor
             
         }
 
-        public TabPage createNewTab()
+        public TabPage createNewTab(string tabName)
         {
             //Todo: Create new label with tab
-            TabPage myTabPage = new TabPage(newPanelNameTextBox.Text);
-            myTabPage.Name = newPanelNameTextBox.Text;
+            TabPage myTabPage = new TabPage(tabName);
+            myTabPage.Name = tabName;
             myTabPage.Location = new System.Drawing.Point(4, 22);
             myTabPage.Padding = new System.Windows.Forms.Padding(3);
             myTabPage.Size = new System.Drawing.Size(289, 511);
