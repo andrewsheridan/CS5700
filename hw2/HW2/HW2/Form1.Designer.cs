@@ -30,6 +30,8 @@ namespace StockMonitor
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.savePortfolioDialog = new System.Windows.Forms.SaveFileDialog();
             this.loadPortfolioDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelManagerTab = new System.Windows.Forms.TabPage();
@@ -49,14 +51,15 @@ namespace StockMonitor
             this.stockTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.newPanelTitle = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelManagerTab.SuspendLayout();
             this.portfolioTab.SuspendLayout();
             this.stockTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // savePortfolioDialog
@@ -122,7 +125,9 @@ namespace StockMonitor
             // 
             this.panelTypeComboBox.FormattingEnabled = true;
             this.panelTypeComboBox.Items.AddRange(new object[] {
-            "Portfolio Stock Prices"});
+            "Portfolio Stock Prices",
+            "Stock Volume Graph",
+            "Stock Price Graph"});
             this.panelTypeComboBox.Location = new System.Drawing.Point(37, 48);
             this.panelTypeComboBox.Name = "panelTypeComboBox";
             this.panelTypeComboBox.Size = new System.Drawing.Size(211, 21);
@@ -247,12 +252,25 @@ namespace StockMonitor
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Controls.Add(this.chart1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(277, 499);
             this.panel1.TabIndex = 0;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(3, 38);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(271, 458);
+            this.chart1.TabIndex = 5;
+            this.chart1.Text = "chart1";
             // 
             // label1
             // 
@@ -273,21 +291,6 @@ namespace StockMonitor
             this.newPanelTitle.Size = new System.Drawing.Size(164, 26);
             this.newPanelTitle.TabIndex = 4;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 38);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 458);
-            this.tableLayoutPanel1.TabIndex = 5;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +307,7 @@ namespace StockMonitor
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -330,7 +334,7 @@ namespace StockMonitor
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label newPanelTitle;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

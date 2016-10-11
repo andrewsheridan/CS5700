@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StockPricePanel.cs" />
+    <Compile Include="GraphPanel.cs" />
+    <Compile Include="StockVolumePanel.cs" />
+    <Compile Include="TextPanel.cs" />
     <Compile Include="Communicator.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="EndPointParser.cs" />

@@ -9,24 +9,30 @@ namespace StockMonitor
 {
     public class PanelManager
     {
-        private Form form;
-        public PanelManager(Form f)
-        {
-            form = f;
-        }
-        
+        public PanelManager() { }
+
         List<Panel> Panels { get; set; }
+        
+        public List<Control> CreatePanel(string panelType, string panelName, List<Stock> stocks)
+        {
+            CustomPanel newPanel;
+            switch (panelType)
+            {
+                case "Portfolio Stock Prices":
+                    newPanel = new PortfolioStockPricesPanel(panelName, stocks);
+                    return newPanel.GetControls();
+                case "Stock Volume Graph":
+                    newPanel = new StockVolumePanel(panelName, stocks);
+                    return newPanel.GetControls();
+                case "Stock Price Graph":
+                    newPanel = new StockPricePanel(panelName, stocks);
+                    return newPanel.GetControls() ;                    
+                default:
 
-        //public void createPanel(PanelType panelType, string panelName, List<string> stockNames)
-        //{
-        //    //Create new tab.
-        //    //Create new panel.
-        //    //Create title for panel.
-        //    // Add additional components in the decorators.
-        //    Panel newPanel = new Panel();
+                    break;
+            }
 
-        //    newPanel.Name = panelName;
-
-        //}
+            return new List<Control>();
+        }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace StockMonitor
 {
-    public abstract class PanelDecorator : CustomPanel
-    {
-        //public abstract void Create(List<Stock> stocks);
+    //public abstract class PanelDecorator : CustomPanel
+    //{
+    //    //public abstract void Create(List<Stock> stocks);
 
-        //public abstract void Update(Stock stock);
-    }
+    //    //public abstract void Update(Stock stock);
+    //}
 }

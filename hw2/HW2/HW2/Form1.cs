@@ -21,12 +21,13 @@ namespace StockMonitor
             InitializeComponent();
             Communicator communicator = new Communicator();
             portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
-            panelManager = new PanelManager(this);
+            panelManager = new PanelManager();
             foreach (Company c in portfolioManager.CompanyList)
             {
                 companyCheckedListBox.Items.Add(c.NameWithSymbol);
             }
-            communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099");
+            communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099"); //Local Instance
+            //communicator.RemoteEndPoint = EndPointParser.Parse("54.149.184.129:12099"); //EC2 Instance
             communicator.Start();
         }
         
@@ -93,30 +94,27 @@ namespace StockMonitor
 
         private void newPanelButton_Click(object sender, EventArgs e)
         {
-            Label newLabel = new Label();
+            if ((string)panelTypeComboBox.SelectedItem == "Select Panel Type")
+                return;
 
-            switch ((string)panelTypeComboBox.SelectedItem)
-            {
-                case "Portfolio Stock Prices":
-                    //TODO: check if there is already a portfolio stock prices panel
-                    TabPage newTab = panelManager.createNewTab();
-                    if(newTab != null)
-                        stockTabControl.TabPages.Add(newTab);
-                
-                    newLabel.Text = "Portfolio Stock Prices";
-                    newLabel.Name = "porfolioStockPricesLabel";
-                    newLabel.AutoSize = true;
-                    newLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    newLabel.Location = new System.Drawing.Point(41, 19);
-                    newLabel.Size = new System.Drawing.Size(207, 26);
+            TabPage newTab = createNewTab();
+            if (newTab != null)
+                stockTabControl.TabPages.Add(newTab);
 
-                    newTab.Controls.Add(newLabel);
-                    break;
-                default:
+            Label newLabel = createNewLabel(newPanelNameTextBox.Text);
+            if (newLabel != null)
+                newTab.Controls.Add(newLabel);
+            else return;
 
-                    break;
-            }
+            //TODO: Get the correct stocks.
+            List<Stock> panelStocks = new List<Stock>();
+
+            List<Control> newControls = panelManager.CreatePanel((string)panelTypeComboBox.SelectedItem, newPanelNameTextBox.Text, panelStocks);
             
+            foreach(Control c in newControls)
+            {
+                newTab.Controls.Add(c);
+            }
         }
 
         private void removePanelButton_Click(object sender, EventArgs e)
@@ -130,35 +128,38 @@ namespace StockMonitor
             
         }
 
-        public class PanelManager
+        public TabPage createNewTab()
         {
-            private Form1 form;
-            public PanelManager(Form1 f)
-            {
-                form = f;
-            }
-            public TabPage createNewTab()
-            {
-                string selectedItem = (string)form.panelTypeComboBox.SelectedItem;
-                if (selectedItem == "Select Panel Type")
-                    return null;
-                if (form.newPanelNameTextBox.Text == null || form.newPanelNameTextBox.Text == "Input panel name here")
-                    return null;
-
-                TabPage myTabPage = new TabPage(form.newPanelNameTextBox.Text);
-                myTabPage.Name = form.newPanelNameTextBox.Text;
-                myTabPage.Location = new System.Drawing.Point(4, 22);
-                myTabPage.Padding = new System.Windows.Forms.Padding(3);
-                myTabPage.Size = new System.Drawing.Size(289, 511);
-                myTabPage.TabIndex = 1;
-                myTabPage.UseVisualStyleBackColor = true;
+            //Todo: Create new label with tab
+            TabPage myTabPage = new TabPage(newPanelNameTextBox.Text);
+            myTabPage.Name = newPanelNameTextBox.Text;
+            myTabPage.Location = new System.Drawing.Point(4, 22);
+            myTabPage.Padding = new System.Windows.Forms.Padding(3);
+            myTabPage.Size = new System.Drawing.Size(289, 511);
+            myTabPage.TabIndex = 1;
+            myTabPage.UseVisualStyleBackColor = true;
 
 
-                form.currentPanelListBox.Items.Add(form.newPanelNameTextBox.Text);
+            currentPanelListBox.Items.Add(newPanelNameTextBox.Text);
 
-                return myTabPage;
-            }
+            return myTabPage;
         }
-        
+
+        public Label createNewLabel(string text)
+        {
+            Label newLabel = new Label();
+            string selectedItem = (string)panelTypeComboBox.SelectedItem;
+            
+            if (text == null || text == "Input panel name here")
+                return null;
+
+            newLabel.Text = text;
+            newLabel.AutoSize = true;
+            newLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            newLabel.Location = new System.Drawing.Point(45, 19);
+            newLabel.Size = new System.Drawing.Size(207, 26);
+
+            return newLabel;
+        }
     }
 }

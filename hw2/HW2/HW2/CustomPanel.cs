@@ -9,20 +9,37 @@ namespace StockMonitor
 {
     public abstract class CustomPanel // : Observer
     {
-        public static int _nextPanelId = 1;
+        
+        private static UInt32 _nextPanelId = 0;
+        public string Name { get; set; }
+        protected List<Control> panelControls;
+        protected List<Stock> stocks;
+        protected CustomPanel(string panelName, List<Stock> panelStocks)
+        {
+            PanelId = GetNextId();
+            Name = panelName;
+            panelControls = new List<Control>();
+            stocks = panelStocks;
+        }
 
-        public abstract List<Control> Create(List<Stock> stocks, string panelName, Form1 form);
+        public UInt32 PanelId {
+            get;
+            private set;
+        }
+
 
         public abstract void Update(Stock stock);
 
-        private int GetNextId()
+        protected UInt32 GetNextId()
         {
-            int nextId = _nextPanelId;
-            if (_nextPanelId == Int32.MaxValue)
+            UInt32 nextId = _nextPanelId;
+            if (_nextPanelId == UInt32.MaxValue)
                 _nextPanelId = 1;
             else
                 _nextPanelId++;
             return nextId;
         }
+
+        public List<Control> GetControls() { return panelControls; }
     }
 }
