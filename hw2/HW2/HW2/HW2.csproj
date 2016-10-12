@@ -63,7 +63,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomPanel.cs" />
-    <Compile Include="PanelDecorator.cs" />
+    <Compile Include="GraphPanelDecorator.cs" />
     <Compile Include="PanelManager.cs" />
     <Compile Include="PortfolioManager.cs" />
     <Compile Include="PortfolioStockPricesPanel.cs" />

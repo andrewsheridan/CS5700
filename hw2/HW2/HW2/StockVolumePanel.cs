@@ -15,7 +15,7 @@ namespace StockMonitor
         public override void Update()
         {
             newSeries.Points.Add(new DataPoint(GetNextPointIndex(), stocks[0].CurrentVolume));
-            UpdateTextBox("Current Volume: " + stocks[0].CurrentVolume);
+            //TextChangeHandler("Current Volume: " + stocks[0].CurrentVolume);
             
             newChart.Update();
         }
