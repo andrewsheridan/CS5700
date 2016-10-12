@@ -30,8 +30,6 @@ namespace StockMonitor
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.savePortfolioDialog = new System.Windows.Forms.SaveFileDialog();
             this.loadPortfolioDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelManagerTab = new System.Windows.Forms.TabPage();
@@ -51,15 +49,14 @@ namespace StockMonitor
             this.stockTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.newPanelTitle = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panelManagerTab.SuspendLayout();
             this.portfolioTab.SuspendLayout();
             this.stockTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // savePortfolioDialog
@@ -252,25 +249,12 @@ namespace StockMonitor
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.chart1);
+            this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(277, 499);
             this.panel1.TabIndex = 0;
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(3, 38);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(271, 458);
-            this.chart1.TabIndex = 5;
-            this.chart1.Text = "chart1";
             // 
             // label1
             // 
@@ -291,6 +275,15 @@ namespace StockMonitor
             this.newPanelTitle.Size = new System.Drawing.Size(164, 26);
             this.newPanelTitle.TabIndex = 4;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.richTextBox1.Location = new System.Drawing.Point(3, 38);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(274, 461);
+            this.richTextBox1.TabIndex = 5;
+            this.richTextBox1.Text = "Stock    Current   Bid       Ask          ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,7 +300,6 @@ namespace StockMonitor
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -334,7 +326,7 @@ namespace StockMonitor
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label newPanelTitle;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

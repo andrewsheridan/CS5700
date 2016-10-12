@@ -12,22 +12,17 @@ namespace StockMonitor
     {
         public StockPricePanel(string panelName, List<Stock> stocks) : base(panelName, stocks)
         {
-
         }
 
-        public override void Update()
+        public override void UpdatePanel()
         {
-            try
-            {
-                //TextChangeHandler("Current Price: $" + stocks[0].CurrentPrice);
-                //UpdateTextBoxText("Current Price: $" + stocks[0].CurrentPrice);
-                newSeries.Points.Add(new DataPoint(GetNextPointIndex(), stocks[0].CurrentPrice));
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            
+            PlotGraphPoint(stocks[0].CurrentPrice);
+            UpdateTextBox(stocks[0].CurrentPrice);
+        }
+
+        public override void UpdateTextBox(double newValue)
+        {
+            SetText("Current Price: " + newValue);
         }
     }
 }

@@ -9,15 +9,19 @@ namespace StockMonitor
     {
         public StockVolumePanel(string panelName, List<Stock> stocks) : base(panelName, stocks)
         {
-
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            newSeries.ChartType = SeriesChartType.Column;
         }
 
-        public override void Update()
+        public override void UpdatePanel()
         {
-            newSeries.Points.Add(new DataPoint(GetNextPointIndex(), stocks[0].CurrentVolume));
-            //TextChangeHandler("Current Volume: " + stocks[0].CurrentVolume);
-            
-            newChart.Update();
+            PlotGraphPoint(stocks[0].CurrentVolume);
+            UpdateTextBox(stocks[0].CurrentVolume);
+        }
+
+        public override void UpdateTextBox(double newValue)
+        {
+            SetText("Current Volume: " + newValue);
         }
     }
 }

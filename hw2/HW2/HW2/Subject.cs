@@ -49,5 +49,10 @@ namespace StockMonitor
         {
             return MemberwiseClone() as Subject;
         }
+
+        public int GetSubscriberCount()
+        {
+            return Subscribers.Count;
+        }
     }
 }

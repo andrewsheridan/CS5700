@@ -14,23 +14,29 @@ namespace StockMonitor
     {
         PortfolioManager portfolioManager;
         PanelManager panelManager;
+        Communicator communicator;
         public List<CustomPanel> Panels { get; set; }
         public enum PanelType { PorfolioStockPrices, IndividualStockPriceGraph, IndividualStockVolumeGraph };
         public Form1()
         {
             InitializeComponent();
-            Communicator communicator = new Communicator();
+            communicator = new Communicator();
             portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
             panelManager = new PanelManager();
             foreach (Company c in portfolioManager.CompanyList)
             {
                 companyCheckedListBox.Items.Add(c.NameWithSymbol);
             }
-            communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099"); //Local Instance
-            //communicator.RemoteEndPoint = EndPointParser.Parse("54.149.184.129:12099"); //EC2 Instance
+            //communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099"); //Local Instance
+            communicator.RemoteEndPoint = EndPointParser.Parse("54.191.47.218:12099"); //EC2 Instance
             communicator.Start();
         }
-        
+
+        ~Form1()
+        {
+            communicator.Stop();
+        }
+
 
         private void savePortfolioButton_Click(object sender, EventArgs e)
         {

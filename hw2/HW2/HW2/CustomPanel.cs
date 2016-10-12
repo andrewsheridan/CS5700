@@ -43,7 +43,7 @@ namespace StockMonitor
 
         public List<Control> GetControls() { return panelControls; }
 
-        public abstract void Update();
+        public abstract void UpdatePanel();
 
         public void Delete()
         {
@@ -55,6 +55,11 @@ namespace StockMonitor
             {
                 c.Dispose();
             }
+        }
+
+        public void Update()
+        {
+            UpdatePanel();
         }
     }
 }

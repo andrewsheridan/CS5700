@@ -9,14 +9,10 @@ namespace StockMonitorTesting
     public class PortfolioTesting
     {
         [TestMethod]
-        public void StockAddsToPortfolioTest()
+        public void StockAddRemoveTest()
         {
             Communicator communicator = new Communicator();
             PortfolioManager portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
-            //communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099");
-            
-            //communicator.RemoteEndPoint = EndPointParser.Parse("54.149.184.129:12099"); //EC2 Instance
-            //communicator.Start();
 
             Company c = portfolioManager.CompanyList[5];
             Assert.AreEqual(0, portfolioManager.GetStockCount());
@@ -32,17 +28,16 @@ namespace StockMonitorTesting
 
             portfolioManager.RemoveStock(portfolioManager.CompanyList[100].NameWithSymbol);
             Assert.AreEqual(0, portfolioManager.GetStockCount());
+
+            portfolioManager.AddStock("Not really a stock");
+            Assert.AreEqual(0, portfolioManager.GetStockCount());
         }
 
         [TestMethod]
-        public void PortfolioSaveTest()
+        public void PortfolioSaveLoadTest()
         {
             Communicator communicator = new Communicator();
             PortfolioManager portfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
-            //communicator.RemoteEndPoint = EndPointParser.Parse("127.0.0.1:12099");
-
-            //communicator.RemoteEndPoint = EndPointParser.Parse("54.149.184.129:12099"); //EC2 Instance
-            //communicator.Start();
             int[] companiesToAdd = { 1, 50, 231 , 1001};
             List<String> companyList = new List<String>();
             foreach (int companyIndex in companiesToAdd)
@@ -52,11 +47,10 @@ namespace StockMonitorTesting
                 companyList.Add(c.NameWithSymbol);
             }
 
-            portfolioManager.SavePortfolio("SavePorfolioTest.txt", companyList);
+            portfolioManager.SavePortfolio("SavePortfolioTest.txt", companyList);
 
             Assert.AreEqual(companyList.Count, companiesToAdd.GetLength(0));
             Assert.AreEqual(portfolioManager.GetStockCount(), companiesToAdd.GetLength(0));
-           
 
             PortfolioManager loadingPortfolioManager = new PortfolioManager("../../../CompanyList.csv", communicator);
             loadingPortfolioManager.LoadPortfolio("SavePortfolioTest.txt");
@@ -66,7 +60,6 @@ namespace StockMonitorTesting
             {
                 Assert.IsNotNull(loadingPortfolioManager.GetStockByFullName(s));
             }
-            Assert.IsNull(loadingPortfolioManager.GetStockByFullName("Not Really a Name"));
         }
     }
 }

@@ -39,8 +39,17 @@ namespace StockMonitor
         public void Remove(string panelName)
         {
             int index = Panels.FindIndex(x => x.Name == panelName);
-            Panels[index].Delete();
-            Panels.RemoveAt(index);
+            if(index >= 0 && index < Panels.Count)
+            {
+                Panels[index].Delete();
+                Panels.RemoveAt(index);
+            }
+            
+        }
+
+        public int GetPanelCount()
+        {
+            return Panels.Count;
         }
     }
 }

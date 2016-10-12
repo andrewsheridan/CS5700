@@ -10,7 +10,6 @@ namespace StockMonitor
         private Communicator communicator;
         public List<Company> CompanyList { get; set; }
         private StockPortfolio Portfolio { get; set; }
-        
 
         public PortfolioManager(string filename, Communicator com)
         {
@@ -36,8 +35,10 @@ namespace StockMonitor
             List<string> companyNames = new List<string>();
             if (!File.Exists(filename))
             {
-                if (File.Exists("./" + filename)) //TODO: MAKE SURE FILE IS READ
-                    filename = "./" + filename;
+                string currentDirectoryWithFileName = Directory.GetCurrentDirectory() + "\\" + filename;
+                //currentDirectoryWithFileName = currentDirectoryWithFileName.Replace('\\', '/');
+                if (File.Exists(currentDirectoryWithFileName))
+                    filename = currentDirectoryWithFileName;
                 else throw new FileNotFoundException();
             }
             string[] companySymbols = System.IO.File.ReadAllLines(filename);
@@ -46,8 +47,13 @@ namespace StockMonitor
             {
                 Company match = CompanyList.Find(e => e.Symbol == symbol);
                 companyNames.Add(match.NameWithSymbol);
+                Stock stock = new Stock(match.Symbol, match.Name);
+                Portfolio.Add(match.Symbol, stock);
+
             }
 
+            communicator.Stop();
+            communicator.Start();
             return companyNames;
         }
         
