@@ -35,5 +35,12 @@ namespace StockMonitor
             Panels.Add(newPanel);
             return newPanel.GetControls();
         }
+
+        public void Remove(string panelName)
+        {
+            int index = Panels.FindIndex(x => x.Name == panelName);
+            Panels[index].Delete();
+            Panels.RemoveAt(index);
+        }
     }
 }

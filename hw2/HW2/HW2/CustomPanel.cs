@@ -44,5 +44,17 @@ namespace StockMonitor
         public List<Control> GetControls() { return panelControls; }
 
         public abstract void Update();
+
+        public void Delete()
+        {
+            foreach(Stock s in stocks)
+            {
+                s.Unsubscribe(this);
+            }
+            foreach(Control c in panelControls)
+            {
+                c.Dispose();
+            }
+        }
     }
 }

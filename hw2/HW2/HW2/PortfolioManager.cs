@@ -20,9 +20,9 @@ namespace StockMonitor
             communicator.Portfolio = Portfolio;
         }
         
-        public void SavePortfolio(string filename, List<string> companyNames) {
+        public void SavePortfolio(string filename, List<string> companyNamesWithSymbol) {
             string output = "";
-            foreach(string name in companyNames)
+            foreach(string name in companyNamesWithSymbol)
             {
                 Company match = CompanyList.Find(e => e.NameWithSymbol == name);
                 output += match.Symbol + Environment.NewLine;
@@ -34,6 +34,12 @@ namespace StockMonitor
         {
             Portfolio.Clear();
             List<string> companyNames = new List<string>();
+            if (!File.Exists(filename))
+            {
+                if (File.Exists("./" + filename)) //TODO: MAKE SURE FILE IS READ
+                    filename = "./" + filename;
+                else throw new FileNotFoundException();
+            }
             string[] companySymbols = System.IO.File.ReadAllLines(filename);
 
             foreach(string symbol in companySymbols)
@@ -64,9 +70,9 @@ namespace StockMonitor
             return companyList;
         }
 
-        public void AddStock(string companyName)
+        public void AddStock(string companyNameWithSymbol)
         {
-            Company match = CompanyList.Find(e => e.NameWithSymbol == companyName);
+            Company match = CompanyList.Find(e => e.NameWithSymbol == companyNameWithSymbol);
             if(match != null)
             {
                 Stock stock = new Stock(match.Symbol, match.Name);
@@ -76,9 +82,21 @@ namespace StockMonitor
             }
         }
 
-        public void RemoveStock(string companyName)
+        public void AddStockBySymbol(string companySymbol)
         {
-            Company match = CompanyList.Find(e => e.NameWithSymbol == companyName);
+            Company match = CompanyList.Find(e => e.Symbol == companySymbol);
+            if (match != null)
+            {
+                Stock stock = new Stock(match.Symbol, match.Name);
+                Portfolio.Add(match.Symbol, stock);
+                communicator.Stop();
+                communicator.Start();
+            }
+        }
+
+        public void RemoveStock(string companyNameWithSymbol)
+        {
+            Company match = CompanyList.Find(e => e.NameWithSymbol == companyNameWithSymbol);
             if(match != null)
             {
                 Portfolio.Remove(match.Symbol);
@@ -97,6 +115,11 @@ namespace StockMonitor
         public Stock GetStockBySymbol(string symbol)
         {
             return Portfolio[symbol];
+        }
+
+        public int GetStockCount()
+        {
+            return Portfolio.Count;
         }
     }
 }

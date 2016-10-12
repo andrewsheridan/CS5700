@@ -135,7 +135,9 @@ namespace StockMonitor
             object item = currentPanelListBox.SelectedItem;
             if(item != null)
             {
-                stockTabControl.TabPages.RemoveByKey((string)currentPanelListBox.SelectedItem);
+                string panelName = (string)currentPanelListBox.SelectedItem;
+                panelManager.Remove(panelName);
+                stockTabControl.TabPages.RemoveByKey(panelName);
                 currentPanelListBox.Items.Remove(item);
             }
             
