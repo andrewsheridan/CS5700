@@ -61,5 +61,30 @@ namespace StockMonitor
         {
             UpdatePanel();
         }
+
+        public bool ContainsStock(Stock s)
+        {
+            int index = stocks.FindIndex(x => x.Symbol == s.Symbol);
+            if(index >=0 && index < stocks.Count)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
+        public bool ContainsStock(string symbol)
+        {
+            int index = stocks.FindIndex(x => x.Symbol == symbol);
+            if (index >= 0 && index < stocks.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

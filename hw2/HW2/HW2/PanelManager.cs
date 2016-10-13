@@ -13,7 +13,7 @@ namespace StockMonitor
             Panels = new List<CustomPanel>();
         }
 
-        List<CustomPanel> Panels { get; set; }
+        public List<CustomPanel> Panels { get; private set; }
         
         public List<Control> CreatePanel(string panelType, string panelName, List<Stock> stocks)
         {

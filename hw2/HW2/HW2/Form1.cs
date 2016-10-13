@@ -79,6 +79,21 @@ namespace StockMonitor
             } 
             else
             {
+                List<CustomPanel> toDelete = new List<CustomPanel>();
+                foreach(CustomPanel p in panelManager.Panels)
+                {
+                    Stock s = portfolioManager.GetStockByFullName((string)companyCheckedListBox.Items[e.Index]);
+                    if (p.ContainsStock(s))
+                    {
+                        toDelete.Add(p);
+                    }
+                }
+                foreach(CustomPanel deleting in toDelete)
+                {
+                    stockTabControl.Controls.RemoveByKey(deleting.Name);
+                    currentPanelListBox.Items.Remove(deleting.Name);
+                    deleting.Delete();
+                }
                 portfolioManager.RemoveStock((string)companyCheckedListBox.Items[e.Index]);
                 stocksListBox.Items.Remove((string)companyCheckedListBox.Items[e.Index]);
             }
@@ -182,5 +197,7 @@ namespace StockMonitor
 
             return newLabel;
         }
+
+
     }
 }
