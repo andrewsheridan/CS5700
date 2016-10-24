@@ -94,9 +94,11 @@
             this.fileToolStrip.Size = new System.Drawing.Size(847, 25);
             this.fileToolStrip.TabIndex = 5;
             this.fileToolStrip.Text = "toolStrip1";
+
             // 
             // drawingPanel
             // 
+            this.drawingPanel.BackColor = System.Drawing.Color.White;
             this.drawingPanel.Location = new System.Drawing.Point(149, 25);
             this.drawingPanel.Name = "drawingPanel";
             this.drawingPanel.Size = new System.Drawing.Size(581, 624);
@@ -182,7 +184,7 @@
             this.ghostButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ghostButton1.Name = "ghostButton1";
             this.ghostButton1.Size = new System.Drawing.Size(56, 34);
-            this.ghostButton1.Text = "ghost1.jpg";
+            this.ghostButton1.Text = "Ghost1";
             this.ghostButton1.ToolTipText = "ghostButton1";
             this.ghostButton1.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -194,7 +196,7 @@
             this.ghostButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ghostButton2.Name = "ghostButton2";
             this.ghostButton2.Size = new System.Drawing.Size(56, 34);
-            this.ghostButton2.Text = "ghost2.png";
+            this.ghostButton2.Text = "Ghost2";
             this.ghostButton2.Click += new System.EventHandler(this.imageButton_Click);
             // 
             // ghostButton3
@@ -205,7 +207,7 @@
             this.ghostButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ghostButton3.Name = "ghostButton3";
             this.ghostButton3.Size = new System.Drawing.Size(56, 34);
-            this.ghostButton3.Text = "ghost3.png";
+            this.ghostButton3.Text = "Ghost3";
             this.ghostButton3.Click += new System.EventHandler(this.imageButton_Click);
             // 
             // Form1

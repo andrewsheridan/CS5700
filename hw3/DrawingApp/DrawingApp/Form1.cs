@@ -171,7 +171,7 @@ namespace DrawingApp
             }
         }
 
-        private void MainForm_Resize(object sender, EventArgs e)
+        private void Form1_Resize(object sender, EventArgs e)
         {
             ComputeDrawingPanelSize();
         }
