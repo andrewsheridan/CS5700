@@ -14,19 +14,6 @@ namespace DrawingApp
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-
-            _drawing = new Drawing();
-            _commandFactory = new CommandFactory() { TargetDrawing = _drawing };
-            _drawing.Factory = new ImageFactory()
-            {
-                ResourceNamePattern = @"Drawing.Graphics.{0}.png",
-                ReferenceType = typeof(Program)
-            };
-        }
-
         private readonly Drawing _drawing;
         private readonly CommandFactory _commandFactory;
         private string _currentImageResource;
@@ -45,6 +32,20 @@ namespace DrawingApp
         private Graphics _imageBufferGraphics;
         private Graphics _panelGraphics;
 
+        public Form1()
+        {
+            InitializeComponent();
+
+            _drawing = new Drawing();
+            _commandFactory = new CommandFactory() { TargetDrawing = _drawing };
+            _drawing.Factory = new ImageFactory()
+            {
+                ResourceNamePattern = @"DrawingApp.Graphics.{0}.png",
+                ReferenceType = typeof(Program)
+            };
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             ComputeDrawingPanelSize();
@@ -53,7 +54,7 @@ namespace DrawingApp
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            DisplayDrawing();
+            DisplayDrawing(); 
         }
 
         private void DisplayDrawing()

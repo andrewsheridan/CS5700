@@ -41,11 +41,11 @@
             this.undoToolstripButton = new System.Windows.Forms.ToolStripButton();
             this.redoToolstripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.ghostButton1 = new System.Windows.Forms.ToolStripButton();
             this.ghostButton2 = new System.Windows.Forms.ToolStripButton();
             this.ghostButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.fileToolStrip.SuspendLayout();
             this.drawingToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +94,6 @@
             this.fileToolStrip.Size = new System.Drawing.Size(847, 25);
             this.fileToolStrip.TabIndex = 5;
             this.fileToolStrip.Text = "toolStrip1";
-
             // 
             // drawingPanel
             // 
@@ -120,7 +119,7 @@
             this.ghostButton3});
             this.drawingToolStrip.Location = new System.Drawing.Point(0, 25);
             this.drawingToolStrip.Name = "drawingToolStrip";
-            this.drawingToolStrip.Size = new System.Drawing.Size(59, 636);
+            this.drawingToolStrip.Size = new System.Drawing.Size(73, 636);
             this.drawingToolStrip.TabIndex = 8;
             this.drawingToolStrip.Text = "toolStrip2";
             // 
@@ -129,7 +128,7 @@
             this.selectToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("selectToolStripButton.Image")));
             this.selectToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.selectToolStripButton.Name = "selectToolStripButton";
-            this.selectToolStripButton.Size = new System.Drawing.Size(56, 20);
+            this.selectToolStripButton.Size = new System.Drawing.Size(70, 34);
             this.selectToolStripButton.Text = "Select";
             this.selectToolStripButton.Click += new System.EventHandler(this.pointerButton_Click);
             // 
@@ -138,7 +137,7 @@
             this.copyToolstripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolstripButton.Image")));
             this.copyToolstripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolstripButton.Name = "copyToolstripButton";
-            this.copyToolstripButton.Size = new System.Drawing.Size(56, 20);
+            this.copyToolstripButton.Size = new System.Drawing.Size(70, 34);
             this.copyToolstripButton.Text = "Copy";
             // 
             // undoToolstripButton
@@ -146,7 +145,7 @@
             this.undoToolstripButton.Image = ((System.Drawing.Image)(resources.GetObject("undoToolstripButton.Image")));
             this.undoToolstripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.undoToolstripButton.Name = "undoToolstripButton";
-            this.undoToolstripButton.Size = new System.Drawing.Size(56, 20);
+            this.undoToolstripButton.Size = new System.Drawing.Size(70, 34);
             this.undoToolstripButton.Text = "Undo";
             // 
             // redoToolstripButton
@@ -155,13 +154,47 @@
             this.redoToolstripButton.Image = ((System.Drawing.Image)(resources.GetObject("redoToolstripButton.Image")));
             this.redoToolstripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.redoToolstripButton.Name = "redoToolstripButton";
-            this.redoToolstripButton.Size = new System.Drawing.Size(56, 20);
+            this.redoToolstripButton.Size = new System.Drawing.Size(70, 34);
             this.redoToolstripButton.Text = "Redo";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(56, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(70, 6);
+            // 
+            // ghostButton1
+            // 
+            this.ghostButton1.CheckOnClick = true;
+            this.ghostButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ghostButton1.Image = ((System.Drawing.Image)(resources.GetObject("ghostButton1.Image")));
+            this.ghostButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ghostButton1.Name = "ghostButton1";
+            this.ghostButton1.Size = new System.Drawing.Size(70, 34);
+            this.ghostButton1.Text = "ghost1";
+            this.ghostButton1.ToolTipText = "ghostButton1";
+            this.ghostButton1.Click += new System.EventHandler(this.imageButton_Click);
+            // 
+            // ghostButton2
+            // 
+            this.ghostButton2.CheckOnClick = true;
+            this.ghostButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ghostButton2.Image = ((System.Drawing.Image)(resources.GetObject("ghostButton2.Image")));
+            this.ghostButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ghostButton2.Name = "ghostButton2";
+            this.ghostButton2.Size = new System.Drawing.Size(70, 34);
+            this.ghostButton2.Text = "ghost2";
+            this.ghostButton2.Click += new System.EventHandler(this.imageButton_Click);
+            // 
+            // ghostButton3
+            // 
+            this.ghostButton3.CheckOnClick = true;
+            this.ghostButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ghostButton3.Image = ((System.Drawing.Image)(resources.GetObject("ghostButton3.Image")));
+            this.ghostButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ghostButton3.Name = "ghostButton3";
+            this.ghostButton3.Size = new System.Drawing.Size(70, 34);
+            this.ghostButton3.Text = "ghost3";
+            this.ghostButton3.Click += new System.EventHandler(this.imageButton_Click);
             // 
             // toolStrip3
             // 
@@ -175,40 +208,6 @@
             // refreshTimer
             // 
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
-            // 
-            // ghostButton1
-            // 
-            this.ghostButton1.CheckOnClick = true;
-            this.ghostButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ghostButton1.Image = ((System.Drawing.Image)(resources.GetObject("ghostButton1.Image")));
-            this.ghostButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ghostButton1.Name = "ghostButton1";
-            this.ghostButton1.Size = new System.Drawing.Size(56, 34);
-            this.ghostButton1.Text = "Ghost1";
-            this.ghostButton1.ToolTipText = "ghostButton1";
-            this.ghostButton1.Click += new System.EventHandler(this.imageButton_Click);
-            // 
-            // ghostButton2
-            // 
-            this.ghostButton2.CheckOnClick = true;
-            this.ghostButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ghostButton2.Image = ((System.Drawing.Image)(resources.GetObject("ghostButton2.Image")));
-            this.ghostButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ghostButton2.Name = "ghostButton2";
-            this.ghostButton2.Size = new System.Drawing.Size(56, 34);
-            this.ghostButton2.Text = "Ghost2";
-            this.ghostButton2.Click += new System.EventHandler(this.imageButton_Click);
-            // 
-            // ghostButton3
-            // 
-            this.ghostButton3.CheckOnClick = true;
-            this.ghostButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ghostButton3.Image = ((System.Drawing.Image)(resources.GetObject("ghostButton3.Image")));
-            this.ghostButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ghostButton3.Name = "ghostButton3";
-            this.ghostButton3.Size = new System.Drawing.Size(56, 34);
-            this.ghostButton3.Text = "Ghost3";
-            this.ghostButton3.Click += new System.EventHandler(this.imageButton_Click);
             // 
             // Form1
             // 

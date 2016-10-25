@@ -94,7 +94,9 @@
     <Content Include="Graphics\Cat3.png" />
     <Content Include="Graphics\cursor-circle-select-tool-512.png" />
     <Content Include="Graphics\flat-file-theme-action-copy-icon.png" />
-    <Content Include="Graphics\Ghost3.png" />
+    <Content Include="Graphics\ghost1.jpg" />
+    <Content Include="Graphics\ghost2.png" />
+    <Content Include="Graphics\ghost3.png" />
     <Content Include="Graphics\Lantern1.gif" />
     <Content Include="Graphics\Lantern2.png" />
     <Content Include="Graphics\Lantern3.png" />
