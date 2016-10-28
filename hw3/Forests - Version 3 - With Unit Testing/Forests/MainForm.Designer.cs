@@ -1,4 +1,4 @@
-﻿namespace Forests
+﻿namespace DrawingApp
 {
     partial class MainForm
     {

@@ -69,6 +69,9 @@ namespace AppLayer.Command
                 case "SAVE":
                     command = new SaveCommand(commandParameters);
                     break;
+                case "SCALE":
+                    command = new ScaleCommand(commandParameters);
+                    break;
             }
 
             if (command!=null)

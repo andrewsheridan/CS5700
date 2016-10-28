@@ -86,29 +86,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Graphics\Bat1.png" />
-    <Content Include="Graphics\Bat2.png" />
-    <Content Include="Graphics\Bat3.gif" />
-    <Content Include="Graphics\Cat1.png" />
-    <Content Include="Graphics\Cat2.png" />
-    <Content Include="Graphics\Cat3.png" />
+    <EmbeddedResource Include="Graphics\bat.png" />
+    <EmbeddedResource Include="Graphics\cat.png" />
     <Content Include="Graphics\cursor-circle-select-tool-512.png" />
     <Content Include="Graphics\flat-file-theme-action-copy-icon.png" />
-    <Content Include="Graphics\ghost1.jpg" />
-    <Content Include="Graphics\ghost2.png" />
-    <Content Include="Graphics\ghost3.png" />
-    <Content Include="Graphics\Lantern1.gif" />
-    <Content Include="Graphics\Lantern2.png" />
-    <Content Include="Graphics\Lantern3.png" />
+    <EmbeddedResource Include="Graphics\ghost.png" />
+    <EmbeddedResource Include="Graphics\lantern.png" />
     <Content Include="Graphics\one-finger-single-tap-512.png" />
     <Content Include="Graphics\redo-512.png" />
-    <Content Include="Graphics\Spider1.png" />
-    <Content Include="Graphics\Spider2.png" />
-    <Content Include="Graphics\Spider3.png" />
+    <EmbeddedResource Include="Graphics\spider.png" />
     <Content Include="Graphics\Undo_Arrow-512.png" />
-    <Content Include="Graphics\Witch1.png" />
-    <Content Include="Graphics\Witch2.png" />
-    <Content Include="Graphics\Witch3.gif" />
+    <EmbeddedResource Include="Graphics\witch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -132,5 +132,12 @@ namespace AppLayer.DrawingComponents
             JsonSerializer.WriteObject(stream, extrinsicStates);
         }
 
+        public void ResizeSelected(int size)
+        {
+            foreach(Image i in _images)
+            {
+                i.Resize(size);
+            }
+        }
     }
 }

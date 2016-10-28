@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using AppLayer.Command;
 using AppLayer.DrawingComponents;
 
-namespace Forests
+namespace DrawingApp
 {
     // NOTE: There some design problems with this class
 

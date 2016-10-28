@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppLayer.Command;
 using AppLayer.DrawingComponents;
+using System.Globalization;
 
 namespace DrawingApp
 {
@@ -190,6 +191,17 @@ namespace DrawingApp
                 _drawing.IsDirty = true;
         }
 
-       
+        private void scale_Leave(object sender, EventArgs e)
+        {
+            _currentScale = ConvertToFloat(scale.Text, 0.01F, 10.0F, 1);
+            scale.Text = _currentScale.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private void scale_TextChanged(object sender, EventArgs e)
+        {
+            _currentScale = ConvertToFloat(scale.Text, 0.01F, 10.0F, 1);
+            _commandFactory.Create("scale", _currentScale).Execute();
+        }
+
     }
 }
