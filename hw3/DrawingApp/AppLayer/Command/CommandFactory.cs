@@ -75,6 +75,9 @@ namespace AppLayer.Command
                 case "MOVE":
                     command = new MoveSelectedCommand(commandParameters);
                     break;
+                case "COPY":
+                    command = new CopyCommand();
+                    break;
             }
 
             if (command!=null)

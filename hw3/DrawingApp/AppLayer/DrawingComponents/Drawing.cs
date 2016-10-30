@@ -174,5 +174,27 @@ namespace AppLayer.DrawingComponents
                 IsDirty = true;
             }
         }
+
+        public void CopySelected()
+        {
+            lock (_myLock)
+            {
+                List<ImageWithAllState> newImages = new List<ImageWithAllState>();
+                foreach (ImageWithAllState i in _images)
+                {
+                    if (i.IsSelected)
+                    {
+                        ImageExtrinsicState extrinsic = new ImageExtrinsicState();
+                        extrinsic.ImageType = i.ExtrinsicStatic.ImageType;
+                        extrinsic.Location = new Point(i.Location.X + i.Size.Width, i.Location.Y + i.Size.Height);
+                        extrinsic.Size = i.Size;
+                        extrinsic.IsSelected = true;
+                        newImages.Add(Factory.GetImage(extrinsic));
+                    }
+                }
+                _images.AddRange(newImages);
+                IsDirty = true;
+            }
+        }
     }
 }

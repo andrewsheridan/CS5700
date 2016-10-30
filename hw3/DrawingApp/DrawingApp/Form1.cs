@@ -245,5 +245,17 @@ namespace DrawingApp
                 _commandFactory.Create("remove").Execute();
             }
         }
+
+        private void copyToolstripButton_Click(object sender, EventArgs e)
+        {
+            ToolStripButton button = sender as ToolStripButton;
+            ClearOtherSelectedTools(button);
+
+            if (button != null)
+            {
+                _currentImageResource = string.Empty;
+                _commandFactory.Create("copy").Execute();
+            }
+        }
     }
 }

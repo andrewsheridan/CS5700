@@ -154,6 +154,7 @@
             this.copyToolstripButton.Name = "copyToolstripButton";
             this.copyToolstripButton.Size = new System.Drawing.Size(96, 34);
             this.copyToolstripButton.Text = "Copy";
+            this.copyToolstripButton.Click += new System.EventHandler(this.copyToolstripButton_Click);
             // 
             // undoToolstripButton
             // 
