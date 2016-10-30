@@ -181,6 +181,7 @@
             this.scale.Size = new System.Drawing.Size(96, 23);
             this.scale.Text = "1";
             this.scale.Leave += new System.EventHandler(this.scale_Leave);
+            this.scale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.scale_KeyPress);
             this.scale.TextChanged += new System.EventHandler(this.scale_TextChanged);
             // 
             // toolStripSeparator1

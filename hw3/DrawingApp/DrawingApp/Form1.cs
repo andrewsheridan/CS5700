@@ -195,13 +195,22 @@ namespace DrawingApp
         {
             _currentScale = ConvertToFloat(scale.Text, 0.01F, 10.0F, 1);
             scale.Text = _currentScale.ToString(CultureInfo.InvariantCulture);
+            _commandFactory.Create("scale", _currentScale).Execute();
         }
 
         private void scale_TextChanged(object sender, EventArgs e)
         {
             _currentScale = ConvertToFloat(scale.Text, 0.01F, 10.0F, 1);
-            _commandFactory.Create("scale", _currentScale).Execute();
         }
 
+        private void scale_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                _currentScale = ConvertToFloat(scale.Text, 0.01F, 10.0F, 1);
+                scale.Text = _currentScale.ToString(CultureInfo.InvariantCulture);
+                _commandFactory.Create("scale", _currentScale).Execute();
+            }
+        }
     }
 }

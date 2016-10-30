@@ -134,9 +134,14 @@ namespace AppLayer.DrawingComponents
 
         public void ResizeSelected(int size)
         {
-            foreach(Image i in _images)
+            lock (_myLock)
             {
-                i.Resize(size);
+                foreach (Image i in _images)
+                {
+                    if (i.IsSelected)
+                        i.Resize(size);
+                }
+                IsDirty = true;
             }
         }
     }

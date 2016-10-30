@@ -47,6 +47,7 @@
     <Compile Include="Command\CommandFactory.cs" />
     <Compile Include="Command\DeselectAllCommand.cs" />
     <Compile Include="Command\LoadCommand.cs" />
+    <Compile Include="Command\MoveSelectedCommand.cs" />
     <Compile Include="Command\NewCommand.cs" />
     <Compile Include="Command\RemoveSelectedCommand.cs" />
     <Compile Include="Command\SaveCommand.cs" />

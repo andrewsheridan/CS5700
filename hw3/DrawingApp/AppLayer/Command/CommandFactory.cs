@@ -72,6 +72,9 @@ namespace AppLayer.Command
                 case "SCALE":
                     command = new ScaleCommand(commandParameters);
                     break;
+                case "MOVE":
+                    command = new MoveSelectedCommand(commandParameters);
+                    break;
             }
 
             if (command!=null)
