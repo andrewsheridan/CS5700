@@ -24,7 +24,8 @@ namespace DrawingApp
         {
             None,
             ImageDrawing,
-            Selection
+            Selection,
+            Movement
         };
 
         private PossibleModes _mode = PossibleModes.None;
@@ -107,6 +108,7 @@ namespace DrawingApp
         {
             ToolStripButton button = sender as ToolStripButton;
             ClearOtherSelectedTools(button);
+            _drawing.ClearSelected();
 
             if (button != null && button.Checked)
                 _currentImageResource = button.Text;
@@ -126,6 +128,8 @@ namespace DrawingApp
             }
             else if (_mode == PossibleModes.Selection)
                 _commandFactory.Create("select", e.Location).Execute();
+            else if (_mode == PossibleModes.Movement)
+                _commandFactory.Create("move", e.X, e.Y).Execute();
         }
 
         private float ConvertToFloat(string text, float min, float max, float defaultValue)
@@ -210,6 +214,35 @@ namespace DrawingApp
                 _currentScale = ConvertToFloat(scale.Text, 0.01F, 10.0F, 1);
                 scale.Text = _currentScale.ToString(CultureInfo.InvariantCulture);
                 _commandFactory.Create("scale", _currentScale).Execute();
+            }
+        }
+
+        private void moveButton_Click(object sender, EventArgs e)
+        {
+            ToolStripButton button = sender as ToolStripButton;
+            ClearOtherSelectedTools(button);
+
+            if (button != null && button.Checked)
+            {
+                _mode = PossibleModes.Movement;
+                _currentImageResource = string.Empty;
+            }
+            else
+            {
+                _commandFactory.Create("deselect").Execute();
+                _mode = PossibleModes.None;
+            }
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            ToolStripButton button = sender as ToolStripButton;
+            ClearOtherSelectedTools(button);
+
+            if (button != null)
+            {
+                _currentImageResource = string.Empty;
+                _commandFactory.Create("remove").Execute();
             }
         }
     }

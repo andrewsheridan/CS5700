@@ -80,6 +80,7 @@ namespace AppLayer.DrawingComponents
             lock (_myLock)
             {
                 _images.RemoveAll(t => t.IsSelected);
+                IsDirty = true;
             }
         }
 
@@ -139,7 +140,36 @@ namespace AppLayer.DrawingComponents
                 foreach (Image i in _images)
                 {
                     if (i.IsSelected)
-                        i.Resize(size);
+                        i.Size = new Size(size, size);
+                }
+                IsDirty = true;
+            }
+        }
+
+        public void MoveSelected(int X, int Y)
+        {
+            lock (_myLock)
+            {
+                foreach (Image i in _images)
+                {
+                    if (i.IsSelected)
+                    {
+                        int newX = X - (i.Size.Width / 2);
+                        int newY = Y - (i.Size.Height / 2);
+                        i.Location = new Point(newX, newY);
+                    }
+                }
+                IsDirty = true;
+            }
+        }
+
+        public void ClearSelected()
+        {
+            lock (_myLock)
+            {
+                foreach (Image i in _images)
+                {
+                    i.IsSelected = false;
                 }
                 IsDirty = true;
             }

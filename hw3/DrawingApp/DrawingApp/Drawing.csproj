@@ -92,6 +92,7 @@
     <Content Include="Graphics\flat-file-theme-action-copy-icon.png" />
     <EmbeddedResource Include="Graphics\ghost.png" />
     <EmbeddedResource Include="Graphics\lantern.png" />
+    <EmbeddedResource Include="Graphics\move.png" />
     <Content Include="Graphics\one-finger-single-tap-512.png" />
     <Content Include="Graphics\redo-512.png" />
     <EmbeddedResource Include="Graphics\spider.png" />

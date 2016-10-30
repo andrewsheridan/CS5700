@@ -14,10 +14,6 @@ namespace AppLayer.DrawingComponents
         public virtual bool IsSelected { get; set; } = false;
 
         public virtual void Draw(Graphics graphics) { }
-
-        public virtual void Resize(int size)
-        {
-            Size = new Size(size, size);
-        }
+        
     }
 }
