@@ -7,16 +7,22 @@ namespace AppLayer.Command
     public class SelectCommand : Command
     {
         private readonly Point _location;
+        private Point _prevLocation;
         
         internal SelectCommand(params object[] commandParameters)
         {
             if (commandParameters.Length>1)
                 _location = new Point((int)commandParameters[0], (int)commandParameters[1]);
+            
         }
 
         public override void Execute()
         {
             var image = TargetDrawing?.FindImageAtPosition(_location);
+            var prevImage = TargetDrawing?.GetSelected();
+            if (prevImage != null)
+                _prevLocation = prevImage.Location;
+            
             TargetDrawing.ClearSelected();
             if (image != null)
             {
@@ -32,7 +38,12 @@ namespace AppLayer.Command
 
         public override void Undo()
         {
-            throw new NotImplementedException();
+            TargetDrawing?.ClearSelected();
+            if(_prevLocation.X != 0 && _prevLocation.Y != 0)
+            {
+                TargetDrawing.FindImageAtPosition(_prevLocation).IsSelected = true;
+                TargetDrawing.IsDirty = true;
+            }
         }
     }
 }

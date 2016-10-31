@@ -190,10 +190,48 @@ namespace AppLayer.DrawingComponents
                         extrinsic.Size = i.Size;
                         extrinsic.IsSelected = true;
                         newImages.Add(Factory.GetImage(extrinsic));
+                        i.IsSelected = false;
                     }
                 }
                 _images.AddRange(newImages);
                 IsDirty = true;
+            }
+        }
+
+        public List<ImageWithAllState> GetAllSelected()
+        {
+            List<ImageWithAllState> returnImages = new List<ImageWithAllState>();
+            foreach (ImageWithAllState i in _images)
+            {
+                if (i.IsSelected)
+                {
+                    returnImages.Add(i);
+                }
+            }
+            return returnImages;
+        }
+
+        public ImageWithAllState GetSelected()
+        {
+            foreach (ImageWithAllState i in _images)
+            {
+                if (i.IsSelected)
+                {
+                    return i;
+                }
+            }
+            return null;
+        }
+
+        public void RemoveLast()
+        {
+            lock (_myLock)
+            {
+                if (_images.Count > 0)
+                {
+                    _images.RemoveAt(_images.Count - 1);
+                    IsDirty = true;
+                }
             }
         }
     }

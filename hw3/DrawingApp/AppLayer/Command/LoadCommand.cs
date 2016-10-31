@@ -19,6 +19,7 @@ namespace AppLayer.Command
             StreamReader reader = new StreamReader(_filename);
             TargetDrawing?.LoadFromStream(reader.BaseStream);
             reader.Close();
+            CommandHistory.Instance.Clear();
         }
 
         public override string ToString()
@@ -28,7 +29,7 @@ namespace AppLayer.Command
 
         public override void Undo()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

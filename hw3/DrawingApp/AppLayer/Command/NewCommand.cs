@@ -9,6 +9,7 @@ namespace AppLayer.Command
         public override void Execute()
         {
             TargetDrawing?.Clear();
+            CommandHistory.Instance.Clear();
         }
 
         public override string ToString()
@@ -18,7 +19,6 @@ namespace AppLayer.Command
 
         public override void Undo()
         {
-            throw new NotImplementedException();
         }
     }
 }

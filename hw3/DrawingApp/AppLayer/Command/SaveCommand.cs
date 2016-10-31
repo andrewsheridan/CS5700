@@ -28,7 +28,6 @@ namespace AppLayer.Command
 
         public override void Undo()
         {
-            throw new NotImplementedException();
         }
     }
 }

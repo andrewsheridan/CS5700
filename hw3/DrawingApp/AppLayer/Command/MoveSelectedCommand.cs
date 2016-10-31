@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AppLayer.Command
 {
-    //Todo: Make so this only works for one image at a time.
     public class MoveSelectedCommand : Command
     {
         private readonly int _newX;
         private readonly int _newY;
-        private readonly int _oldX;
-        private readonly int _oldY;
+        private int _oldX;
+        private int _oldY;
         internal MoveSelectedCommand(params object[] commandParameters)
         {
             if (commandParameters.Length > 0)
@@ -23,17 +23,24 @@ namespace AppLayer.Command
         }
         public override void Execute()
         {
+            var image = TargetDrawing.GetSelected();
+            if(image != null)
+            {
+                _oldX = image.Location.X + image.Size.Width / 2;
+                _oldY = image.Location.Y + image.Size.Height / 2;
+            }
             TargetDrawing.MoveSelected(_newX, _newY);
         }
 
-        public override string ToString() //TODO: Update to output the old X and Y coordinates as well.
+        public override string ToString()
         {
             return $"move {_newX} {_newY}" + Environment.NewLine;
         }
 
         public override void Undo()
         {
-            throw new NotImplementedException();
+            if(_oldX != 0 && _oldY != 0)
+                TargetDrawing.MoveSelected(_oldX, _oldY);
         }
     }
 }

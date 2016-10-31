@@ -267,9 +267,12 @@ namespace DrawingApp
             if (button != null)
             {
                 _currentImageResource = string.Empty;
-                Command c = History[History.Count - 1];
-                History.RemoveAt(History.Count - 1);
-                c.Undo();
+                if(History.Count > 0)
+                {
+                    Command c = History[History.Count - 1];
+                    History.RemoveAt(History.Count - 1);
+                    c.Undo();
+                }
             }
         }
 

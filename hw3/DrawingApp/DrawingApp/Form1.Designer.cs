@@ -183,6 +183,7 @@
             this.redoToolstripButton.Name = "redoToolstripButton";
             this.redoToolstripButton.Size = new System.Drawing.Size(96, 34);
             this.redoToolstripButton.Text = "Redo";
+            this.redoToolstripButton.Visible = false;
             // 
             // removeButton
             // 

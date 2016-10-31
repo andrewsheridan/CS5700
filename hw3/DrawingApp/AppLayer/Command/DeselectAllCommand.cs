@@ -13,7 +13,7 @@ namespace AppLayer.Command
 
         public override void Undo()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override string ToString()

@@ -9,17 +9,22 @@ namespace AppLayer.Command
     public class ScaleCommand : Command
     {
         private readonly int _scale;
+        private System.Drawing.Size _oldSize;
         internal ScaleCommand(params object[] commandParameters)
         {
             if (commandParameters.Length > 0)
             {
-                float newSize = 80 * (float)commandParameters[0];
+                float newSize = AddCommand.NormalHeight * (float)commandParameters[0];
                 _scale = (int)System.Convert.ToInt32(newSize);
             }
 
         }
         public override void Execute()
         {
+            var image = TargetDrawing?.GetSelected();
+            if (image != null) {
+                _oldSize = image.Size;
+            }
             TargetDrawing.ResizeSelected(_scale);
         }
 
@@ -30,7 +35,11 @@ namespace AppLayer.Command
 
         public override void Undo()
         {
-            throw new NotImplementedException();
+            var image = TargetDrawing.GetSelected();
+            if(image != null)
+            {
+                image.Size = _oldSize;
+            }
         }
     }
 }

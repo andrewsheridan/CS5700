@@ -6,12 +6,13 @@ namespace AppLayer.Command
 {
     public class AddCommand : Command
     {
-        private const int NormalWidth = 80;
-        private const int NormalHeight = 80;
+        public const int NormalWidth = 80;
+        public const int NormalHeight = 80;
 
         private readonly string _imageType;
         private Point _location;
         private readonly float _scale;
+        private ImageWithAllState _image;
         internal AddCommand() { }
 
         /// <summary>
@@ -55,13 +56,13 @@ namespace AppLayer.Command
                 Location = imageLocation,
                 Size = imageSize
             };
-            var image = TargetDrawing.Factory.GetImage(extrinsicState);
-            TargetDrawing.Add(image);
+            _image = TargetDrawing.Factory.GetImage(extrinsicState);
+            TargetDrawing.Add(_image);
         }
 
         public override void Undo()
         {
-            throw new NotImplementedException();
+            TargetDrawing.RemoveImage(_image);
         }
 
         public override string ToString()
