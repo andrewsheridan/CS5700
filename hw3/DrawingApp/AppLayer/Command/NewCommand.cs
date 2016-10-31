@@ -10,5 +10,15 @@ namespace AppLayer.Command
         {
             TargetDrawing?.Clear();
         }
+
+        public override string ToString()
+        {
+            return "";
+        }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

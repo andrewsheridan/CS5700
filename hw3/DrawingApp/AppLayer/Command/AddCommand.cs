@@ -27,13 +27,13 @@ namespace AppLayer.Command
             if (commandParameters.Length>0)
                 _imageType = commandParameters[0] as string;
 
-            if (commandParameters.Length > 1)
-                _location = (Point) commandParameters[1];
+            if (commandParameters.Length > 2)
+                _location = new Point((int)commandParameters[1], (int)commandParameters[2]);
             else
                 _location = new Point(0, 0);
 
-            if (commandParameters.Length > 2)
-                _scale = (float) commandParameters[2];
+            if (commandParameters.Length > 3)
+                _scale = (float) commandParameters[3];
             else
                 _scale = 1.0F;
         }
@@ -57,6 +57,16 @@ namespace AppLayer.Command
             };
             var image = TargetDrawing.Factory.GetImage(extrinsicState);
             TargetDrawing.Add(image);
+        }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            return "add " + _imageType + " " + _location.X + " " + _location.Y + " " + _scale + Environment.NewLine;
         }
     }
 }

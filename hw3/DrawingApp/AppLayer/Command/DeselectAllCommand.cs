@@ -10,5 +10,15 @@ namespace AppLayer.Command
         {
             TargetDrawing?.DeselectAll();
         }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            return "deselect" + Environment.NewLine;
+        }
     }
 }

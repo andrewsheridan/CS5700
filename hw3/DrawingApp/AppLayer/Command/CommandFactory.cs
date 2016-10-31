@@ -12,6 +12,8 @@ namespace AppLayer.Command
     {
         public Drawing TargetDrawing { get; set; }
 
+        public CommandHistory History = CommandHistory.Instance;
+
         /// <summary>
         /// Create -- a factory method for standard commands 
         /// 
@@ -30,11 +32,13 @@ namespace AppLayer.Command
         ///     For add, 
         ///         [0]: Type       reference type for assembly containing the image type resource
         ///         [1]: string     image type -- a fully qualified resource name
-        ///         [2]: Point      center location for the image, defaut = top left corner
-        ///         [3]: float      scale factor</param>
+        ///         [2]: int        x-coordinate for center location for the image, default = left side
+        ///         [3]: int        y-coordinate for center location for the image, default = top
+        ///         [4]: float      scale factor</param>
         ///     For remove, no additional parameters needed
         ///     For select,
-        ///         [0]: Point      Location at which a image could be selected
+        ///         [0]: int       x-Location at which a image could be selected
+        ///         [1]: int       y-location at which a image could be selected 
         ///     For deselect, no additional parameters needed
         ///     For load,
         ///         [0]: string     filename of file to load from  
@@ -80,8 +84,12 @@ namespace AppLayer.Command
                     break;
             }
 
-            if (command!=null)
+            if (command != null)
+            {
                 command.TargetDrawing = TargetDrawing;
+                History.Add(command);
+            }
+                
 
             return command;
         }

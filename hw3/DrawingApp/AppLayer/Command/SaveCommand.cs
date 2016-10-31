@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Json;
 using AppLayer.DrawingComponents;
 
@@ -18,6 +19,16 @@ namespace AppLayer.Command
             StreamWriter writer = new StreamWriter(_filename);
             TargetDrawing?.SaveToStream(writer.BaseStream);
             writer.Close();
+        }
+
+        public override string ToString()
+        {
+            return "";
+        }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace DrawingApp
         private readonly CommandFactory _commandFactory;
         private string _currentImageResource;
         private float _currentScale = 1;
+        private List<Command> History = CommandHistory.Instance;
 
         private enum PossibleModes
         {
@@ -123,11 +124,11 @@ namespace DrawingApp
             if (_mode == PossibleModes.ImageDrawing)
             {
                 if (!string.IsNullOrWhiteSpace(_currentImageResource))
-                    _commandFactory.Create("add", _currentImageResource, e.Location, _currentScale)
+                    _commandFactory.Create("add", _currentImageResource, e.Location.X, e.Location.Y, _currentScale)
                         .Execute();
             }
             else if (_mode == PossibleModes.Selection)
-                _commandFactory.Create("select", e.Location).Execute();
+                _commandFactory.Create("select", e.Location.X, e.Location.Y).Execute();
             else if (_mode == PossibleModes.Movement)
                 _commandFactory.Create("move", e.X, e.Y).Execute();
         }
@@ -257,5 +258,21 @@ namespace DrawingApp
                 _commandFactory.Create("copy").Execute();
             }
         }
+
+        private void undoToolstripButton_Click(object sender, EventArgs e)
+        {
+            ToolStripButton button = sender as ToolStripButton;
+            ClearOtherSelectedTools(button);
+
+            if (button != null)
+            {
+                _currentImageResource = string.Empty;
+                Command c = History[History.Count - 1];
+                History.RemoveAt(History.Count - 1);
+                c.Undo();
+            }
+        }
+
+
     }
 }

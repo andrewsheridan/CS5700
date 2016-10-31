@@ -37,9 +37,11 @@
             this.drawingPanel = new System.Windows.Forms.Panel();
             this.drawingToolStrip = new System.Windows.Forms.ToolStrip();
             this.selectToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.moveButton = new System.Windows.Forms.ToolStripButton();
             this.copyToolstripButton = new System.Windows.Forms.ToolStripButton();
             this.undoToolstripButton = new System.Windows.Forms.ToolStripButton();
             this.redoToolstripButton = new System.Windows.Forms.ToolStripButton();
+            this.removeButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.scale = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -51,8 +53,6 @@
             this.witchButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.moveButton = new System.Windows.Forms.ToolStripButton();
-            this.removeButton = new System.Windows.Forms.ToolStripButton();
             this.fileToolStrip.SuspendLayout();
             this.drawingToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -147,6 +147,16 @@
             this.selectToolStripButton.Text = "Select";
             this.selectToolStripButton.Click += new System.EventHandler(this.pointerButton_Click);
             // 
+            // moveButton
+            // 
+            this.moveButton.CheckOnClick = true;
+            this.moveButton.Image = ((System.Drawing.Image)(resources.GetObject("moveButton.Image")));
+            this.moveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.moveButton.Name = "moveButton";
+            this.moveButton.Size = new System.Drawing.Size(96, 34);
+            this.moveButton.Text = "Move";
+            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
+            // 
             // copyToolstripButton
             // 
             this.copyToolstripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolstripButton.Image")));
@@ -163,6 +173,7 @@
             this.undoToolstripButton.Name = "undoToolstripButton";
             this.undoToolstripButton.Size = new System.Drawing.Size(96, 34);
             this.undoToolstripButton.Text = "Undo";
+            this.undoToolstripButton.Click += new System.EventHandler(this.undoToolstripButton_Click);
             // 
             // redoToolstripButton
             // 
@@ -172,6 +183,15 @@
             this.redoToolstripButton.Name = "redoToolstripButton";
             this.redoToolstripButton.Size = new System.Drawing.Size(96, 34);
             this.redoToolstripButton.Text = "Redo";
+            // 
+            // removeButton
+            // 
+            this.removeButton.Image = ((System.Drawing.Image)(resources.GetObject("removeButton.Image")));
+            this.removeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(96, 34);
+            this.removeButton.Text = "Remove";
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // toolStripLabel1
             // 
@@ -273,25 +293,6 @@
             // refreshTimer
             // 
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
-            // 
-            // moveButton
-            // 
-            this.moveButton.CheckOnClick = true;
-            this.moveButton.Image = ((System.Drawing.Image)(resources.GetObject("moveButton.Image")));
-            this.moveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.moveButton.Name = "moveButton";
-            this.moveButton.Size = new System.Drawing.Size(96, 34);
-            this.moveButton.Text = "Move";
-            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
-            // 
-            // removeButton
-            // 
-            this.removeButton.Image = ((System.Drawing.Image)(resources.GetObject("removeButton.Image")));
-            this.removeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(96, 34);
-            this.removeButton.Text = "Remove";
-            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // Form1
             // 

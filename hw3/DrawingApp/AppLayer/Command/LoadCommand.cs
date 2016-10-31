@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace AppLayer.Command
 {
@@ -18,6 +19,16 @@ namespace AppLayer.Command
             StreamReader reader = new StreamReader(_filename);
             TargetDrawing?.LoadFromStream(reader.BaseStream);
             reader.Close();
+        }
+
+        public override string ToString()
+        {
+            return "";
+        }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

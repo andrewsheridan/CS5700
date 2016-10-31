@@ -23,5 +23,14 @@ namespace AppLayer.Command
             TargetDrawing.ResizeSelected(_scale);
         }
 
+        public override string ToString()
+        {
+            return $"scale {_scale}" + Environment.NewLine;
+        }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

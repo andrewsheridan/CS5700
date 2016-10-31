@@ -12,9 +12,20 @@ namespace AppLayer.Command
         {
 
         }
+
         public override void Execute()
         {
             TargetDrawing.CopySelected();
+        }
+
+        public override string ToString()
+        {
+            return "copy" + Environment.NewLine;
+        }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
         }
     }
 }
