@@ -51,6 +51,10 @@
             this.lanternButton = new System.Windows.Forms.ToolStripButton();
             this.spiderButton = new System.Windows.Forms.ToolStripButton();
             this.witchButton = new System.Windows.Forms.ToolStripButton();
+            this.backgroundButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.blankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graveyardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hauntedHouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.fileToolStrip.SuspendLayout();
@@ -130,7 +134,8 @@
             this.ghostButton,
             this.lanternButton,
             this.spiderButton,
-            this.witchButton});
+            this.witchButton,
+            this.backgroundButton});
             this.drawingToolStrip.Location = new System.Drawing.Point(0, 25);
             this.drawingToolStrip.Name = "drawingToolStrip";
             this.drawingToolStrip.Size = new System.Drawing.Size(99, 636);
@@ -282,6 +287,40 @@
             this.witchButton.Text = "witch";
             this.witchButton.Click += new System.EventHandler(this.imageButton_Click);
             // 
+            // backgroundButton
+            // 
+            this.backgroundButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.backgroundButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.blankToolStripMenuItem,
+            this.graveyardToolStripMenuItem,
+            this.hauntedHouseToolStripMenuItem});
+            this.backgroundButton.Image = ((System.Drawing.Image)(resources.GetObject("backgroundButton.Image")));
+            this.backgroundButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.backgroundButton.Name = "backgroundButton";
+            this.backgroundButton.Size = new System.Drawing.Size(96, 19);
+            this.backgroundButton.Text = "Background";
+            // 
+            // blankToolStripMenuItem
+            // 
+            this.blankToolStripMenuItem.Name = "blankToolStripMenuItem";
+            this.blankToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.blankToolStripMenuItem.Text = "Blank";
+            this.blankToolStripMenuItem.Click += new System.EventHandler(this.blankToolStripMenuItem_Click);
+            // 
+            // graveyardToolStripMenuItem
+            // 
+            this.graveyardToolStripMenuItem.Name = "graveyardToolStripMenuItem";
+            this.graveyardToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.graveyardToolStripMenuItem.Text = "Graveyard";
+            this.graveyardToolStripMenuItem.Click += new System.EventHandler(this.graveyardToolStripMenuItem_Click);
+            // 
+            // hauntedHouseToolStripMenuItem
+            // 
+            this.hauntedHouseToolStripMenuItem.Name = "hauntedHouseToolStripMenuItem";
+            this.hauntedHouseToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.hauntedHouseToolStripMenuItem.Text = "Haunted House";
+            this.hauntedHouseToolStripMenuItem.Click += new System.EventHandler(this.hauntedHouseToolStripMenuItem_Click);
+            // 
             // toolStrip3
             // 
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Right;
@@ -341,6 +380,10 @@
         private System.Windows.Forms.ToolStripTextBox scale;
         private System.Windows.Forms.ToolStripButton moveButton;
         private System.Windows.Forms.ToolStripButton removeButton;
+        private System.Windows.Forms.ToolStripDropDownButton backgroundButton;
+        private System.Windows.Forms.ToolStripMenuItem blankToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem graveyardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hauntedHouseToolStripMenuItem;
     }
 }
 

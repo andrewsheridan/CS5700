@@ -17,6 +17,15 @@ namespace AppLayer.DrawingComponents
         public Image SelectedVar { get; set; }
         public bool IsDirty { get; set; }
 
+        private System.Drawing.Image BackgroundImage { get; set; }
+
+        private readonly Size _size;
+
+        public Drawing(Size size)
+        {
+            _size = size;
+        }
+
         public void Clear()
         {
             lock (_myLock)
@@ -92,8 +101,12 @@ namespace AppLayer.DrawingComponents
                 if (IsDirty)
                 {
                     graphics.Clear(Color.White);
+                    if(BackgroundImage != null)
+                        graphics.DrawImage(BackgroundImage, 0, 0, _size.Width, _size.Height);
+
                     foreach (var t in _images)
                         t.Draw(graphics);
+                    
                     IsDirty = false;
                     didARedraw = true;
                 }
@@ -232,6 +245,15 @@ namespace AppLayer.DrawingComponents
                     _images.RemoveAt(_images.Count - 1);
                     IsDirty = true;
                 }
+            }
+        }
+
+        public void SetBackground(string filename)
+        {
+            lock (_myLock)
+            {
+                BackgroundImage = filename != null ? System.Drawing.Image.FromFile(filename) : null;
+                IsDirty = true;
             }
         }
     }

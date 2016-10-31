@@ -93,6 +93,8 @@
     <EmbeddedResource Include="Graphics\ghost.png" />
     <EmbeddedResource Include="Graphics\lantern.png" />
     <EmbeddedResource Include="Graphics\move.png" />
+    <EmbeddedResource Include="Graphics\hauntedHouse.png" />
+    <EmbeddedResource Include="Graphics\graveyard.jpg" />
     <Content Include="Graphics\one-finger-single-tap-512.png" />
     <Content Include="Graphics\redo-512.png" />
     <EmbeddedResource Include="Graphics\spider.png" />
