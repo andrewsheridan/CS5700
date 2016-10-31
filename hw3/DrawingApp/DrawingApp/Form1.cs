@@ -29,8 +29,6 @@ namespace DrawingApp
             Movement
         };
 
-        private Dictionary<string, string> backgroundDictionary = new Dictionary<string, string>();
-
         private PossibleModes _mode = PossibleModes.None;
 
         private Bitmap _imageBuffer;
@@ -49,9 +47,6 @@ namespace DrawingApp
                 ReferenceType = typeof(Program)
             };
 
-            backgroundDictionary.Add("graveyard", "graveyard.jpg");
-            backgroundDictionary.Add("hauntedHouse", "hauntedHouse.png");
-            backgroundDictionary.Add("blank", null);
         }
 
 
@@ -286,26 +281,18 @@ namespace DrawingApp
 
         private void blankToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            changeBackground("blank");
+            _drawing.SetBackground(Drawing.BackgroundType.blank);
         }
 
         private void graveyardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            changeBackground("graveyard");
+            _drawing.SetBackground(Drawing.BackgroundType.graveyard);
         }
 
         private void hauntedHouseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            changeBackground("hauntedHouse");
+            _drawing.SetBackground(Drawing.BackgroundType.hauntedHouse);
         }
-
-        private void changeBackground(string backgroundType)
-        {
-            string backgroundResource;
-            backgroundDictionary.TryGetValue(backgroundType, out backgroundResource);
-            string filename = backgroundResource != null ? System.Environment.CurrentDirectory + $"\\..\\..\\Graphics\\{backgroundResource}" : null;
-            
-            _drawing.SetBackground(filename);
-        }
+        
     }
 }

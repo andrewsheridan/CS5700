@@ -21,8 +21,15 @@ namespace AppLayer.DrawingComponents
 
         private readonly Size _size;
 
+        public enum BackgroundType { blank, graveyard, hauntedHouse };
+        private Dictionary<BackgroundType, string> backgroundDictionary; 
+
         public Drawing(Size size)
         {
+            backgroundDictionary = new Dictionary<BackgroundType, string>();
+            backgroundDictionary.Add(BackgroundType.graveyard, "graveyard.jpg");
+            backgroundDictionary.Add(BackgroundType.hauntedHouse, "hauntedHouse.png");
+            backgroundDictionary.Add(BackgroundType.blank, null);
             _size = size;
         }
 
@@ -133,6 +140,7 @@ namespace AppLayer.DrawingComponents
 
         public void SaveToStream(Stream stream)
         {
+
             List<ImageExtrinsicState> extrinsicStates = new List<ImageExtrinsicState>();
             lock (_myLock)
             {
@@ -248,8 +256,12 @@ namespace AppLayer.DrawingComponents
             }
         }
 
-        public void SetBackground(string filename)
+        public void SetBackground(BackgroundType bt)
         {
+            string backgroundResource;
+            backgroundDictionary.TryGetValue(bt, out backgroundResource);
+            string filename = backgroundResource != null ? System.Environment.CurrentDirectory + $"\\..\\..\\Graphics\\{backgroundResource}" : null;
+
             lock (_myLock)
             {
                 BackgroundImage = filename != null ? System.Drawing.Image.FromFile(filename) : null;
