@@ -13,14 +13,16 @@ namespace AppLayerTesting
         public void NewCommand_NonEmptyDrawing()
         {
             // Setup a drawing
-            ImageFactory treefactory = new ImageFactory() { ResourceNamePattern = "AppLayerTesting.Graphics.{0}.png", ReferenceType = typeof(NewCommandTester) };
+            ImageFactory imageFactory = new ImageFactory() { ResourceNamePattern = "AppLayerTesting.Graphics.{0}.png", ReferenceType = typeof(NewCommandTester) };
             Drawing drawing = new AppLayer.DrawingComponents.Drawing(new Size(600, 600));
+            drawing.Factory = imageFactory;
             CommandFactory commandFactory = new CommandFactory() { TargetDrawing = drawing };
+
             ImageExtrinsicState image1 = new ImageExtrinsicState() { ImageType = "bat", Location = new Point(10, 10), Size = new Size(80, 80) };
-            drawing.Add(ImageFactory.GetImage(image1));
-            drawing.Add(ImageFactory.GetImage(new ImageExtrinsicState() { ImageType = "cat", Location = new Point(200, 310), Size = new Size(80, 80) }));
-            drawing.Add(ImageFactory.GetImage(new ImageExtrinsicState() { ImageType = "ghost", Location = new Point(240, 150), Size = new Size(80, 80) }));
-            drawing.Add(ImageFactory.GetImage(new ImageExtrinsicState() { ImageType = "lantern", Location = new Point(350, 300), Size = new Size(80, 80) }));
+            drawing.Add(drawing.Factory.GetImage(image1));
+            drawing.Add(drawing.Factory.GetImage(new ImageExtrinsicState() { ImageType = "cat", Location = new Point(200, 310), Size = new Size(80, 80) }));
+            drawing.Add(drawing.Factory.GetImage(new ImageExtrinsicState() { ImageType = "ghost", Location = new Point(240, 150), Size = new Size(80, 80) }));
+            drawing.Add(drawing.Factory.GetImage(new ImageExtrinsicState() { ImageType = "lantern", Location = new Point(350, 300), Size = new Size(80, 80) }));
             Assert.AreEqual(4, drawing.GetImageCount());
 
             // setup a New command

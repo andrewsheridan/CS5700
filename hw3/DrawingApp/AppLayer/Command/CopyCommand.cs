@@ -15,7 +15,7 @@ namespace AppLayer.Command
 
         public override void Execute()
         {
-            TargetDrawing.CopySelected();
+            TargetDrawing?.CopySelected();
         }
 
         public override string ToString()
