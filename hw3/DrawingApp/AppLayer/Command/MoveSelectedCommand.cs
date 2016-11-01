@@ -23,13 +23,13 @@ namespace AppLayer.Command
         }
         public override void Execute()
         {
-            var image = TargetDrawing.GetSelected();
+            var image = TargetDrawing?.GetSelected();
             if(image != null)
             {
                 _oldX = image.Location.X + image.Size.Width / 2;
                 _oldY = image.Location.Y + image.Size.Height / 2;
+                TargetDrawing.MoveSelected(_newX, _newY);
             }
-            TargetDrawing.MoveSelected(_newX, _newY);
         }
 
         public override string ToString()

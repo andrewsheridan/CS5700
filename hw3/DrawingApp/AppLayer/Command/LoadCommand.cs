@@ -16,10 +16,13 @@ namespace AppLayer.Command
 
         public override void Execute()
         {
-            StreamReader reader = new StreamReader(_filename);
-            TargetDrawing?.LoadFromStream(reader.BaseStream);
-            reader.Close();
-            CommandHistory.Instance.Clear();
+            if (File.Exists(_filename))
+            {
+                StreamReader reader = new StreamReader(_filename);
+                TargetDrawing?.LoadFromStream(reader.BaseStream);
+                reader.Close();
+                CommandHistory.Instance.Clear();
+            }
         }
 
         public override string ToString()

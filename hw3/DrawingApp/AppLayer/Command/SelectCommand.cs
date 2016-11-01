@@ -23,7 +23,7 @@ namespace AppLayer.Command
             if (prevImage != null)
                 _prevLocation = prevImage.Location;
             
-            TargetDrawing.ClearSelected();
+            TargetDrawing?.ClearSelected();
             if (image != null)
             {
                 image.IsSelected = !image.IsSelected;

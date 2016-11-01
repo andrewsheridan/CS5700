@@ -55,8 +55,12 @@
     <Compile Include="CopyCommandTest.cs" />
     <Compile Include="DeselectAllCommandTest.cs" />
     <Compile Include="LoadSaveCommandTesting.cs" />
+    <Compile Include="MoveSelectedCommandTesting.cs" />
     <Compile Include="NewCommandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoveSelectedCommandTesting.cs" />
+    <Compile Include="ScaleCommandTesting.cs" />
+    <Compile Include="SelectCommandTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppLayer\AppLayer.csproj">
