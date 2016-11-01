@@ -54,6 +54,7 @@
     <Compile Include="AddCommandTest.cs" />
     <Compile Include="CopyCommandTest.cs" />
     <Compile Include="DeselectAllCommandTest.cs" />
+    <Compile Include="LoadSaveCommandTesting.cs" />
     <Compile Include="NewCommandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
