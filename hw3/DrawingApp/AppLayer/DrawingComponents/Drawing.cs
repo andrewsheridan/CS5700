@@ -268,5 +268,10 @@ namespace AppLayer.DrawingComponents
                 IsDirty = true;
             }
         }
+
+        public int GetImageCount()
+        {
+            return _images.Count;
+        }
     }
 }
