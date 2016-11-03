@@ -35,6 +35,11 @@
             this.loadToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.fileToolStrip = new System.Windows.Forms.ToolStrip();
             this.drawingPanel = new System.Windows.Forms.Panel();
+            this.saveLoadPanel = new System.Windows.Forms.Panel();
+            this.loadFileComboBox = new System.Windows.Forms.ComboBox();
+            this.saveFileNameTextBox = new System.Windows.Forms.TextBox();
+            this.saveLoadButton = new System.Windows.Forms.Button();
+            this.saveLoadLabel = new System.Windows.Forms.Label();
             this.drawingToolStrip = new System.Windows.Forms.ToolStrip();
             this.selectToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.moveButton = new System.Windows.Forms.ToolStripButton();
@@ -55,9 +60,11 @@
             this.blankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graveyardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hauntedHouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.cancelSaveLoadButton = new System.Windows.Forms.Button();
             this.fileToolStrip.SuspendLayout();
+            this.drawingPanel.SuspendLayout();
+            this.saveLoadPanel.SuspendLayout();
             this.drawingToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,11 +116,59 @@
             // drawingPanel
             // 
             this.drawingPanel.BackColor = System.Drawing.Color.White;
+            this.drawingPanel.Controls.Add(this.saveLoadPanel);
             this.drawingPanel.Location = new System.Drawing.Point(102, 28);
             this.drawingPanel.Name = "drawingPanel";
-            this.drawingPanel.Size = new System.Drawing.Size(716, 624);
+            this.drawingPanel.Size = new System.Drawing.Size(733, 624);
             this.drawingPanel.TabIndex = 7;
             this.drawingPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.drawingPanel_MouseUp);
+            // 
+            // saveLoadPanel
+            // 
+            this.saveLoadPanel.Controls.Add(this.cancelSaveLoadButton);
+            this.saveLoadPanel.Controls.Add(this.loadFileComboBox);
+            this.saveLoadPanel.Controls.Add(this.saveFileNameTextBox);
+            this.saveLoadPanel.Controls.Add(this.saveLoadButton);
+            this.saveLoadPanel.Controls.Add(this.saveLoadLabel);
+            this.saveLoadPanel.Location = new System.Drawing.Point(241, 263);
+            this.saveLoadPanel.Name = "saveLoadPanel";
+            this.saveLoadPanel.Size = new System.Drawing.Size(232, 103);
+            this.saveLoadPanel.TabIndex = 0;
+            this.saveLoadPanel.Visible = false;
+            // 
+            // loadFileComboBox
+            // 
+            this.loadFileComboBox.FormattingEnabled = true;
+            this.loadFileComboBox.Location = new System.Drawing.Point(15, 42);
+            this.loadFileComboBox.Name = "loadFileComboBox";
+            this.loadFileComboBox.Size = new System.Drawing.Size(200, 21);
+            this.loadFileComboBox.TabIndex = 3;
+            // 
+            // saveFileNameTextBox
+            // 
+            this.saveFileNameTextBox.Location = new System.Drawing.Point(15, 43);
+            this.saveFileNameTextBox.Name = "saveFileNameTextBox";
+            this.saveFileNameTextBox.Size = new System.Drawing.Size(200, 20);
+            this.saveFileNameTextBox.TabIndex = 2;
+            // 
+            // saveLoadButton
+            // 
+            this.saveLoadButton.Location = new System.Drawing.Point(34, 69);
+            this.saveLoadButton.Name = "saveLoadButton";
+            this.saveLoadButton.Size = new System.Drawing.Size(75, 23);
+            this.saveLoadButton.TabIndex = 1;
+            this.saveLoadButton.Text = "Save";
+            this.saveLoadButton.UseVisualStyleBackColor = true;
+            this.saveLoadButton.Click += new System.EventHandler(this.saveLoadButton_Click);
+            // 
+            // saveLoadLabel
+            // 
+            this.saveLoadLabel.AutoSize = true;
+            this.saveLoadLabel.Location = new System.Drawing.Point(76, 18);
+            this.saveLoadLabel.Name = "saveLoadLabel";
+            this.saveLoadLabel.Size = new System.Drawing.Size(78, 13);
+            this.saveLoadLabel.TabIndex = 0;
+            this.saveLoadLabel.Text = "Save To Cloud";
             // 
             // drawingToolStrip
             // 
@@ -321,33 +376,36 @@
             this.hauntedHouseToolStripMenuItem.Text = "Haunted House";
             this.hauntedHouseToolStripMenuItem.Click += new System.EventHandler(this.hauntedHouseToolStripMenuItem_Click);
             // 
-            // toolStrip3
-            // 
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.toolStrip3.Location = new System.Drawing.Point(821, 25);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(26, 636);
-            this.toolStrip3.TabIndex = 9;
-            this.toolStrip3.Text = "toolStrip3";
-            // 
             // refreshTimer
             // 
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
+            // cancelSaveLoadButton
+            // 
+            this.cancelSaveLoadButton.Location = new System.Drawing.Point(128, 69);
+            this.cancelSaveLoadButton.Name = "cancelSaveLoadButton";
+            this.cancelSaveLoadButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelSaveLoadButton.TabIndex = 4;
+            this.cancelSaveLoadButton.Text = "Cancel";
+            this.cancelSaveLoadButton.UseVisualStyleBackColor = true;
+            this.cancelSaveLoadButton.Click += new System.EventHandler(this.cancelSaveLoadButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 661);
-            this.Controls.Add(this.toolStrip3);
             this.Controls.Add(this.drawingToolStrip);
-            this.Controls.Add(this.drawingPanel);
             this.Controls.Add(this.fileToolStrip);
+            this.Controls.Add(this.drawingPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.fileToolStrip.ResumeLayout(false);
             this.fileToolStrip.PerformLayout();
+            this.drawingPanel.ResumeLayout(false);
+            this.saveLoadPanel.ResumeLayout(false);
+            this.saveLoadPanel.PerformLayout();
             this.drawingToolStrip.ResumeLayout(false);
             this.drawingToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -368,7 +426,6 @@
         private System.Windows.Forms.ToolStripButton undoToolstripButton;
         private System.Windows.Forms.ToolStripButton redoToolstripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.ToolStripButton ghostButton1;
         private System.Windows.Forms.ToolStripButton catButton;
@@ -384,6 +441,12 @@
         private System.Windows.Forms.ToolStripMenuItem blankToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem graveyardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hauntedHouseToolStripMenuItem;
+        private System.Windows.Forms.Panel saveLoadPanel;
+        private System.Windows.Forms.TextBox saveFileNameTextBox;
+        private System.Windows.Forms.Button saveLoadButton;
+        private System.Windows.Forms.Label saveLoadLabel;
+        private System.Windows.Forms.ComboBox loadFileComboBox;
+        private System.Windows.Forms.Button cancelSaveLoadButton;
     }
 }
 

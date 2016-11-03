@@ -2,6 +2,9 @@
 using System.IO;
 using System.Runtime.Serialization.Json;
 using AppLayer.DrawingComponents;
+using Amazon.S3;
+using Amazon;
+using Amazon.S3.Model;
 
 namespace AppLayer.Command
 {
@@ -16,9 +19,13 @@ namespace AppLayer.Command
 
         public override void Execute()
         {
-            StreamWriter writer = new StreamWriter(_filename);
-            TargetDrawing?.SaveToStream(writer.BaseStream);
-            writer.Close();
+            MemoryStream stream = new MemoryStream();
+            TargetDrawing?.SaveToStream(stream);
+
+            IAmazonS3 s3Client = new AmazonS3Client();
+            s3Client.UploadObjectFromStream("cs5700-1", _filename, stream, null);
+
+            stream.Close();
         }
 
         public override string ToString()

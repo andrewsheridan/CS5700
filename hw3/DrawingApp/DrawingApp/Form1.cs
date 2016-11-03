@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using AppLayer.Command;
 using AppLayer.DrawingComponents;
 using System.Globalization;
+using Amazon;
+using Amazon.S3;
 
 namespace DrawingApp
 {
@@ -47,11 +49,23 @@ namespace DrawingApp
                 ReferenceType = typeof(Program)
             };
 
+            this.Controls.Add(saveLoadPanel);
+        }
+
+        private void LoadFiles()
+        {
+            IAmazonS3 s3Client = new AmazonS3Client();
+            IList<string> objectKeys = s3Client.GetAllObjectKeys("cs5700-1", null, null);
+            foreach (string key in objectKeys)
+            {
+                loadFileComboBox.Items.Add(key);
+            }
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadFiles();
             ComputeDrawingPanelSize();
             refreshTimer.Start();
         }
@@ -149,34 +163,46 @@ namespace DrawingApp
 
         private void loadButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                CheckFileExists = true,
-                DefaultExt = "json",
-                Multiselect = false,
-                RestoreDirectory = true,
-                Filter = @"JSON files (*.json)|*.json|All files (*.*)|*.*"
-            };
+            //OpenFileDialog dialog = new OpenFileDialog
+            //{
+            //    CheckFileExists = true,
+            //    DefaultExt = "json",
+            //    Multiselect = false,
+            //    RestoreDirectory = true,
+            //    Filter = @"JSON files (*.json)|*.json|All files (*.*)|*.*"
+            //};
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                _commandFactory.Create("load", dialog.FileName).Execute();
-            }
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    _commandFactory.Create("load", dialog.FileName).Execute();
+            //}
+            saveLoadLabel.Text = "Load from Cloud";
+            drawingPanel.Hide();
+            
+            saveLoadButton.Text = "Load";
+            saveFileNameTextBox.Hide();
+            loadFileComboBox.Show();
+            saveFileNameTextBox.Hide();
+
+            saveLoadPanel.Show();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog
-            {
-                DefaultExt = "json",
-                RestoreDirectory = true,
-                Filter = @"JSON files (*.json)|*.json|All files (*.*)|*.*"
-            };
+            //SaveFileDialog dialog = new SaveFileDialog
+            //{
+            //    DefaultExt = "json",
+            //    RestoreDirectory = true,
+            //    Filter = @"JSON files (*.json)|*.json|All files (*.*)|*.*"
+            //};
+            drawingPanel.Hide();
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                _commandFactory.Create("save", dialog.FileName).Execute();
-            }
+            saveLoadLabel.Text = "Save to Cloud";
+            saveLoadButton.Text = "Save";
+            saveFileNameTextBox.Show();
+            loadFileComboBox.Hide();
+
+            saveLoadPanel.Show();
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -293,6 +319,35 @@ namespace DrawingApp
         {
             _drawing.SetBackground(Drawing.BackgroundType.hauntedHouse);
         }
-        
+
+        private void saveLoadButton_Click(object sender, EventArgs e)
+        {
+            if(saveLoadButton.Text.ToLower() == "save")
+            {
+                string fileName = saveFileNameTextBox.Text;
+                if (fileName != "")
+                {
+                    if (!fileName.Contains(".json"))
+                    {
+                        fileName += ".json";
+
+                    }
+                    _commandFactory.Create("save", fileName).Execute();
+                    LoadFiles();
+                }
+            }
+            else
+            {
+                _commandFactory.Create("load", (string)loadFileComboBox.SelectedItem).Execute();
+            }
+            saveLoadPanel.Hide();
+            drawingPanel.Show();
+        }
+
+        private void cancelSaveLoadButton_Click(object sender, EventArgs e)
+        {
+            saveLoadPanel.Hide();
+            drawingPanel.Show();
+        }
     }
 }
