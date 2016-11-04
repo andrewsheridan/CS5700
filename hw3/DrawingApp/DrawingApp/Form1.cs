@@ -176,9 +176,14 @@ namespace DrawingApp
             //{
             //    _commandFactory.Create("load", dialog.FileName).Execute();
             //}
+            showLoadFileDialog();
+        }
+
+        private void showLoadFileDialog()
+        {
             saveLoadLabel.Text = "Load from Cloud";
             drawingPanel.Hide();
-            
+
             saveLoadButton.Text = "Load";
             saveFileNameTextBox.Hide();
             loadFileComboBox.Show();
@@ -195,6 +200,11 @@ namespace DrawingApp
             //    RestoreDirectory = true,
             //    Filter = @"JSON files (*.json)|*.json|All files (*.*)|*.*"
             //};
+            showSaveDialog();
+        }
+
+        private void showSaveDialog()
+        {
             drawingPanel.Hide();
 
             saveLoadLabel.Text = "Save to Cloud";
@@ -348,6 +358,42 @@ namespace DrawingApp
         {
             saveLoadPanel.Hide();
             drawingPanel.Show();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.N:
+                    _commandFactory.Create("new").Execute();
+                    break;
+                case Keys.S:
+                    selectToolStripButton.Checked = true;
+                    ClearOtherSelectedTools(selectToolStripButton);
+                    break;
+                case Keys.M:
+                    moveButton.Checked = true;
+                    ClearOtherSelectedTools(moveButton);
+                    break;
+                case Keys.C:
+                    _commandFactory.Create("copy").Execute();
+                    break;
+                case Keys.U:
+                    _currentImageResource = string.Empty;
+                    if (History.Count > 0)
+                    {
+                        Command c = History[History.Count - 1];
+                        History.RemoveAt(History.Count - 1);
+                        c.Undo();
+                    }
+                    break;
+                case Keys.R:
+                    _commandFactory.Create("remove").Execute();
+                    break;
+                case Keys.L:
+                    showLoadFileDialog();
+                    break;
+            }
         }
     }
 }

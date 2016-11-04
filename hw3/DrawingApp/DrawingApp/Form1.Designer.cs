@@ -36,6 +36,7 @@
             this.fileToolStrip = new System.Windows.Forms.ToolStrip();
             this.drawingPanel = new System.Windows.Forms.Panel();
             this.saveLoadPanel = new System.Windows.Forms.Panel();
+            this.cancelSaveLoadButton = new System.Windows.Forms.Button();
             this.loadFileComboBox = new System.Windows.Forms.ComboBox();
             this.saveFileNameTextBox = new System.Windows.Forms.TextBox();
             this.saveLoadButton = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.moveButton = new System.Windows.Forms.ToolStripButton();
             this.copyToolstripButton = new System.Windows.Forms.ToolStripButton();
             this.undoToolstripButton = new System.Windows.Forms.ToolStripButton();
-            this.redoToolstripButton = new System.Windows.Forms.ToolStripButton();
             this.removeButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.scale = new System.Windows.Forms.ToolStripTextBox();
@@ -61,7 +61,6 @@
             this.graveyardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hauntedHouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.cancelSaveLoadButton = new System.Windows.Forms.Button();
             this.fileToolStrip.SuspendLayout();
             this.drawingPanel.SuspendLayout();
             this.saveLoadPanel.SuspendLayout();
@@ -136,6 +135,16 @@
             this.saveLoadPanel.TabIndex = 0;
             this.saveLoadPanel.Visible = false;
             // 
+            // cancelSaveLoadButton
+            // 
+            this.cancelSaveLoadButton.Location = new System.Drawing.Point(128, 69);
+            this.cancelSaveLoadButton.Name = "cancelSaveLoadButton";
+            this.cancelSaveLoadButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelSaveLoadButton.TabIndex = 4;
+            this.cancelSaveLoadButton.Text = "Cancel";
+            this.cancelSaveLoadButton.UseVisualStyleBackColor = true;
+            this.cancelSaveLoadButton.Click += new System.EventHandler(this.cancelSaveLoadButton_Click);
+            // 
             // loadFileComboBox
             // 
             this.loadFileComboBox.FormattingEnabled = true;
@@ -179,7 +188,6 @@
             this.moveButton,
             this.copyToolstripButton,
             this.undoToolstripButton,
-            this.redoToolstripButton,
             this.removeButton,
             this.toolStripLabel1,
             this.scale,
@@ -200,6 +208,7 @@
             // selectToolStripButton
             // 
             this.selectToolStripButton.CheckOnClick = true;
+            this.selectToolStripButton.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.selectToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("selectToolStripButton.Image")));
             this.selectToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.selectToolStripButton.Name = "selectToolStripButton";
@@ -234,16 +243,6 @@
             this.undoToolstripButton.Size = new System.Drawing.Size(96, 34);
             this.undoToolstripButton.Text = "Undo";
             this.undoToolstripButton.Click += new System.EventHandler(this.undoToolstripButton_Click);
-            // 
-            // redoToolstripButton
-            // 
-            this.redoToolstripButton.Enabled = false;
-            this.redoToolstripButton.Image = ((System.Drawing.Image)(resources.GetObject("redoToolstripButton.Image")));
-            this.redoToolstripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.redoToolstripButton.Name = "redoToolstripButton";
-            this.redoToolstripButton.Size = new System.Drawing.Size(96, 34);
-            this.redoToolstripButton.Text = "Redo";
-            this.redoToolstripButton.Visible = false;
             // 
             // removeButton
             // 
@@ -380,16 +379,6 @@
             // 
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // cancelSaveLoadButton
-            // 
-            this.cancelSaveLoadButton.Location = new System.Drawing.Point(128, 69);
-            this.cancelSaveLoadButton.Name = "cancelSaveLoadButton";
-            this.cancelSaveLoadButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelSaveLoadButton.TabIndex = 4;
-            this.cancelSaveLoadButton.Text = "Cancel";
-            this.cancelSaveLoadButton.UseVisualStyleBackColor = true;
-            this.cancelSaveLoadButton.Click += new System.EventHandler(this.cancelSaveLoadButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -401,6 +390,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.fileToolStrip.ResumeLayout(false);
             this.fileToolStrip.PerformLayout();
             this.drawingPanel.ResumeLayout(false);
@@ -424,7 +414,6 @@
         private System.Windows.Forms.ToolStripButton selectToolStripButton;
         private System.Windows.Forms.ToolStripButton copyToolstripButton;
         private System.Windows.Forms.ToolStripButton undoToolstripButton;
-        private System.Windows.Forms.ToolStripButton redoToolstripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.ToolStripButton ghostButton1;
