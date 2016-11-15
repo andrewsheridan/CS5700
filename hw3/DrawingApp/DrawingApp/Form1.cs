@@ -306,9 +306,7 @@ namespace DrawingApp
                 _currentImageResource = string.Empty;
                 if(History.Count > 0)
                 {
-                    Command c = History[History.Count - 1];
-                    History.RemoveAt(History.Count - 1);
-                    c.Undo();
+                    History.UndoLast();
                 }
             }
         }

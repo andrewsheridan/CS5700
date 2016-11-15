@@ -13,7 +13,6 @@ namespace AppLayer.Command
         {
             if (commandParameters.Length>1)
                 _location = new Point((int)commandParameters[0], (int)commandParameters[1]);
-            
         }
 
         public override void Execute()

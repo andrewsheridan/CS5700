@@ -33,5 +33,12 @@ namespace AppLayer.Command
             }
             return s;
         }
+
+        public void UndoLast()
+        {
+            Command c = Instance[Instance.Count - 1];
+            Instance.RemoveAt(Instance.Count - 1);
+            c.Undo();
+        }
     }
 }
