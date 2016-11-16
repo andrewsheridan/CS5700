@@ -16,7 +16,7 @@ namespace SudokuSolver
         public Cell(List<char> symbols)
         {
             PossibleValues = new List<char>();
-            PossibleValues = symbols;
+            PossibleValues.AddRange(symbols);
         }
 
         void RemovePossibleValue(char value)

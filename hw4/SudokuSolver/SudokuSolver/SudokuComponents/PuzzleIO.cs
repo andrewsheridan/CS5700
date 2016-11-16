@@ -40,15 +40,10 @@ namespace SudokuSolver.SudokuComponents
             //Initialize Puzzle with Size and Symbol Set
             Puzzle newPuzzle = new Puzzle(size, symbols);
 
-            string nextLine = null;
+            string nextLine = file.ReadLine();
             int rowCounter = 0;
-            while ((nextLine = file.ReadLine()) != "")
+            while (nextLine != "" && nextLine != null)
             {
-                //cellValues.Clear();
-                //foreach(char cell in nextLine)
-                //    if (cell != ' ') 
-                //       cellValues.Add(cell);
-
                 nextLine = Regex.Replace(nextLine, " ", "");
                 
                 if (nextLine.Length != size)
@@ -63,10 +58,16 @@ namespace SudokuSolver.SudokuComponents
                 }
                 for(int column = 0; column < nextLine.Length; column++)
                 {
+                    if (!symbols.Contains(nextLine[column]) && nextLine[column] != '-')
+                    {
+                        Console.WriteLine("Bad File -- Invalid Cell Value");
+                        return null;
+                    }
                     if(nextLine[column] != '-')
                         newPuzzle.UpdateCell(rowCounter, column, nextLine[column]);
                 }
                 rowCounter++;
+                nextLine = file.ReadLine();
             }
 
             return newPuzzle;
