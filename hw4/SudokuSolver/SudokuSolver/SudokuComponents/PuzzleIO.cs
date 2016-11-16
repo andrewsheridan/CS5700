@@ -64,7 +64,9 @@ namespace SudokuSolver.SudokuComponents
                         return null;
                     }
                     if(nextLine[column] != '-')
+                    {
                         newPuzzle.UpdateCell(rowCounter, column, nextLine[column]);
+                    }
                 }
                 rowCounter++;
                 nextLine = file.ReadLine();

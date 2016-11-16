@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SudokuSolver.SudokuComponents;
 using SudokuSolver;
+using SudokuSolver.SudokuComponents;
 
 namespace SudokuSolverTesting
 {
     [TestClass]
-    public class LoadFileTesting
+    public class PuzzleIOTesting
     {
         [TestMethod]
         public void LoadSuccess()

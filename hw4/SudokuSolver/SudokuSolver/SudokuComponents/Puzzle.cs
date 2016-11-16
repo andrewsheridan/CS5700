@@ -12,47 +12,59 @@ namespace SudokuSolver
         
         List<char> Symbols;
         List<List<Cell>> Cells;
-        //List<Row> Rows;
-        //List<Column> Columns;
-        //List<Block> Blocks;
-        
+        List<Row> Rows;
+        List<Column> Columns;
+        List<Block> Blocks;
+
         public Puzzle(int size, List<char> symbols)
         {
+            //Validate the constructor parameters
+            int n =(int) Math.Sqrt(size);
+            if (n * n != size) throw new ArgumentException("Size is not a squared value");
+            if (size != symbols.Count) throw new ArgumentException("Incorrect number of symbols");
+            if (size < 4) throw new ArgumentException("Invalid Puzzle Size");
+
+            //Initialize the puzzle
             Symbols = symbols;
             Size = size;
+
             Cells = new List<List<Cell>>();
-            //Rows = new List<Row>();
-            //Blocks = new List<Block>();
-            //Columns = new List<Column>();
-            //for(int i = 0; i < Size; i++)
-            //{
-            //    //Row newRow = new Row(Symbols);
-            //    //Rows.Add(newRow);
-            //    //Column newCol = new SudokuSolver.Column(Symbols);
-            //    //Columns.Add(newCol);
-            //    //Block newBlock = new Block(Symbols);
-            //    //Blocks.Add(newBlock);
-            //}
-            for(int i = 0; i < Size; i++)
+            Rows = new List<Row>();
+            Blocks = new List<Block>();
+            Columns = new List<Column>();
+            for (int i = 0; i < Size; i++)
+            {
+                Row newRow = new Row(Symbols);
+                Rows.Add(newRow);
+                Column newCol = new SudokuSolver.Column(Symbols);
+                Columns.Add(newCol);
+                Block newBlock = new Block(Symbols);
+                Blocks.Add(newBlock);
+            }
+
+            //Initialize the cells and place them in corresponding units
+            for (int i = 0; i < Size; i++)
             {
                 Cells.Add(new List<Cell>());
                 for (int j = 0; j < Size; j++)
                 {
-                    Cells[i].Add(new Cell(symbols));
-                    //Rows[i].Add(Cells[i][j]);
-                    //Columns[j].Add(Cells[i][j]);
-                    //int blockId = (i * size) / size + (j / size);
-                    //Blocks[blockId].Add(Cells[i][j]);
+                    Cells[i].Add(new Cell(symbols, i, j));
+                    Rows[i].Add(Cells[i][j]);
+                    Columns[j].Add(Cells[i][j]);
+                    Blocks[ComputeBlockIndex(i, j, Size)].Add(Cells[i][j]);
                 }
             }
         
         }
 
+        //Sets the value of the cell to symbol, and removes symbol as a possible value from all corresponding units
         public bool UpdateCell(int row, int col, char symbol)
         {
             Cells[row][col].SetValue(symbol);
-            //Todo: Update the row and column and block
-
+            Rows[row].RemovePossibleValueFromCells(symbol);
+            Columns[col].RemovePossibleValueFromCells(symbol);
+            Blocks[ComputeBlockIndex(row, col, Size)].RemovePossibleValueFromCells(symbol);
+            
             return true;
         }
 
@@ -69,6 +81,18 @@ namespace SudokuSolver
             }
 
             return output;
+        }
+
+        //Computes the index of the block found at row "row", column "col", and with puzzle size "size"
+        public static int ComputeBlockIndex(int row, int col, int size)
+        {
+            int n = (int)Math.Sqrt(size);
+            if (n * n != size)
+                throw new ArgumentException("Size is not a perfect square");
+            if (row < 0 || col < 0 || row >= size || col >= size || size < 1)
+                throw new ArgumentException("Invalid input parameters");
+            int returnValue = (row / n) * n + (col / n);
+            return returnValue;
         }
     }
 }

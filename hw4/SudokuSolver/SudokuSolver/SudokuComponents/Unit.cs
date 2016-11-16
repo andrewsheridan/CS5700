@@ -14,5 +14,13 @@ namespace SudokuSolver
             PossibleValues.AddRange(symbols);
         }
         List<char> PossibleValues;
+
+        public void RemovePossibleValueFromCells(char value)
+        {
+            foreach(Cell cell in this)
+            {
+                cell.PossibleValues.Remove(value);
+            }
+        }
     }
 }
