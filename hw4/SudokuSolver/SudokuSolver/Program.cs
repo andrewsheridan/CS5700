@@ -19,6 +19,7 @@ namespace SudokuSolver
             Puzzle myPuzzle = SudokuComponents.PuzzleIO.LoadFromFile(filePath + fileName);
             Console.Write(myPuzzle.ToString());
             myPuzzle.PrintPossibleValues();
+            myPuzzle.PrintQueue();
             //myPuzzle.Solve();
             Console.Read();
         }

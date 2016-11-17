@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudokuSolver
 {
-    public class Cell : Subject, IComparable
+    public class Cell : Subject, IComparable<Cell>
     {
         //Public Variables
         public List<char> PossibleValues;
@@ -40,11 +40,10 @@ namespace SudokuSolver
             return PossibleValues.Count;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(Cell obj)
         {
-            Cell otherCell = obj as Cell;
             int myCount = GetPossibleValueCount();
-            int objCount = otherCell.GetPossibleValueCount();
+            int objCount = obj.GetPossibleValueCount();
             if (myCount < objCount)
                 return -1;
             else if (myCount > objCount)

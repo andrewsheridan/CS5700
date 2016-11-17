@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace SudokuSolver
         List<Row> Rows;
         List<Column> Columns;
         List<Block> Blocks;
+        SortedList Q;
 
         public Puzzle(int size, List<char> symbols)
         {
@@ -60,7 +62,23 @@ namespace SudokuSolver
                     Cells[i][j].Subscribe(Blocks[blockIndex]);
                 }
             }
+        }
         
+        public void InitQueue()
+        {
+            Q = new SortedList();
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    if (Cells[i][j].SolvedValue == '\0')
+                    {
+                        int key = i * Size + j;
+                        Q.Add(key, Cells[i][j]);
+                    }
+                        
+                }
+            }
         }
 
         //Sets the value of the cell to symbol, and removes symbol as a possible value from all corresponding units
@@ -113,6 +131,19 @@ namespace SudokuSolver
                         possibleCharacters += value;
                     Console.WriteLine($"[{row}][{column}]: {possibleCharacters}");
                 }
+            }
+        }
+
+        //Outputs the current state of the Queue
+        public void PrintQueue()
+        {
+            for(int i = 0; i < Q.Count; i++)
+            {
+                int key = (int)Q.GetKey(i);
+                int row = key / Size;
+                int column = key % Size;
+                Cell cell = Q.GetByIndex(i) as Cell;
+                Console.WriteLine($"[{row}][{column}]: {cell.GetPossibleValueCount()}");
             }
         }
     }

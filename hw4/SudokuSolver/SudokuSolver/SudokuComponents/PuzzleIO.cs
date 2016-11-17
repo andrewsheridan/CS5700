@@ -72,6 +72,7 @@ namespace SudokuSolver.SudokuComponents
                 nextLine = file.ReadLine();
             }
 
+            newPuzzle.InitQueue();
             return newPuzzle;
         }
         
