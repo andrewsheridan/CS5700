@@ -74,5 +74,6 @@ namespace SudokuSolver.SudokuComponents
 
             return newPuzzle;
         }
+        
     }
 }

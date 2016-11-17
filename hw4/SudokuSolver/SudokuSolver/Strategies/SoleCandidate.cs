@@ -8,14 +8,15 @@ namespace SudokuSolver.Strategies
 {
     public class SoleCandidate : Strategy
     {
-        public override void FindApplicableCells(Unit unit)
-        {
-            throw new NotImplementedException();
-        }
+        //public override void FindApplicableCells(Unit unit)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public override void UpdateCells(Unit unit)
-        {
-            throw new NotImplementedException();
-        }
+        //public override void UpdateCells(Unit unit)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
     }
 }

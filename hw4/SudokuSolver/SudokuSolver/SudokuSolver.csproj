@@ -55,6 +55,7 @@
     <Compile Include="SudokuComponents\Puzzle.cs" />
     <Compile Include="SudokuComponents\PuzzleIO.cs" />
     <Compile Include="SudokuComponents\Row.cs" />
+    <Compile Include="SudokuComponents\Subject.cs" />
     <Compile Include="SudokuComponents\Unit.cs" />
   </ItemGroup>
   <ItemGroup>

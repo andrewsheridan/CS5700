@@ -8,7 +8,7 @@ namespace SudokuSolver.Strategies
 {
     public abstract class Strategy
     {
-        public abstract void FindApplicableCells(Unit unit);
-        public abstract void UpdateCells(Unit unit);
+        //public abstract void FindApplicableCells(Unit unit);
+        //public abstract void UpdateCells(Unit unit);
     }
 }

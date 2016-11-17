@@ -51,7 +51,13 @@ namespace SudokuSolver
                     Cells[i].Add(new Cell(symbols, i, j));
                     Rows[i].Add(Cells[i][j]);
                     Columns[j].Add(Cells[i][j]);
-                    Blocks[ComputeBlockIndex(i, j, Size)].Add(Cells[i][j]);
+                    int blockIndex = ComputeBlockIndex(i, j, size);
+                    Blocks[blockIndex].Add(Cells[i][j]);
+
+                    //Cells will notify the corresponding units when they are updated.
+                    Cells[i][j].Subscribe(Rows[i]);
+                    Cells[i][j].Subscribe(Columns[j]);
+                    Cells[i][j].Subscribe(Blocks[blockIndex]);
                 }
             }
         
@@ -61,9 +67,9 @@ namespace SudokuSolver
         public bool UpdateCell(int row, int col, char symbol)
         {
             Cells[row][col].SetValue(symbol);
-            Rows[row].RemovePossibleValueFromCells(symbol);
-            Columns[col].RemovePossibleValueFromCells(symbol);
-            Blocks[ComputeBlockIndex(row, col, Size)].RemovePossibleValueFromCells(symbol);
+            //Rows[row].RemovePossibleValueFromCells(symbol);
+            //Columns[col].RemovePossibleValueFromCells(symbol);
+            //Blocks[ComputeBlockIndex(row, col, Size)].RemovePossibleValueFromCells(symbol);
             
             return true;
         }
@@ -93,6 +99,21 @@ namespace SudokuSolver
                 throw new ArgumentException("Invalid input parameters");
             int returnValue = (row / n) * n + (col / n);
             return returnValue;
+        }
+
+        //Outputs the possible values for each cell in the puzzle
+        public void PrintPossibleValues()
+        {
+            for(int row = 0; row < Size; row++)
+            {
+                for(int column = 0; column < Size; column++)
+                {
+                    string possibleCharacters = "";
+                    foreach (char value in Cells[row][column].PossibleValues)
+                        possibleCharacters += value;
+                    Console.WriteLine($"[{row}][{column}]: {possibleCharacters}");
+                }
+            }
         }
     }
 }
