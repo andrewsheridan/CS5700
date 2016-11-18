@@ -16,7 +16,7 @@ namespace SudokuSolver
         List<Row> Rows;
         List<Column> Columns;
         List<Block> Blocks;
-        SortedList Q;
+        List<Cell> Q;
 
         public Puzzle(int size, List<char> symbols)
         {
@@ -66,7 +66,7 @@ namespace SudokuSolver
         
         public void InitQueue()
         {
-            Q = new SortedList();
+            Q = new List<Cell>();
             for (int i = 0; i < Size; i++)
             {
                 for (int j = 0; j < Size; j++)
@@ -74,11 +74,12 @@ namespace SudokuSolver
                     if (Cells[i][j].SolvedValue == '\0')
                     {
                         int key = i * Size + j;
-                        Q.Add(key, Cells[i][j]);
+                        Q.Add(Cells[i][j]);
                     }
                         
                 }
             }
+            Q.Sort();
         }
 
         //Sets the value of the cell to symbol, and removes symbol as a possible value from all corresponding units
@@ -139,12 +140,38 @@ namespace SudokuSolver
         {
             for(int i = 0; i < Q.Count; i++)
             {
-                int key = (int)Q.GetKey(i);
-                int row = key / Size;
-                int column = key % Size;
-                Cell cell = Q.GetByIndex(i) as Cell;
-                Console.WriteLine($"[{row}][{column}]: {cell.GetPossibleValueCount()}");
+                Cell cell = Q[i];
+                Console.WriteLine($"[{cell.Row}][{cell.Column}]: {cell.GetPossibleValueCount()}");
             }
+        }
+
+        public void Solve()
+        {
+            while(Q.Count > 0)
+            {
+                Cell cell = Q[0];
+                Q.RemoveAt(0);
+                switch (cell.PossibleValues.Count)
+                {
+                    case 0:
+                        Console.WriteLine("This is not a valid puzzle. No solution.");
+                        return;
+                    case 1:
+                        char newValue = cell.PossibleValues[0];
+                        cell.PossibleValues.Clear();
+                        cell.SetValue(newValue);
+                        break;
+                    case 2:
+                        Console.WriteLine("Need Case for Multiple Solutions.");
+                        break;
+                }
+                Console.WriteLine("Before");
+                PrintQueue();
+                Q.Sort();
+                Console.WriteLine("After");
+                PrintQueue();
+            }
+            Console.Write(ToString());
         }
     }
 }
