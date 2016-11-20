@@ -24,6 +24,7 @@ namespace SudokuSolver
         private List<string> solutions;
 
         private int nakedSubsetCount = 0;
+        private int hiddenSingleCount = 0;
 
         Strategies.Strategy solvingStrategy;
         public Puzzle(string filename)
@@ -247,7 +248,12 @@ namespace SudokuSolver
             while(Q.Count > 0)
             {
                 Cell cell = Q[0];
-                Q.RemoveAt(0);
+                if (cell.SolvedValue != '\0')
+                {
+                    Q.RemoveAt(0);
+                    continue;
+                }
+                
                 switch (cell.PossibleValues.Count)
                 {
                     case 0:
@@ -258,11 +264,23 @@ namespace SudokuSolver
                         solvingStrategy = new Strategies.SoleCandidate();
                         break;
                     case 2:
-                        solvingStrategy = new Strategies.NakedSubset();
-                        nakedSubsetCount++;
+                        if(cell.SolveAttempts % 2 == 1)
+                        {
+                            solvingStrategy = new Strategies.NakedSubset();
+                            nakedSubsetCount++;
+                        }
+                        else
+                        {
+                            solvingStrategy = new Strategies.HiddenSingle();
+                            hiddenSingleCount++;
+                        }
                         break;
                 }
                 solvingStrategy.Execute(cell, this);
+                if (cell.SolvedValue != '\0')
+                    Q.RemoveAt(0);
+                else
+                    cell.IncrementSolveAttempts();
 
                 Q.Sort();
             }

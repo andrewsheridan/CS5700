@@ -17,16 +17,25 @@ namespace SudokuSolver.Strategies
 
         private List<char> FindCommonCharacters(Unit unit)
         {
-            List<char> commonCharacters = new List<char>(unit[0].PossibleValues);
+            List<char> commonCharacters = new List<char>();
+            commonCharacters.AddRange(unit.PossibleValues);
+            HashSet<char> charactersNotFound = new HashSet<char>();
             foreach(Cell cell in unit)
             {
-                foreach(char character in commonCharacters)
+                if(cell.SolvedValue == '\0')
                 {
-                    if(!cell.PossibleValues.Contains(character))
+                    foreach (char character in unit.PossibleValues)
                     {
-                        commonCharacters.Remove(character);
+                        if (!cell.PossibleValues.Contains(character))
+                        {
+                            charactersNotFound.Add(character);
+                        }
                     }
                 }
+            }
+            foreach(char character in charactersNotFound)
+            {
+                commonCharacters.Remove(character);
             }
             return commonCharacters;
         }
@@ -39,10 +48,13 @@ namespace SudokuSolver.Strategies
 
             foreach(Cell cell in unit)
             {
-                if (cell.PossibleValues.Count > commonCharacters.Count)
-                    cellsContainingMoreThanCommonChars.Add(cell);
-                else
-                    cellsContainingOnlyCommonChars.Add(cell);
+                if(cell.SolvedValue == '\0')
+                {
+                    if (cell.PossibleValues.Count > commonCharacters.Count)
+                        cellsContainingMoreThanCommonChars.Add(cell);
+                    else
+                        cellsContainingOnlyCommonChars.Add(cell);
+                }
             }
 
             if(cellsContainingOnlyCommonChars.Count == commonCharacters.Count)
