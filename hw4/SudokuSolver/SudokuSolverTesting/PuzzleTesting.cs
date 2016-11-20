@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SudokuSolver.SudokuComponents;
 using SudokuSolver;
 using System.Collections.Generic;
 
@@ -10,43 +9,77 @@ namespace SudokuSolverTesting
     public class PuzzleTesting
     {
         [TestMethod]
-        public void NewPuzzleSuccess()
+        public void LoadSuccess()
         {
-            char[] list = { '1', '2', '3', '4' };
-            List<char> symbolList = new List<char>();
-            symbolList.AddRange(list);
-            Puzzle newPuzzle = new Puzzle(4, symbolList);
+            string filename = "Puzzle-4x4-0001.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
+            Assert.IsNotNull(myPuzzle);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void SizeTooSmall()
+        [ExpectedException(typeof(System.IO.FileLoadException))]
+        public void LoadFailure()
         {
-            char[] list = { '1', '2', '3', '4' };
-            List<char> symbolList = new List<char>();
-            symbolList.AddRange(list);
-            Puzzle newPuzzle = new Puzzle(1, symbolList);
+            string filename = "Puzzle-4x4-0901.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(System.IO.FileNotFoundException))]
+        public void FileDoesNotExist()
+        {
+            string filename = "NOTAFILE.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.IO.FileLoadException))]
+        public void TooManyColumns()
+        {
+            string filename = "TooManyColumns.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void TooManyRows()
+        {
+            string filename = "TooManySymbols.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.IO.FileLoadException))]
+        public void MissingEntry()
+        {
+            string filename = "NotEnoughColumns.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void InvalidSizeType()
+        {
+            string filename = "InvalidSize.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
         public void SizeNotSquare()
         {
-            char[] list = { '1', '2', '3', '4' };
-            List<char> symbolList = new List<char>();
-            symbolList.AddRange(list);
-            Puzzle newPuzzle = new Puzzle(5, symbolList);
+            string filename = "SizeNotSquare.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void IncorrectSymbolCount()
+        [ExpectedException(typeof(FormatException))]
+        public void SizeTooSmall()
         {
-            char[] list = { '1', '2', '3', '4', '5'};
-            List<char> symbolList = new List<char>();
-            symbolList.AddRange(list);
-            Puzzle newPuzzle = new Puzzle(4, symbolList);
+            string filename = "SizeNotSquare.txt";
+            Puzzle myPuzzle = new Puzzle(filename);
         }
+
 
         [TestMethod]
         public void ComputeBlockIndexSuccess()
@@ -66,7 +99,7 @@ namespace SudokuSolverTesting
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(IndexOutOfRangeException),
             "Invalid input parameters")]
         public void ComputeBlockIndexBadInput()
         {

@@ -28,11 +28,14 @@ namespace SudokuSolver
             PossibleValues.Remove(value);
         }
 
-        public void SetValue(char value)
+        public bool SetValue(char value)
         {
+            if (SolvedValue != '\0')
+                return false;
             SolvedValue = value;
             PossibleValues.Clear();
             Notify(value);
+            return true;
         }
 
         public int GetPossibleValueCount()

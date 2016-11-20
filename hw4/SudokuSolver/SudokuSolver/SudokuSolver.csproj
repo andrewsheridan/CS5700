@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OutputStrategies\OutputStrategy.cs" />
     <Compile Include="Strategies\HiddenSubset.cs" />
     <Compile Include="Strategies\NakedSubset.cs" />
     <Compile Include="Strategies\SoleCandidate.cs" />
@@ -53,7 +54,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SudokuComponents\Puzzle.cs" />
-    <Compile Include="SudokuComponents\PuzzleIO.cs" />
     <Compile Include="SudokuComponents\Row.cs" />
     <Compile Include="SudokuComponents\Subject.cs" />
     <Compile Include="SudokuComponents\Unit.cs" />
