@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OutputStrategies\BadPuzzleOutput.cs" />
     <Compile Include="OutputStrategies\OutputStrategy.cs" />
+    <Compile Include="OutputStrategies\SingleSolutionOutput.cs" />
     <Compile Include="Strategies\HiddenSubset.cs" />
     <Compile Include="Strategies\NakedSubset.cs" />
     <Compile Include="Strategies\SoleCandidate.cs" />

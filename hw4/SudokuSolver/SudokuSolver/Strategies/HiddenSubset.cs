@@ -8,14 +8,9 @@ namespace SudokuSolver.Strategies
 {
     public class HiddenSubset : Strategy
     {
-        //public override void FindApplicableCells(Unit unit)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public override void UpdateCells(Unit unit)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public override void Execute(Cell cell, Puzzle puzzle)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

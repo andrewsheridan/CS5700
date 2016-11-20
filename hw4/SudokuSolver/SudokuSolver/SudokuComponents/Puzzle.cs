@@ -15,13 +15,17 @@ namespace SudokuSolver
         public int Size { get; private set; }
         public List<List<Cell>> Cells { get; private set; }
 
-        private List<char> Symbols;
-        private List<Row> Rows;
-        private List<Column> Columns;
-        private List<Block> Blocks;
+        public List<char> Symbols;
+        public List<Row> Rows;
+        public List<Column> Columns;
+        public List<Block> Blocks;
         private List<Cell> Q;
         private string _fileName;
-        private List<string> solutions; 
+        private List<string> solutions;
+
+        private int nakedSubsetCount = 0;
+
+        Strategies.Strategy solvingStrategy;
         public Puzzle(string filename)
         {
             _fileName = filename;
@@ -33,8 +37,7 @@ namespace SudokuSolver
 
             System.IO.StreamReader file = new System.IO.StreamReader(PuzzlesDirectory + _fileName);
             string firstLine = file.ReadLine();
-
-            //Todo: Make sure this doesn't throw anything
+            
             try
             {
                 Size = Convert.ToInt16(firstLine);
@@ -252,19 +255,16 @@ namespace SudokuSolver
                         OutputSolutions(0);
                         return;
                     case 1:
-                        char newValue = cell.PossibleValues[0];
-                        cell.PossibleValues.Clear();
-                        cell.SetValue(newValue);
+                        solvingStrategy = new Strategies.SoleCandidate();
                         break;
                     case 2:
-                        Console.WriteLine("Need Case for Multiple Solutions.");
+                        solvingStrategy = new Strategies.NakedSubset();
+                        nakedSubsetCount++;
                         break;
                 }
-                Console.WriteLine("Before");
-                PrintQueue();
+                solvingStrategy.Execute(cell, this);
+
                 Q.Sort();
-                Console.WriteLine("After");
-                PrintQueue();
             }
             OutputSolutions(1);
             Console.Write(ToString());
@@ -325,5 +325,6 @@ namespace SudokuSolver
             }
             System.IO.File.WriteAllText(outputFileName, output);
         }
+        
     }
 }
