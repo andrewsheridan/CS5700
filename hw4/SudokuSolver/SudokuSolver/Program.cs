@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SudokuSolver.SudokuComponents;
 
 namespace SudokuSolver
 {
@@ -17,11 +18,8 @@ namespace SudokuSolver
             string fileName = Console.ReadLine();
             try
             {
-                Puzzle myPuzzle = new Puzzle(fileName);
-                Console.Write(myPuzzle.ToString());
-                myPuzzle.PrintPossibleValues();
-                //myPuzzle.PrintQueue();
-                myPuzzle.Solve();
+                PuzzleSolver solver = new PuzzleSolver(fileName);
+                solver.Solve();
             }
             catch
             {

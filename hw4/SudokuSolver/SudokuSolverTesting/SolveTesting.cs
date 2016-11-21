@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SudokuSolver;
 using SudokuSolver.Strategies;
 using System.Collections.Generic;
+using SudokuSolver.SudokuComponents;
 
 namespace SudokuSolverTesting
 {
@@ -13,8 +14,8 @@ namespace SudokuSolverTesting
         public void SoleCandidateSuccess()
         {
             //Todo: Compare results to actual solution.
-            Puzzle myPuzzle = new Puzzle("Puzzle-9x9-0001.txt");
-            myPuzzle.Solve();
+            PuzzleSolver solver = new PuzzleSolver("Puzzle-9x9-0001.txt");
+            Assert.IsTrue(solver.Solve());
         }
 
         [TestMethod]

@@ -6,12 +6,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SudokuSolver
+namespace SudokuSolver.SudokuComponents
 {
     public class Puzzle
     {
-        static readonly string PuzzlesDirectory = "../../../TestPuzzles/";
-        static readonly string OutputDirectory = "../../../../Output/";
+        public static readonly string PuzzlesDirectory = "../../../TestPuzzles/";
         public int Size { get; private set; }
         public List<List<Cell>> Cells { get; private set; }
 
@@ -20,7 +19,7 @@ namespace SudokuSolver
         public List<Column> Columns;
         public List<Block> Blocks;
         public List<string> solutions;
-        private List<Cell> Q;
+        
         private string _fileName;
 
         private int nakedSubsetCount = 0;
@@ -47,36 +46,24 @@ namespace SudokuSolver
         }
 
         public Puzzle(string filename)
-        {
+       {
             _fileName = filename;
             if (!System.IO.File.Exists(PuzzlesDirectory + _fileName))
             {
-                OutputSolutions(-1);
                 throw new System.IO.FileNotFoundException();
             }
-
             System.IO.StreamReader file = new System.IO.StreamReader(PuzzlesDirectory + _fileName);
             string firstLine = file.ReadLine();
-
-            try
-            {
-                Size = Convert.ToInt16(firstLine);
-            }
-            catch (FormatException exception)
-            {
-                OutputSolutions(-1);
-                throw exception;
-            }
+            
+            Size = Convert.ToInt16(firstLine);
 
             int n = (int)Math.Sqrt(Size);
             if (n * n != Size)
             {
-                OutputSolutions(-1);
                 throw new FormatException("Size is not a squared value");
             }
             if (Size < 4)
             {
-                OutputSolutions(-1);
                 throw new FormatException("Invalid Puzzle Size");
             }
 
@@ -92,7 +79,6 @@ namespace SudokuSolver
 
             if (Symbols.Count != Size)
             {
-                OutputSolutions(-1);
                 throw new System.IO.FileLoadException();
             }
 
@@ -108,19 +94,16 @@ namespace SudokuSolver
 
                 if (nextLine.Length != Size)
                 {
-                    OutputSolutions(-1);
                     throw new System.IO.FileLoadException();
                 }
                 if (rowCounter >= Size)
                 {
-                    OutputSolutions(-1);
                     throw new System.IO.FileLoadException();
                 }
                 for (int column = 0; column < nextLine.Length; column++)
                 {
                     if (!Symbols.Contains(nextLine[column]) && nextLine[column] != '-')
                     {
-                        OutputSolutions(-1);
                         throw new System.IO.FileLoadException();
                     }
                     if (nextLine[column] != '-')
@@ -131,8 +114,6 @@ namespace SudokuSolver
                 nextLine = file.ReadLine();
             }
             file.Close();
-
-            InitQueue();
         }
 
         public Puzzle(Puzzle puzzleToCopy)
@@ -154,7 +135,6 @@ namespace SudokuSolver
 
             InitUnits();
             LinkCellsToUnits();
-            InitQueue();
         }
 
         public void InitCells()
@@ -205,23 +185,7 @@ namespace SudokuSolver
                 }
             }
         }
-
-        public void InitQueue()
-        {
-            Q = new List<Cell>();
-            for (int i = 0; i < Size; i++)
-            {
-                for (int j = 0; j < Size; j++)
-                {
-                    if (Cells[i][j].SolvedValue == '\0')
-                    {
-                        int key = i * Size + j;
-                        Q.Add(Cells[i][j]);
-                    }
-                }
-            }
-            Q.Sort();
-        }
+        
 
         //Sets the value of the cell to symbol, and removes symbol as a possible value from all corresponding units
         public void SetCellValue(int row, int col, char symbol)
@@ -273,74 +237,64 @@ namespace SudokuSolver
             }
         }
 
-        //Outputs the current state of the Queue
-        public void PrintQueue()
-        {
-            for(int i = 0; i < Q.Count; i++)
-            {
-                Cell cell = Q[i];
-                Console.WriteLine($"[{cell.Row}][{cell.Column}]: {cell.GetPossibleValueCount()}");
-            }
-        }
-
         /// <summary>
         /// Attempts to solve the puzzle
         /// </summary>
-        public bool Solve()
-        {
-            while(Q.Count > 0)
-            {
-                Cell cell = Q[0];
-                if (cell.SolvedValue != '\0')
-                {
-                    Q.RemoveAt(0);
-                    continue;
-                }
-                Console.WriteLine($"Solving cell at [{cell.Row}, {cell.Column}] Attempts : {cell.AttemptCounter}");
-                switch (cell.PossibleValues.Count)
-                {
-                    case 0:
-                        Console.WriteLine("This is not a valid puzzle. No solution.");
-                        OutputSolutions(0);
-                        return false;
-                    case 1:
-                        solvingStrategy = new Strategies.SoleCandidate();
-                        Console.WriteLine("Using Sole Candidate");
-                        break;
-                    case 2:
-                        if(cell.AttemptCounter == 0)
-                        {
-                            solvingStrategy = new Strategies.NakedSubset();
-                            nakedSubsetCount++;
-                            Console.WriteLine("Using Naked Subset");
-                        }
-                        else if(cell.AttemptCounter == 1)
-                        {
-                            solvingStrategy = new Strategies.HiddenSingle();
-                            Console.WriteLine("Using Hidden Single");
-                            hiddenSingleCount++;
-                        }
-                        else
-                        {
-                            solvingStrategy = new Strategies.Guess();
-                            Console.WriteLine("Using Guess Strategy");
-                        }
-                        break;
-                }
-                bool reductionResult = solvingStrategy.Execute(cell, this);
-                cell.AttemptCounter = reductionResult ? 0 : cell.AttemptCounter + 1;
-                if (reductionResult) Console.WriteLine("Reduction result: Success.");
-                else Console.WriteLine("Reduction result: Failed.");
-                if (cell.SolvedValue != '\0')
-                    Q.RemoveAt(0);
+        //public bool Solve()
+        //{
+        //    while(Q.Count > 0)
+        //    {
+        //        Cell cell = Q[0];
+        //        if (cell.SolvedValue != '\0')
+        //        {
+        //            Q.RemoveAt(0);
+        //            continue;
+        //        }
+        //        Console.WriteLine($"Solving cell at [{cell.Row}, {cell.Column}] Attempts : {cell.AttemptCounter}");
+        //        switch (cell.PossibleValues.Count)
+        //        {
+        //            case 0:
+        //                Console.WriteLine("This is not a valid puzzle. No solution.");
+        //                OutputSolutions(0);
+        //                return false;
+        //            case 1:
+        //                solvingStrategy = new Strategies.SoleCandidate();
+        //                Console.WriteLine("Using Sole Candidate");
+        //                break;
+        //            case 2:
+        //                if(cell.AttemptCounter == 0)
+        //                {
+        //                    solvingStrategy = new Strategies.NakedSubset();
+        //                    nakedSubsetCount++;
+        //                    Console.WriteLine("Using Naked Subset");
+        //                }
+        //                else if(cell.AttemptCounter == 1)
+        //                {
+        //                    solvingStrategy = new Strategies.HiddenSingle();
+        //                    Console.WriteLine("Using Hidden Single");
+        //                    hiddenSingleCount++;
+        //                }
+        //                else
+        //                {
+        //                    solvingStrategy = new Strategies.Guess();
+        //                    Console.WriteLine("Using Guess Strategy");
+        //                }
+        //                break;
+        //        }
+        //        bool reductionResult = solvingStrategy.Execute(cell, this);
+        //        cell.AttemptCounter = reductionResult ? 0 : cell.AttemptCounter + 1;
+        //        if (reductionResult) Console.WriteLine("Reduction result: Success.");
+        //        else Console.WriteLine("Reduction result: Failed.");
+        //        if (cell.SolvedValue != '\0')
+        //            Q.RemoveAt(0);
 
-                Q.Sort();
-            }
-            solutions.Add(this.ToString());
-            OutputSolutions(solutions.Count);
-            Console.Write(ToString());
-            return true;
-        }
+        //        Q.Sort();
+        //    }
+        //    solutions.Add(this.ToString());
+        //    OutputSolutions(solutions.Count);
+        //    Console.Write(ToString());
+        //    return true;
+        //}
 
         public Cell GetCellAt(int row, int col)
         {
@@ -356,42 +310,5 @@ namespace SudokuSolver
 
             return true;
         }
-
-        private void OutputSolutions(int solutionCount)
-        {
-            string outputFileName = OutputDirectory + _fileName;
-            outputFileName = outputFileName.Replace(".txt", "-output.txt");
-            string output = "";
-            System.IO.StreamReader reader;
-            switch (solutionCount)
-            {
-                case -1:
-                    output += "Bad Puzzle" + Environment.NewLine;
-                    reader = new System.IO.StreamReader(PuzzlesDirectory + _fileName);
-                    output += reader.ReadToEnd();
-                    break;
-                case 0:
-                    output += "Unsolvable" + Environment.NewLine;
-                    reader = new System.IO.StreamReader(PuzzlesDirectory + _fileName);
-                    output += reader.ReadToEnd();
-                    break;
-                case 1:
-                    output += Size + Environment.NewLine;
-                    foreach(char symbol in Symbols)
-                        output += symbol + " ";
-                    output += Environment.NewLine;
-                    output += this.ToString();
-                    break;
-                default:
-                    reader = new System.IO.StreamReader(PuzzlesDirectory + _fileName);
-                    output += reader.ReadToEnd();
-                    output += "Multiple Solutions";
-                    output += solutions[0];
-                    output += solutions[1];
-                    break;
-            }
-            System.IO.File.WriteAllText(outputFileName, output);
-        }
-        
     }
 }

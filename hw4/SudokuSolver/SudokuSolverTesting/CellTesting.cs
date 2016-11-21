@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SudokuSolver;
 using System.Collections.Generic;
+using SudokuSolver.SudokuComponents;
 
 namespace SudokuSolverTesting
 {
