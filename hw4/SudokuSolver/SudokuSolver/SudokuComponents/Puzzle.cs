@@ -78,6 +78,8 @@ namespace SudokuSolver
             }
 
             InitUnits();
+            InitCells();
+            LinkCellsToUnits();
             
             string nextLine = file.ReadLine();
             int rowCounter = 0;
@@ -127,11 +129,47 @@ namespace SudokuSolver
             Size = size;
 
             InitUnits();
+            InitCells();
+            LinkCellsToUnits();
+        }
+
+        public Puzzle(Puzzle puzzleToCopy)
+        {
+            Size = puzzleToCopy.Size;
+            Cells = new List<List<Cell>>();
+            foreach (List<Cell> list in puzzleToCopy.Cells)
+            {
+                List<Cell> listToAdd = new List<Cell>();
+                foreach (Cell cell in list)
+                {
+                    Cell newCell = new Cell(cell);
+                    listToAdd.Add(newCell);
+                }
+                Cells.Add(listToAdd);
+            }
+
+            Symbols = puzzleToCopy.Symbols;
+
+            InitUnits();
+            LinkCellsToUnits();
+            InitQueue();
+        }
+
+        public void InitCells()
+        {
+            Cells = new List<List<Cell>>();
+            for (int i = 0; i < Size; i++)
+            {
+                Cells.Add(new List<Cell>());
+                for (int j = 0; j < Size; j++)
+                {
+                    Cells[i].Add(new Cell(Symbols, i, j));
+                }
+            }
         }
 
         public void InitUnits()
         {
-            Cells = new List<List<Cell>>();
             Rows = new List<Row>();
             Blocks = new List<Block>();
             Columns = new List<Column>();
@@ -144,14 +182,15 @@ namespace SudokuSolver
                 Block newBlock = new Block(Symbols);
                 Blocks.Add(newBlock);
             }
+        }
 
+        public void LinkCellsToUnits()
+        {
             //Initialize the cells and place them in corresponding units
             for (int i = 0; i < Size; i++)
             {
-                Cells.Add(new List<Cell>());
                 for (int j = 0; j < Size; j++)
                 {
-                    Cells[i].Add(new Cell(Symbols, i, j));
                     Rows[i].Add(Cells[i][j]);
                     Columns[j].Add(Cells[i][j]);
                     int blockIndex = ComputeBlockIndex(i, j, Size);
@@ -164,6 +203,7 @@ namespace SudokuSolver
                 }
             }
         }
+
         public void InitQueue()
         {
             Q = new List<Cell>();

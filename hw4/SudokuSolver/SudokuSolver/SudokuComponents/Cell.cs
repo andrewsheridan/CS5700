@@ -24,6 +24,16 @@ namespace SudokuSolver
             PossibleValues.AddRange(symbols);
         }
 
+        public Cell(Cell toCopy)
+        {
+            PossibleValues = new List<char>();
+            PossibleValues.AddRange(toCopy.PossibleValues);
+            Row = toCopy.Row;
+            Column = toCopy.Column;
+            AttemptCounter = toCopy.AttemptCounter;
+            SolvedValue = toCopy.SolvedValue;
+        }
+
         void RemovePossibleValue(char value)
         {
             PossibleValues.Remove(value);
