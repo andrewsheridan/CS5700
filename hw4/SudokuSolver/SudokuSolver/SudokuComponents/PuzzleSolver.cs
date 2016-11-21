@@ -13,7 +13,7 @@ namespace SudokuSolver.SudokuComponents
         Puzzle currentPuzzle;
         int _size;
         List<char> _symbols;
-        List<Puzzle> solutions= new List<Puzzle>();
+        List<Puzzle> solutions;
         int _hiddenSingleCount = 0;
         int _nakedSubsetCount = 0;
         Strategies.Strategy _strategy;
@@ -37,6 +37,7 @@ namespace SudokuSolver.SudokuComponents
             _symbols = currentPuzzle.Symbols;
             InitQueue();
             revertStates = new List<Puzzle>();
+            solutions = new List<Puzzle>();
         }
 
         PuzzleSolver(Puzzle p)
@@ -46,6 +47,7 @@ namespace SudokuSolver.SudokuComponents
             _symbols = p.Symbols;
             InitQueue();
             revertStates = new List<Puzzle>();
+            solutions = new List<Puzzle>();
         }
         
         //Todo: Output strategies.
@@ -65,7 +67,14 @@ namespace SudokuSolver.SudokuComponents
                     case 0:
                         Console.WriteLine("This is not a valid puzzle. No solution.");
                         //OutputSolutions(0);
-                        return false;
+                        if (revertStates.Count > 0)
+                        {
+                            currentPuzzle = revertStates[revertStates.Count - 1];
+                            revertStates.RemoveAt(revertStates.Count - 1);
+                            InitQueue();
+                            break;
+                        }
+                        else return false;
                     case 1:
                         _strategy = new Strategies.SoleCandidate();
                         Console.WriteLine("Using Sole Candidate");
@@ -85,8 +94,12 @@ namespace SudokuSolver.SudokuComponents
                         }
                         else
                         {
-                            //_strategy = new Strategies.Guess();
-                            //Console.WriteLine("Using Guess Strategy");
+                            Puzzle revertState = new Puzzle(currentPuzzle);
+                            char guess = CellGuess(cell);
+                            revertState.Cells[cell.Row][cell.Column].GuessedValues.Add(guess);
+                            revertState.Cells[cell.Row][cell.Column].PossibleValues.Remove(guess);
+                            revertStates.Add(revertState);
+                            Console.WriteLine($"Made a guess: {guess}");
                         }
                         break;
                 }
@@ -101,7 +114,7 @@ namespace SudokuSolver.SudokuComponents
             }
             solutions.Add(currentPuzzle);
             //OutputSolutions(solutions.Count);
-            Console.Write(ToString());
+            Console.Write(currentPuzzle.ToString());
             return true;
         }
         private void InitQueue()
@@ -164,6 +177,16 @@ namespace SudokuSolver.SudokuComponents
                 Cell cell = Q[i];
                 Console.WriteLine($"[{cell.Row}][{cell.Column}]: {cell.GetPossibleValueCount()}");
             }
+        }
+
+        char CellGuess(Cell cell)
+        {
+            if (cell.PossibleValues.Count < 2) return '\0';
+
+            char guess = cell.PossibleValues[0];
+            cell.GuessedValues.Add(guess);
+            cell.SetValue(guess);
+            return guess;
         }
     }
 }

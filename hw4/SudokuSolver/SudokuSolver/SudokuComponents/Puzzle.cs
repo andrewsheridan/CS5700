@@ -21,11 +21,6 @@ namespace SudokuSolver.SudokuComponents
         public List<string> solutions;
         
         private string _fileName;
-
-        private int nakedSubsetCount = 0;
-        private int hiddenSingleCount = 0;
-
-        Strategies.Strategy solvingStrategy;
         
 
         public Puzzle(int size, List<char> symbols)
@@ -236,65 +231,7 @@ namespace SudokuSolver.SudokuComponents
                 }
             }
         }
-
-        /// <summary>
-        /// Attempts to solve the puzzle
-        /// </summary>
-        //public bool Solve()
-        //{
-        //    while(Q.Count > 0)
-        //    {
-        //        Cell cell = Q[0];
-        //        if (cell.SolvedValue != '\0')
-        //        {
-        //            Q.RemoveAt(0);
-        //            continue;
-        //        }
-        //        Console.WriteLine($"Solving cell at [{cell.Row}, {cell.Column}] Attempts : {cell.AttemptCounter}");
-        //        switch (cell.PossibleValues.Count)
-        //        {
-        //            case 0:
-        //                Console.WriteLine("This is not a valid puzzle. No solution.");
-        //                OutputSolutions(0);
-        //                return false;
-        //            case 1:
-        //                solvingStrategy = new Strategies.SoleCandidate();
-        //                Console.WriteLine("Using Sole Candidate");
-        //                break;
-        //            case 2:
-        //                if(cell.AttemptCounter == 0)
-        //                {
-        //                    solvingStrategy = new Strategies.NakedSubset();
-        //                    nakedSubsetCount++;
-        //                    Console.WriteLine("Using Naked Subset");
-        //                }
-        //                else if(cell.AttemptCounter == 1)
-        //                {
-        //                    solvingStrategy = new Strategies.HiddenSingle();
-        //                    Console.WriteLine("Using Hidden Single");
-        //                    hiddenSingleCount++;
-        //                }
-        //                else
-        //                {
-        //                    solvingStrategy = new Strategies.Guess();
-        //                    Console.WriteLine("Using Guess Strategy");
-        //                }
-        //                break;
-        //        }
-        //        bool reductionResult = solvingStrategy.Execute(cell, this);
-        //        cell.AttemptCounter = reductionResult ? 0 : cell.AttemptCounter + 1;
-        //        if (reductionResult) Console.WriteLine("Reduction result: Success.");
-        //        else Console.WriteLine("Reduction result: Failed.");
-        //        if (cell.SolvedValue != '\0')
-        //            Q.RemoveAt(0);
-
-        //        Q.Sort();
-        //    }
-        //    solutions.Add(this.ToString());
-        //    OutputSolutions(solutions.Count);
-        //    Console.Write(ToString());
-        //    return true;
-        //}
+        
 
         public Cell GetCellAt(int row, int col)
         {
