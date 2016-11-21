@@ -17,11 +17,12 @@ namespace SudokuSolver.SudokuComponents
         int _hiddenSingleCount = 0;
         int _nakedSubsetCount = 0;
         Strategies.Strategy _strategy;
-        string _filepath;
+        string _filename;
         static readonly string OutputDirectory = "../../../../Output/";
 
         public PuzzleSolver(string filename)
         {
+            _filename = filename;
             try
             {
                 currentPuzzle = new Puzzle(filename);
@@ -53,43 +54,43 @@ namespace SudokuSolver.SudokuComponents
         //Todo: Output strategies.
         public bool Solve()
         { 
-            while (Q.Count > 0)
+            while (Q.Count > 0 || revertStates.Count > 0)
             {
+                if (Q.Count == 0) Revert();
+
                 Cell cell = Q[0];
                 if (cell.SolvedValue != '\0')
                 {
                     Q.RemoveAt(0);
                     continue;
                 }
-                Console.WriteLine($"Solving cell at [{cell.Row}, {cell.Column}] Attempts : {cell.AttemptCounter}");
+
+                //Console.WriteLine($"Solving cell at [{cell.Row}, {cell.Column}] Attempts : {cell.AttemptCounter}");
                 switch (cell.PossibleValues.Count)
                 {
                     case 0:
-                        Console.WriteLine("This is not a valid puzzle. No solution.");
+                        Console.WriteLine("No solution.");
                         //OutputSolutions(0);
-                        if (revertStates.Count > 0)
+                        if (Revert())
                         {
-                            currentPuzzle = revertStates[revertStates.Count - 1];
-                            revertStates.RemoveAt(revertStates.Count - 1);
-                            InitQueue();
-                            break;
+                            continue;
                         }
                         else return false;
                     case 1:
                         _strategy = new Strategies.SoleCandidate();
-                        Console.WriteLine("Using Sole Candidate");
+                        //Console.WriteLine("Using Sole Candidate");
                         break;
                     case 2:
                         if (cell.AttemptCounter == 0)
                         {
                             _strategy = new Strategies.NakedSubset();
                             _nakedSubsetCount++;
-                            Console.WriteLine("Using Naked Subset");
+                            //Console.WriteLine("Using Naked Subset");
                         }
                         else if (cell.AttemptCounter == 1)
                         {
                             _strategy = new Strategies.HiddenSingle();
-                            Console.WriteLine("Using Hidden Single");
+                            //Console.WriteLine("Using Hidden Single");
                             _hiddenSingleCount++;
                         }
                         else
@@ -98,15 +99,16 @@ namespace SudokuSolver.SudokuComponents
                             char guess = CellGuess(cell);
                             revertState.Cells[cell.Row][cell.Column].GuessedValues.Add(guess);
                             revertState.Cells[cell.Row][cell.Column].PossibleValues.Remove(guess);
+                            revertState.Cells[cell.Row][cell.Column].AttemptCounter = 0;
                             revertStates.Add(revertState);
-                            Console.WriteLine($"Made a guess: {guess}");
+                            Console.WriteLine($"Made a guess: [{cell.Row}][{cell.Column}] = {guess}");
                         }
                         break;
                 }
                 bool reductionResult = _strategy.Execute(cell, currentPuzzle);
                 cell.AttemptCounter = reductionResult ? 0 : cell.AttemptCounter + 1;
-                if (reductionResult) Console.WriteLine("Reduction result: Success.");
-                else Console.WriteLine("Reduction result: Failed.");
+                //if (reductionResult) Console.WriteLine("Reduction result: Success.");
+                //else Console.WriteLine("Reduction result: Failed.");
                 if (cell.SolvedValue != '\0')
                     Q.RemoveAt(0);
 
@@ -136,7 +138,7 @@ namespace SudokuSolver.SudokuComponents
 
         private void OutputSolutions(int solutionCount)
         {
-            string outputFileName = OutputDirectory + _filepath;
+            string outputFileName = OutputDirectory + _filename;
             outputFileName = outputFileName.Replace(".txt", "-output.txt");
             string output = "";
             System.IO.StreamReader reader;
@@ -144,12 +146,12 @@ namespace SudokuSolver.SudokuComponents
             {
                 case -1:
                     output += "Bad Puzzle" + Environment.NewLine;
-                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filepath);
+                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filename);
                     output += reader.ReadToEnd();
                     break;
                 case 0:
                     output += "Unsolvable" + Environment.NewLine;
-                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filepath);
+                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filename);
                     output += reader.ReadToEnd();
                     break;
                 case 1:
@@ -160,7 +162,7 @@ namespace SudokuSolver.SudokuComponents
                     output += this.ToString();
                     break;
                 default:
-                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filepath);
+                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filename);
                     output += reader.ReadToEnd();
                     output += "Multiple Solutions";
                     output += solutions[0];
@@ -187,6 +189,17 @@ namespace SudokuSolver.SudokuComponents
             cell.GuessedValues.Add(guess);
             cell.SetValue(guess);
             return guess;
+        }
+
+        bool Revert()
+        {
+            Console.WriteLine("-------Reverting--------");
+            if (revertStates.Count == 0)
+                return false;
+            currentPuzzle = revertStates[revertStates.Count - 1];
+            revertStates.RemoveAt(revertStates.Count - 1);
+            InitQueue();
+            return true;
         }
     }
 }
