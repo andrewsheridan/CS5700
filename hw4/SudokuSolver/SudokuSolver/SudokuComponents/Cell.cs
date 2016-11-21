@@ -14,6 +14,7 @@ namespace SudokuSolver
         public int Row { get; }
         public int Column { get; }
         public int AttemptCounter { get; set; }
+        public List<char> GuessedValues;
 
         //Public Member Functions
         public Cell(List<char> symbols, int row, int col)
@@ -22,6 +23,7 @@ namespace SudokuSolver
             Column = col;
             PossibleValues = new List<char>();
             PossibleValues.AddRange(symbols);
+            GuessedValues = new List<char>();
         }
 
         public Cell(Cell toCopy)
@@ -32,6 +34,8 @@ namespace SudokuSolver
             Column = toCopy.Column;
             AttemptCounter = toCopy.AttemptCounter;
             SolvedValue = toCopy.SolvedValue;
+            GuessedValues = new List<char>();
+            GuessedValues.AddRange(toCopy.GuessedValues);
         }
 
         void RemovePossibleValue(char value)
