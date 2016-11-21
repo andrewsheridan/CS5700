@@ -253,7 +253,7 @@ namespace SudokuSolver
                     Q.RemoveAt(0);
                     continue;
                 }
-                
+                Console.WriteLine($"Solving cell at [{cell.Row}, {cell.Column}] Attempts : {cell.AttemptCounter}");
                 switch (cell.PossibleValues.Count)
                 {
                     case 0:
@@ -262,25 +262,29 @@ namespace SudokuSolver
                         return;
                     case 1:
                         solvingStrategy = new Strategies.SoleCandidate();
+                        Console.WriteLine("Using Sole Candidate");
                         break;
                     case 2:
-                        if(cell.SolveAttempts % 2 == 1)
+                        if(cell.AttemptCounter % 2 == 1)
                         {
                             solvingStrategy = new Strategies.NakedSubset();
                             nakedSubsetCount++;
+                            Console.WriteLine("Using Naked Subset");
                         }
                         else
                         {
                             solvingStrategy = new Strategies.HiddenSingle();
+                            Console.WriteLine("Using Hidden Single");
                             hiddenSingleCount++;
                         }
                         break;
                 }
-                solvingStrategy.Execute(cell, this);
+                bool reductionResult = solvingStrategy.Execute(cell, this);
+                cell.AttemptCounter = reductionResult ? 0 : cell.AttemptCounter + 1;
+                if (reductionResult) Console.WriteLine("Reduction result: Success.");
+                else Console.WriteLine("Reduction result: Failed.");
                 if (cell.SolvedValue != '\0')
                     Q.RemoveAt(0);
-                else
-                    cell.IncrementSolveAttempts();
 
                 Q.Sort();
             }

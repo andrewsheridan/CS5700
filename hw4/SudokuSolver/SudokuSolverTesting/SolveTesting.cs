@@ -81,38 +81,38 @@ namespace SudokuSolverTesting
             Assert.IsTrue(r[1].SolvedValue == '3');
         }
 
-        [TestMethod]
-        public void HiddenSubsetTest()
-        {
-            List<char> possibleSymbols = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            Row r = new Row(possibleSymbols);
-            for (int i = 0; i < 9; i++)
-            {
-                r.Add(new Cell(possibleSymbols, 0, i));
-            }
-            r[0].SolvedValue = '4';
-            r[1].SolvedValue = '8';
-            r[2].SolvedValue = '1';
-            r[3].PossibleValues = new List<char>() { '2', '3'};
-            r[4].PossibleValues = new List<char>() { '2', '3', '5', '6', '7' };
-            r[5].PossibleValues = new List<char>() { '2', '3', '5', '6', '7' };
-            r[6].PossibleValues = new List<char>() { '2', '9' };
-            r[7].PossibleValues = new List<char>() { '2', '3', '5' };
-            r[8].PossibleValues = new List<char>() { '2', '3', '9' };
+        //[TestMethod]
+        //public void HiddenSubsetTest()
+        //{
+        //    List<char> possibleSymbols = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        //    Row r = new Row(possibleSymbols);
+        //    for (int i = 0; i < 9; i++)
+        //    {
+        //        r.Add(new Cell(possibleSymbols, 0, i));
+        //    }
+        //    r[0].SolvedValue = '4';
+        //    r[1].SolvedValue = '8';
+        //    r[2].SolvedValue = '1';
+        //    r[3].PossibleValues = new List<char>() { '2', '3'};
+        //    r[4].PossibleValues = new List<char>() { '2', '3', '5', '6', '7' };
+        //    r[5].PossibleValues = new List<char>() { '2', '3', '5', '6', '7' };
+        //    r[6].PossibleValues = new List<char>() { '2', '9' };
+        //    r[7].PossibleValues = new List<char>() { '2', '3', '5' };
+        //    r[8].PossibleValues = new List<char>() { '2', '3', '9' };
 
-            HiddenSingle strategy = new HiddenSingle();
-            strategy.ReduceUnitByHiddenSingle(r);
+        //    HiddenSingle strategy = new HiddenSingle();
+        //    strategy.ReduceUnitByHiddenSingle(r);
 
-            Assert.IsTrue(r[0].PossibleValues.Contains('4'));
-            Assert.IsTrue(r[0].PossibleValues.Contains('7'));
-            Assert.IsFalse(r[1].PossibleValues.Contains('4'));
-            Assert.IsFalse(r[1].PossibleValues.Contains('7'));
-            Assert.IsFalse(r[3].PossibleValues.Contains('4'));
-            Assert.IsFalse(r[3].PossibleValues.Contains('7'));
-            Assert.IsFalse(r[5].PossibleValues.Contains('4'));
-            Assert.IsFalse(r[5].PossibleValues.Contains('7'));
-            Assert.IsFalse(r[7].PossibleValues.Contains('4'));
-            Assert.IsFalse(r[7].PossibleValues.Contains('7'));
-        }
+        //    Assert.IsTrue(r[0].PossibleValues.Contains('4'));
+        //    Assert.IsTrue(r[0].PossibleValues.Contains('7'));
+        //    Assert.IsFalse(r[1].PossibleValues.Contains('4'));
+        //    Assert.IsFalse(r[1].PossibleValues.Contains('7'));
+        //    Assert.IsFalse(r[3].PossibleValues.Contains('4'));
+        //    Assert.IsFalse(r[3].PossibleValues.Contains('7'));
+        //    Assert.IsFalse(r[5].PossibleValues.Contains('4'));
+        //    Assert.IsFalse(r[5].PossibleValues.Contains('7'));
+        //    Assert.IsFalse(r[7].PossibleValues.Contains('4'));
+        //    Assert.IsFalse(r[7].PossibleValues.Contains('7'));
+        //}
     }
 }

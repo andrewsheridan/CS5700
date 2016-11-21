@@ -8,11 +8,13 @@ namespace SudokuSolver.Strategies
 {
     public class NakedSubset : Strategy
     {
-        public override void Execute(Cell cell, Puzzle puzzle)
+        public override bool Execute(Cell cell, Puzzle puzzle)
         {
-            ReduceUnitByNakedSubset(puzzle.Rows[cell.Row]);
-            ReduceUnitByNakedSubset(puzzle.Columns[cell.Column]);
-            ReduceUnitByNakedSubset(puzzle.Blocks[Puzzle.ComputeBlockIndex(cell.Row, cell.Column, puzzle.Size)]);
+            bool didReduction = false;
+            didReduction = ReduceUnitByNakedSubset(puzzle.Rows[cell.Row]) ? true : didReduction;
+            didReduction = ReduceUnitByNakedSubset(puzzle.Columns[cell.Column]) ? true : didReduction;
+            didReduction =  ReduceUnitByNakedSubset(puzzle.Blocks[Puzzle.ComputeBlockIndex(cell.Row, cell.Column, puzzle.Size)]) ? true : didReduction;
+            return didReduction;
         }
 
         private List<char> FindCommonCharacters(Unit unit)
@@ -40,7 +42,7 @@ namespace SudokuSolver.Strategies
             return commonCharacters;
         }
 
-        public void ReduceUnitByNakedSubset(Unit unit)
+        public bool ReduceUnitByNakedSubset(Unit unit)
         {
             List<char> commonCharacters = FindCommonCharacters(unit);
             List<Cell> cellsContainingMoreThanCommonChars = new List<Cell>();
@@ -57,14 +59,23 @@ namespace SudokuSolver.Strategies
                 }
             }
 
+            bool didReduction = false;
             if(cellsContainingOnlyCommonChars.Count == commonCharacters.Count)
             {
                 foreach(Cell cell in cellsContainingMoreThanCommonChars)
                 {
                     foreach(char commonCharacter in commonCharacters)
-                        cell.PossibleValues.Remove(commonCharacter);
+                    {
+                        if(cell.PossibleValues.Contains(commonCharacter))
+                        {
+                            cell.PossibleValues.Remove(commonCharacter);
+                            cell.AttemptCounter = 0;
+                            didReduction = true;
+                        }
+                    }
                 }
             }
+            return didReduction;
         }
     }
 }

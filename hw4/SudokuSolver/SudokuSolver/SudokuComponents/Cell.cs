@@ -13,7 +13,7 @@ namespace SudokuSolver
         public char SolvedValue;
         public int Row { get; }
         public int Column { get; }
-        public int SolveAttempts { get; private set; }
+        public int AttemptCounter { get; set; }
 
         //Public Member Functions
         public Cell(List<char> symbols, int row, int col)
@@ -48,24 +48,20 @@ namespace SudokuSolver
         {
             int myCount = GetPossibleValueCount();
             int objCount = obj.GetPossibleValueCount();
-            if (SolveAttempts > 2 && obj.SolveAttempts < 2)
+            if (AttemptCounter > 2 && obj.AttemptCounter < 2)
                 return 1;
-            else if (obj.SolveAttempts > 2 && SolveAttempts < 2)
+            else if (obj.AttemptCounter > 2 && AttemptCounter < 2)
                 return -1;
             else if (myCount < objCount)
                 return -1;
             else if (myCount > objCount)
                 return 1;
-            else if (SolveAttempts < obj.SolveAttempts)
+            else if (AttemptCounter < obj.AttemptCounter)
                 return -1;
-            else if (SolveAttempts > obj.SolveAttempts)
+            else if (AttemptCounter > obj.AttemptCounter)
                 return 1;
             else return 0;
         }
-
-        public void IncrementSolveAttempts()
-        {
-            SolveAttempts++;
-        }
+        
     }
 }

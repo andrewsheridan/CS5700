@@ -8,14 +8,16 @@ namespace SudokuSolver.Strategies
 {
     public class HiddenSingle : Strategy
     {
-        public override void Execute(Cell cell, Puzzle puzzle)
+        public override bool Execute(Cell cell, Puzzle puzzle)
         {
-            ReduceUnitByHiddenSingle(puzzle.Rows[cell.Row]);
-            ReduceUnitByHiddenSingle(puzzle.Columns[cell.Column]);
-            ReduceUnitByHiddenSingle(puzzle.Blocks[Puzzle.ComputeBlockIndex(cell.Row, cell.Column, puzzle.Size)]);
+            bool didReduction = false;
+            didReduction = ReduceUnitByHiddenSingle(puzzle.Rows[cell.Row]) ? true : didReduction;
+            didReduction = ReduceUnitByHiddenSingle(puzzle.Columns[cell.Column]) ? true : didReduction;
+            didReduction = ReduceUnitByHiddenSingle(puzzle.Blocks[Puzzle.ComputeBlockIndex(cell.Row, cell.Column, puzzle.Size)]) ? true : didReduction;
+            return didReduction;
         }
 
-        public void ReduceUnitByHiddenSingle(Unit unit)
+        public bool ReduceUnitByHiddenSingle(Unit unit)
         {
             Dictionary<char, int> possibleValueCounts = GetPossibleValueCounts(unit);
             List<char> singles = new List<char>();
@@ -34,7 +36,9 @@ namespace SudokuSolver.Strategies
                             cell.SetValue(character);
                     }
                 }
+                return true;
             }
+            return false;
         }
 
         private Dictionary<char, int> GetPossibleValueCounts(Unit unit)
