@@ -21,9 +21,9 @@ namespace SudokuSolver
                 PuzzleSolver solver = new PuzzleSolver(fileName);
                 solver.Solve();
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Your input was invalid");
+                Console.WriteLine($"Your input was invalid: {e.Message}");
             }
            
             

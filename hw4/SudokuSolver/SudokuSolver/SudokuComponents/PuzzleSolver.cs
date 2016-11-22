@@ -17,8 +17,8 @@ namespace SudokuSolver.SudokuComponents
         int _hiddenSingleCount = 0;
         int _nakedSubsetCount = 0;
         Strategies.Strategy _strategy;
+        OutputStrategies.OutputTemplate _outputTemplate;
         string _filename;
-        static readonly string OutputDirectory = "../../../../Output/";
 
         public PuzzleSolver(string filename)
         {
@@ -30,8 +30,8 @@ namespace SudokuSolver.SudokuComponents
             catch (Exception e)
             {
                 Console.WriteLine($"Could not create puzzle. {e.Message}");
-                OutputSolutions(-1);
-                throw e;
+                _outputTemplate = new OutputStrategies.BadPuzzle(_size, _symbols, null, _filename);
+                _outputTemplate.OutputToFile();
             }
             
             _size = currentPuzzle.Size;
@@ -70,7 +70,6 @@ namespace SudokuSolver.SudokuComponents
                 {
                     case 0:
                         Console.WriteLine("No solution.");
-                        //OutputSolutions(0);
                         if (Revert())
                         {
                             continue;
@@ -115,8 +114,20 @@ namespace SudokuSolver.SudokuComponents
                 Q.Sort();
             }
             solutions.Add(currentPuzzle);
-            //OutputSolutions(solutions.Count);
+            switch (solutions.Count)
+            {
+                case 0:
+                    _outputTemplate = new OutputStrategies.Unsolvable(_size, _symbols, null, _filename);
+                    break;
+                case 1:
+                    _outputTemplate = new OutputStrategies.SingleSolution(_size, _symbols, solutions, _filename);
+                    break;
+                default:
+                    _outputTemplate = new OutputStrategies.MultipleSolutions(_size, _symbols, solutions, _filename);
+                    break;
+            }
             Console.Write(currentPuzzle.ToString());
+            _outputTemplate.OutputToFile();
             return true;
         }
         private void InitQueue()
@@ -135,42 +146,7 @@ namespace SudokuSolver.SudokuComponents
             }
             Q.Sort();
         }
-
-        private void OutputSolutions(int solutionCount)
-        {
-            string outputFileName = OutputDirectory + _filename;
-            outputFileName = outputFileName.Replace(".txt", "-output.txt");
-            string output = "";
-            System.IO.StreamReader reader;
-            switch (solutionCount)
-            {
-                case -1:
-                    output += "Bad Puzzle" + Environment.NewLine;
-                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filename);
-                    output += reader.ReadToEnd();
-                    break;
-                case 0:
-                    output += "Unsolvable" + Environment.NewLine;
-                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filename);
-                    output += reader.ReadToEnd();
-                    break;
-                case 1:
-                    output += _size + Environment.NewLine;
-                    foreach (char symbol in _symbols)
-                        output += symbol + " ";
-                    output += Environment.NewLine;
-                    output += this.ToString();
-                    break;
-                default:
-                    reader = new System.IO.StreamReader(Puzzle.PuzzlesDirectory + _filename);
-                    output += reader.ReadToEnd();
-                    output += "Multiple Solutions";
-                    output += solutions[0];
-                    output += solutions[1];
-                    break;
-            }
-            System.IO.File.WriteAllText(outputFileName, output);
-        }
+        
         //Outputs the current state of the Queue
         public void PrintQueue()
         {
