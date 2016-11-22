@@ -17,7 +17,13 @@ namespace SudokuSolver.OutputStrategies
         {
             string output = "";
             foreach(Puzzle p in _solutions)
+            {
                 output += p.ToString();
+                output += Environment.NewLine;
+                for (int i = 0; i < p.Size; i++)
+                    output += "-";
+            }
+                
             return output;
         }
 

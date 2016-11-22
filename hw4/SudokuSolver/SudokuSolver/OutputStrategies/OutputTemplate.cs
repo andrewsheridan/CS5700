@@ -44,6 +44,10 @@ namespace SudokuSolver.OutputStrategies
             writer.WriteLine(Symbols());
             writer.Write(Solutions());
             writer.Close();
+            Console.WriteLine(SuccessState());
+            Console.WriteLine(_size);
+            Console.WriteLine(Symbols());
+            Console.Write(Solutions());
         }
     }
 }
