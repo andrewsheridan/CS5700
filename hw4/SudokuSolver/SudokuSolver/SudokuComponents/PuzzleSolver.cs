@@ -51,8 +51,10 @@ namespace SudokuSolver.SudokuComponents
             solutions = new List<Puzzle>();
         }
         
-        public bool Solve()
+        public List<Puzzle> Solve()
         {
+            //If the queue is empty, revert
+            // If there are no puzzles left, print
             int loopCount = 0;
             bool shouldExit = false;
             while (!shouldExit)
@@ -62,13 +64,9 @@ namespace SudokuSolver.SudokuComponents
                 if (Q.Count == 0)
                 {
                     solutions.Add(currentPuzzle);
-                    if (Revert())
-                        continue;
-                    else
-                    {
+                    if (!Revert())
                         shouldExit = true;
-                        continue;
-                    }
+                    continue;
                 }
 
                 Cell cell = Q[0];
@@ -81,15 +79,9 @@ namespace SudokuSolver.SudokuComponents
                 switch (cell.PossibleValues.Count)
                 {
                     case 0:
-                        if (Revert())
-                            continue;
-                        else if (solutions.Count > 0)
-                        {
+                        if (!Revert())
                             shouldExit = true;
-                            continue;
-                        }
-                        else 
-                            return false;
+                        continue;
                     case 1:
                         _strategy = new Strategies.SoleCandidate();
                         break;
@@ -135,7 +127,7 @@ namespace SudokuSolver.SudokuComponents
                     break;
             }
             _outputTemplate.OutputToFile();
-            return true;
+            return solutions;
         }
         private void InitQueue()
         {
