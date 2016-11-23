@@ -53,18 +53,16 @@ namespace SudokuSolver.SudokuComponents
         
         public List<Puzzle> Solve()
         {
-            //If the queue is empty, revert
-            // If there are no puzzles left, print
             int loopCount = 0;
             bool shouldExit = false;
             while (!shouldExit)
             {
                 loopCount++;
-                //Console.WriteLine(loopCount);
+                Console.WriteLine(loopCount);
                 if (Q.Count == 0)
                 {
                     solutions.Add(currentPuzzle);
-                    if (!Revert())
+                    if (!Revert() || solutions.Count > 2)
                         shouldExit = true;
                     continue;
                 }
