@@ -12,8 +12,8 @@ namespace PersonMatcher.Matching.Tests
         {
             MatchStrategy matcher = new ContactInfoMatchStrategy();
 
-            Person a = new Person(1, "", "", "", "", "", 1993, 09, 15, "");
-            Person b = new Person(2, "", "", "", "", "", 1993, 09, 15, "");
+            DataObjects.Person a = new DataObjects.Person(1, "", "", "", "", "", 1993, 09, 15, "");
+            DataObjects.Person b = new DataObjects.Person(2, "", "", "", "", "", 1993, 09, 15, "");
             Child c = new Child("", "", 1, "", "", "", "", 3, "", "", "", "", "", 1993, 09, 15, "");
             Child d = new Child("", "", 1, "", "", "", "", 4, "", "", "", "", "", 1993, 09, 15, "");
 

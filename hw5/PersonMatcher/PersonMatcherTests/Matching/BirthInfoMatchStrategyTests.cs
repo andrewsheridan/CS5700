@@ -14,8 +14,8 @@ namespace PersonMatcher.Matching.Tests
 
             Adult a = new Adult("", "", 1, "", "", "", "", "", 1993, 09, 15, "");
             Adult b = new Adult("", "", 2, "", "", "", "", "", 1993, 09, 15, "");
-            Person c = new Person(3, "", "", "", "", "", 1993, 09, 15, "");
-            Person d = new Person(4, "", "", "", "", "", 1993, 09, 15, "");
+            DataObjects.Person c = new DataObjects.Person(3, "", "", "", "", "", 1993, 09, 15, "");
+            DataObjects.Person d = new DataObjects.Person(4, "", "", "", "", "", 1993, 09, 15, "");
             
             Assert.IsFalse(matcher.Match(a, b));
             Assert.IsFalse(matcher.Match(c, d));

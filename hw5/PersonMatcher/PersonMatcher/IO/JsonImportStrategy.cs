@@ -5,7 +5,7 @@ using PersonMatcher.DataObjects;
 
 namespace PersonMatcher.IO
 {
-    public class JsonImportExportStrategy : ImportExportStrategy
+    public class JsonImportStrategy : ImportStrategy
     {
 
         public override List<Person> Import(string filename)

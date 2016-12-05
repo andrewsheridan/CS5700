@@ -34,7 +34,7 @@ namespace PersonMatcher.IO.Tests
 
             File.WriteAllLines(Directory.GetCurrentDirectory() + "/XmlImportTest.xml", lines);
 
-            XmlImportExportStrategy importer = new XmlImportExportStrategy();
+            XmlImportStrategy importer = new XmlImportStrategy();
             List<Person> personList = importer.Import(Directory.GetCurrentDirectory() + "/XmlImportTest.xml");
             Adult testPerson = personList[0] as Adult;
 

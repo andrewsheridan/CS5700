@@ -5,7 +5,7 @@ namespace PersonMatcher.Matching
 {
     public class BirthInfoMatchStrategy : MatchStrategy
     {
-        public bool Match(Person a, Person b)
+        public bool Match(DataObjects.Person a, DataObjects.Person b)
         {
             if (a.GetType() == typeof(Child) && b.GetType() == typeof(Child))
             {

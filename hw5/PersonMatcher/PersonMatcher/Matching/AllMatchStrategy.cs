@@ -17,7 +17,7 @@ namespace PersonMatcher.Matching
         }
 
 
-        public bool Match(Person a, Person b)
+        public bool Match(DataObjects.Person a, DataObjects.Person b)
         {
             for(int i = 0; i < matchList.Count; i++)
             {

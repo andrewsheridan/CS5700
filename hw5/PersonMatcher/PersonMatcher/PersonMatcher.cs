@@ -7,67 +7,87 @@ using System;
 namespace PersonMatcher
 {
     public enum MatchStrategyEnum { AllStrategies, BirthInfo, ContactInfo, FullName, GovernmentInfo  };
+    public enum ExportStrategyEnum { ID, AllInfo, FullName};
     public class PersonMatcher
     {
-        private List<Person> personList;
-        public ImportExportStrategy StorageStrategy { get; set; }
+        private List<DataObjects.Person> personList;
+        public ImportStrategy ReadStrategy { get; set; }
+        public ExportStrategy WriteStrategy { get; set; }
+        private string FileName { get; set; }
         
         public MatchStrategy Matcher { get; set; }
 
-        public PersonMatcher()
+        public PersonMatcher(string filename, MatchStrategyEnum matchStrategy, ExportStrategyEnum exportStrategy)
         {
-            Matcher = new FullNameMatchStrategy();
-            personList = new List<Person>();
+            FileName = filename;
+            ReadStrategy = GetImportStrategy(filename);
+            WriteStrategy = getExportStrategyByEnum(exportStrategy);
+            Matcher = getMatchStrategyByEnum(matchStrategy);
+            WriteStrategy = new IDFileExportStrategy();
         }
 
-        public void setMatchStrategyByEnum(MatchStrategyEnum strategy)
+        public string Run()
+        {
+            personList = ReadStrategy.Import(FileName);
+            List<Match> matches = FindMatches();
+            return WriteStrategy.Export(FileName, matches, personList);
+        }
+
+        public MatchStrategy getMatchStrategyByEnum(MatchStrategyEnum strategy)
         {
             switch (strategy)
             {
                 case MatchStrategyEnum.BirthInfo:
-                    Matcher = new BirthInfoMatchStrategy();
-                    break;
+                    return new BirthInfoMatchStrategy();
                 case MatchStrategyEnum.ContactInfo:
-                    Matcher = new ContactInfoMatchStrategy();
-                    break;
+                    return new ContactInfoMatchStrategy();
                 case MatchStrategyEnum.FullName:
-                    Matcher = new FullNameMatchStrategy();
-                    break;
+                    return new FullNameMatchStrategy();
                 case MatchStrategyEnum.GovernmentInfo:
-                    Matcher = new GovernmentInfoMatchStrategy();
-                    break;
+                    return new GovernmentInfoMatchStrategy();
                 case MatchStrategyEnum.AllStrategies:
-                    Matcher = new AllMatchStrategy();
-                    break;
+                    return new AllMatchStrategy();
                 default:
-                    Matcher = new FullNameMatchStrategy();
-                    break;
+                    return new FullNameMatchStrategy();
             }
         }
 
-        public void Import(string inputFileName)
+        public ExportStrategy getExportStrategyByEnum(ExportStrategyEnum strategy)
         {
-            personList = StorageStrategy.Import(inputFileName);
-        }
-
-        public string GetMatchesAsString()
-        {
-            string output = "";
-            List<Match> matches = FindMatches();
-
-            for(int i = 0; i < matches.Count; i++)
+            switch (strategy)
             {
-                output += matches[i].ToString() + Environment.NewLine;
+                case ExportStrategyEnum.ID:
+                    return new IDFileExportStrategy();
+                case ExportStrategyEnum.AllInfo:
+                    throw new NotImplementedException();
+                case ExportStrategyEnum.FullName:
+                    throw new NotImplementedException();
+                default:
+                    return new IDFileExportStrategy();
             }
-
-            return output;
         }
 
-        public List<Match> FindMatches()
+        public ImportStrategy GetImportStrategy(string inputFileName)
+        {
+            if (inputFileName.Contains(".xml"))
+            {
+                return new XmlImportStrategy();
+            }
+            else if (inputFileName.Contains(".json"))
+            {
+                return new JsonImportStrategy();
+            } else
+            {
+                //Todo: Make it fail in this case
+                return null;
+            }
+        }
+
+        public List<Matching.Match> FindMatches()
         {   
             int personCount = personList.Count;
-            
-            List<Match> matchList = new List<Match>();
+
+            List<Matching.Match> matchList = new List<Matching.Match>();
 
             if (personCount == 0)
             {
@@ -80,7 +100,7 @@ namespace PersonMatcher
                 {
                     if(Matcher.Match(personList[i], personList[j]))
                     {
-                        matchList.Add(new Match(personList[i].ObjectId, personList[j].ObjectId));
+                        matchList.Add(new Matching.Match(personList[i].ObjectId, personList[j].ObjectId));
                     }
                 }
             }

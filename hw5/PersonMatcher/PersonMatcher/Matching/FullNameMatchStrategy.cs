@@ -5,7 +5,7 @@ namespace PersonMatcher.Matching
 {
     class FullNameMatchStrategy : MatchStrategy
     {
-        public bool Match(Person a, Person b)
+        public bool Match(DataObjects.Person a, DataObjects.Person b)
         {
             if (String.IsNullOrWhiteSpace(a.FirstName)
                 || String.IsNullOrWhiteSpace(b.FirstName)

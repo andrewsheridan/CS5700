@@ -4,6 +4,6 @@ namespace PersonMatcher.Matching
 {
     public interface MatchStrategy
     {
-        bool Match(Person a, Person b);
+        bool Match(DataObjects.Person a, DataObjects.Person b);
     }
 }

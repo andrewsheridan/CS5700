@@ -8,7 +8,7 @@ using PersonMatcher.DataObjects;
 
 namespace PersonMatcher.IO
 {
-    public class XmlImportExportStrategy : ImportExportStrategy
+    public class XmlImportStrategy : ImportStrategy
     {
         public override List<Person> Import(string filename)
         {
