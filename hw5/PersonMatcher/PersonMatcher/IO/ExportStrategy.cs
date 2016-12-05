@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 namespace PersonMatcher.IO
 {
-    public interface ExportStrategy
+    public abstract class ExportStrategy
     {
-        string Export (string filename, List<Match> matches, List<Person> people);
+        protected string _filePath = "..\\..\\..\\..\\Exports\\";
+        public abstract string Export (string filename, List<Match> matches, List<Person> people);
     }
 }

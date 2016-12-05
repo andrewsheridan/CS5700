@@ -58,8 +58,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IO\AllInfoExportStrategy.cs" />
     <Compile Include="IO\ExportStrategy.cs" />
-    <Compile Include="IO\IDFileExportStrategy.cs" />
+    <Compile Include="IO\FullNameExportStrategy.cs" />
+    <Compile Include="IO\IDExportStrategy.cs" />
     <Compile Include="IO\ImportStrategy.cs" />
     <Compile Include="IO\JsonImportStrategy.cs" />
     <Compile Include="IO\XmlImportStrategy.cs" />

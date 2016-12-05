@@ -53,7 +53,7 @@
             // 
             this.importButton.Location = new System.Drawing.Point(12, 28);
             this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(198, 40);
+            this.importButton.Size = new System.Drawing.Size(198, 31);
             this.importButton.TabIndex = 0;
             this.importButton.Text = "Import File";
             this.importButton.UseVisualStyleBackColor = true;
@@ -65,13 +65,13 @@
             this.matchResultsTextBox.Multiline = true;
             this.matchResultsTextBox.Name = "matchResultsTextBox";
             this.matchResultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.matchResultsTextBox.Size = new System.Drawing.Size(372, 279);
+            this.matchResultsTextBox.Size = new System.Drawing.Size(504, 279);
             this.matchResultsTextBox.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(365, 9);
+            this.label1.Location = new System.Drawing.Point(428, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 5;
@@ -85,7 +85,7 @@
             "Contact Info",
             "Full Name",
             "Government Info"});
-            this.matchStrategyComboBox.Location = new System.Drawing.Point(12, 169);
+            this.matchStrategyComboBox.Location = new System.Drawing.Point(12, 166);
             this.matchStrategyComboBox.Name = "matchStrategyComboBox";
             this.matchStrategyComboBox.Size = new System.Drawing.Size(198, 21);
             this.matchStrategyComboBox.TabIndex = 6;
@@ -94,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 153);
+            this.label2.Location = new System.Drawing.Point(61, 150);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 13);
             this.label2.TabIndex = 7;
@@ -112,7 +112,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(78, 80);
+            this.label4.Location = new System.Drawing.Point(78, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 13);
             this.label4.TabIndex = 10;
@@ -121,7 +121,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(61, 203);
+            this.label5.Location = new System.Drawing.Point(70, 200);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 13);
             this.label5.TabIndex = 12;
@@ -129,9 +129,9 @@
             // 
             // runButton
             // 
-            this.runButton.Location = new System.Drawing.Point(12, 267);
+            this.runButton.Location = new System.Drawing.Point(12, 278);
             this.runButton.Name = "runButton";
-            this.runButton.Size = new System.Drawing.Size(198, 40);
+            this.runButton.Size = new System.Drawing.Size(198, 29);
             this.runButton.TabIndex = 13;
             this.runButton.Text = "Run";
             this.runButton.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             this.exportStrategyComboBox.Items.AddRange(new object[] {
             "Output IDs",
             "Output All Information"});
-            this.exportStrategyComboBox.Location = new System.Drawing.Point(12, 219);
+            this.exportStrategyComboBox.Location = new System.Drawing.Point(12, 216);
             this.exportStrategyComboBox.Name = "exportStrategyComboBox";
             this.exportStrategyComboBox.Size = new System.Drawing.Size(198, 21);
             this.exportStrategyComboBox.TabIndex = 14;
@@ -156,15 +156,15 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 251);
+            this.label6.Location = new System.Drawing.Point(61, 262);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(142, 13);
+            this.label6.Size = new System.Drawing.Size(105, 13);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Step 4: Run Person Matcher";
+            this.label6.Text = "Run Person Matcher";
             // 
             // selectedFileTextBox
             // 
-            this.selectedFileTextBox.Location = new System.Drawing.Point(12, 96);
+            this.selectedFileTextBox.Location = new System.Drawing.Point(12, 78);
             this.selectedFileTextBox.Multiline = true;
             this.selectedFileTextBox.Name = "selectedFileTextBox";
             this.selectedFileTextBox.ReadOnly = true;
@@ -175,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 318);
+            this.ClientSize = new System.Drawing.Size(732, 318);
             this.Controls.Add(this.selectedFileTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.exportStrategyComboBox);

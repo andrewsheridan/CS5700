@@ -12,9 +12,11 @@ I added the Template Method Pattern because I felt it would pair nicely with the
 
 The import strategy is automatically chosen based on the file type. The matching strategy is chosen by the user in the UI, as well as the output strategy. When the user clicks `Run`, the program uses the template method pattern to execute all three steps. 
 
-All things related to output have now been pulled out of the GUI and PersonMatcher components. They are now entirely contained in the ExportStrategy Interface and the classes which implement it. 
+All things related to output have now been pulled out of the GUI and PersonMatcher components. They are now entirely contained in the ExportStrategy Interface and the classes which implement it. This simplifies the GUI significantly, to the point of all event handlers being one to three lines in length. 
 
-Another improvement is that instead of just outputting the IDs of those who match, there is a strategy for outputting all of the data for the two individuals who were matched side-by-side.
+I implemented two new export strategies. The first outputs the full names of the two individuals who were deemed "matches". The second outputs all the information of the two matches.
+
+
 
 ## Testing
 

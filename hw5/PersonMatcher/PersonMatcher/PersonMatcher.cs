@@ -20,17 +20,18 @@ namespace PersonMatcher
         public PersonMatcher(string filename, MatchStrategyEnum matchStrategy, ExportStrategyEnum exportStrategy)
         {
             FileName = filename;
-            ReadStrategy = GetImportStrategy(filename);
+
+            ReadStrategy = GetImportStrategy(filename); //Will throw if not .json or .txt.
+            
             WriteStrategy = getExportStrategyByEnum(exportStrategy);
             Matcher = getMatchStrategyByEnum(matchStrategy);
-            WriteStrategy = new IDFileExportStrategy();
         }
 
         public string Run()
         {
             personList = ReadStrategy.Import(FileName);
             List<Match> matches = FindMatches();
-            return WriteStrategy.Export(FileName, matches, personList);
+            return WriteStrategy.Export(System.IO.Path.GetFileNameWithoutExtension(FileName), matches, personList);
         }
 
         public MatchStrategy getMatchStrategyByEnum(MatchStrategyEnum strategy)
@@ -57,13 +58,13 @@ namespace PersonMatcher
             switch (strategy)
             {
                 case ExportStrategyEnum.ID:
-                    return new IDFileExportStrategy();
+                    return new IDExportStrategy();
                 case ExportStrategyEnum.AllInfo:
-                    throw new NotImplementedException();
+                    return new AllInfoExportStrategy(); 
                 case ExportStrategyEnum.FullName:
-                    throw new NotImplementedException();
+                    return new FullNameExportStrategy();
                 default:
-                    return new IDFileExportStrategy();
+                    return new IDExportStrategy();
             }
         }
 
@@ -78,8 +79,7 @@ namespace PersonMatcher
                 return new JsonImportStrategy();
             } else
             {
-                //Todo: Make it fail in this case
-                return null;
+                throw new System.IO.FileLoadException("Could not load this file type. Valid types are .xml and .json.");
             }
         }
 
