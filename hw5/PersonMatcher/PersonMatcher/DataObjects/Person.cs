@@ -6,13 +6,13 @@ namespace PersonMatcher.DataObjects
     [DataContract, XmlType("Person")]
     public class Person
     {
-        [DataMember]
+        [DataMember (IsRequired = true, EmitDefaultValue = false)]
         public int ObjectId { get; set; }
         [DataMember]
         public string StateFileNumber { get; set; }
         [DataMember]
         public string SocialSecurityNumber { get; set; }
-        [DataMember]
+        [DataMember ]
         public string FirstName { get; set; }
         [DataMember]
         public string MiddleName { get; set; }

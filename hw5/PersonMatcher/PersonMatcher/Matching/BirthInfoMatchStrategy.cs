@@ -16,10 +16,7 @@ namespace PersonMatcher.Matching
 
         private bool Match(Child a, Child b)
         {
-            if (String.IsNullOrEmpty(a.NewbornScreeningNumber)
-                || String.IsNullOrEmpty(b.NewbornScreeningNumber))
-                return false;
-            else if (a.NewbornScreeningNumber == b.NewbornScreeningNumber)
+            if (a.NewbornScreeningNumber == b.NewbornScreeningNumber)
             {
                 if (String.IsNullOrEmpty(a.IsPartOfMultipleBirth) && String.IsNullOrEmpty(b.IsPartOfMultipleBirth))
                 {
