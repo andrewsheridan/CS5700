@@ -13,26 +13,17 @@ namespace PersonMatcher.IO
             List<Person> personList = null;
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Person>), new Type[] { typeof(Person), typeof(Adult), typeof(Child) });
             if (!filename.Contains(".json"))
-                throw new System.IO.FileLoadException();
+                throw new System.Runtime.Serialization.SerializationException();
             if (OpenReader(filename))
             {
                 Reader.BaseStream.Position = 0;
-                try
+                personList = serializer.ReadObject(Reader.BaseStream) as List<Person>;
+                foreach (Person p in personList)
                 {
-                    personList = serializer.ReadObject(Reader.BaseStream) as List<Person>;
-                    foreach (Person p in personList)
-                    {
-                        if (p.ObjectId == 0)
-                            throw new System.Runtime.Serialization.SerializationException("objectId is a required field.");
-                    }
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine("Could not import the selected JSON file.");
-                    Console.WriteLine($"ERROR: {e.Message}");
+                    if (p.ObjectId == 0)
+                        throw new System.Runtime.Serialization.SerializationException("objectId is a required field.");
                 }
                 Reader.Close();
-                
             }
             return personList;
         }

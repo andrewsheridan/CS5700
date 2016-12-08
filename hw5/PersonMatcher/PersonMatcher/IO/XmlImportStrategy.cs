@@ -15,7 +15,7 @@ namespace PersonMatcher.IO
             List<Person> personList = null;
             XmlSerializer serializer = new XmlSerializer(typeof(List<Person>), new Type[] { typeof(Person), typeof(Adult), typeof(Child)});
             if (!filename.Contains(".xml"))
-                throw new System.IO.FileLoadException();
+                throw new System.Runtime.Serialization.SerializationException();
             if (OpenReader(filename))
             {
                 Reader.BaseStream.Position = 0;

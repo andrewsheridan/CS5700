@@ -191,7 +191,7 @@ namespace PersonMatcher.IO.Tests
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(System.IO.FileLoadException))]
+        [ExpectedException(typeof(System.Runtime.Serialization.SerializationException))]
         public void NotXml()
         {
             string[] lines = {
