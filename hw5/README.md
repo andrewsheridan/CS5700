@@ -16,7 +16,7 @@ All things related to output have now been pulled out of the GUI and PersonMatch
 
 I implemented two new export strategies. The first outputs the full names of the two individuals who were deemed "matches". The second outputs all the information of the two matches.
 
-
+Another added pattern is the Iterator pattern, which is used when outputting all the properties of the two patched persons. Using reflection we make a list of all the properties of the objects, then use the Iterator pattern to loop through them and print them to the console and output file.
 
 ## Testing
 

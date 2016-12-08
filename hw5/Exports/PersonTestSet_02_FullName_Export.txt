@@ -1,2 +1,26 @@
-Lise      J<[>      Peterson   | Lise      J<[>      Peterson  
-Paula     Fran      Peterson   | Paula     Fran      Peterson  
+BirthDay:                               27                                      27                                      
+BirthMonth:                             8                                       8                                       
+BirthYear:                              1997                                    1997                                    
+FirstName:                              Lise                                    Lise                                    
+Gender:                                 F                                       F                                       
+LastName:                               Peterson                                Peterson                                
+MiddleName:                             J<[>                                    J<[>                                    
+ObjectId:                               6                                       14                                      
+Phone1:                                                                                                                 
+Phone2:                                                                                                                 
+SocialSecurityNumber:                   048517811                               048517811                               
+StateFileNumber:                        1997 51931                                                                      
+------------------------------------
+BirthDay:                               22                                      1                                       
+BirthMonth:                             11                                      9                                       
+BirthYear:                              1997                                    1997                                    
+FirstName:                              Paula                                   Paula                                   
+Gender:                                 F                                       F                                       
+LastName:                               Peterson                                Peterson                                
+MiddleName:                             Fran                                    Fran                                    
+ObjectId:                               11                                      17                                      
+Phone1:                                                                                                                 
+Phone2:                                                                                                                 
+SocialSecurityNumber:                                                                                                   
+StateFileNumber:                        1997 51931                                                                      
+------------------------------------

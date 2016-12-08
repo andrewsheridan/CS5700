@@ -1,29 +1,412 @@
-Edward    Karl      Johnson    | Edward    Karl      Johnson   
-Edward    Karl      Johnson    | David     Ivan      Johnson   
-Edward    Karl      Johnson    |           Johnson   
-Edward    Karl      Johnson    | Brent               Larson    
-Jack      Michael   Isaacons   | Jack      Michael   Isaacons  
-Jack      Michael   Isaacons   | Jack      Michael   Isaacons  
-Jack      Michael   Isaacons   |           Zack                
-                    Oscarson   |                     Oscarson  
-                    Oscarson   |                     Oscarson  
-Zack      Frank     Hanks      | Zack      Frank     Hanks     
-Zack      Frank     Hanks      | Zack      Frank     Hanks     
-Karl      A:        Newton     | Karl      A:        Newton    
-Karl      A:        Newton     | Karl      A:        Newton    
-Karl      A:        Newton     | Karl      A:        Newton    
-Zack      Brent     Johnson    | Zack      Brent     Johnson   
-Edward    Karl      Johnson    | David     Ivan      Johnson   
-Edward    Karl      Johnson    |           Johnson   
-Edward    Karl      Johnson    | Brent               Larson    
-David     Ivan      Johnson    |           Johnson   
-David     Ivan      Johnson    | Brent               Larson    
-Jack      Michael   Isaacons   | Jack      Michael   Isaacons  
-Jack      Michael   Isaacons   |           Zack                
-                    Oscarson   |                     Oscarson  
-Zack      Frank     Hanks      | Zack      Frank     Hanks     
-Karl      A:        Newton     | Karl      A:        Newton    
-Karl      A:        Newton     | Karl      A:        Newton    
-          Johnson    | Brent               Larson    
-Karl      A:        Newton     | Karl      A:        Newton    
-Jack      Michael   Isaacons   |           Zack                
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              Edward                                   | Edward                                  
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Johnson                                 
+MiddleName:                             Karl                                     | Karl                                    
+ObjectId:                               33                                       | 45                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                   701678634                                |                                         
+StateFileNumber:                        1981 19210                               | 1981 19210                              
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              Edward                                   | David                                   
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Johnson                                 
+MiddleName:                             Karl                                     | Ivan                                    
+ObjectId:                               33                                       | 46                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                   701678634                                | 701678634                               
+StateFileNumber:                        1981 19210                               |                                         
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              Edward                                   |                                         
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Johnson                                 
+MiddleName:                             Karl                                     |                                         
+ObjectId:                               33                                       | 55                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                   701678634                                |                                         
+StateFileNumber:                        1981 19210                               | 1981 19210                              
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              Edward                                   | Brent                                   
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Larson                                  
+MiddleName:                             Karl                                     |                                         
+ObjectId:                               33                                       | 59                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                   701678634                                |                                         
+StateFileNumber:                        1981 19210                               |                                         
+------------------------------------
+BirthDay:                               19                                       | 19                                      
+BirthMonth:                             9                                        | 9                                       
+BirthYear:                              1992                                     | 1992                                    
+FirstName:                              Jack                                     | Jack                                    
+Gender:                                 M                                        | M                                       
+LastName:                               Isaacons                                 | Isaacons                                
+MiddleName:                             Michael                                  | Michael                                 
+ObjectId:                               34                                       | 47                                      
+Phone1:                                 385-801-4548                             | 385-801-4548                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1992 61052                               |                                         
+------------------------------------
+BirthDay:                               19                                       | 19                                      
+BirthMonth:                             9                                        | 9                                       
+BirthYear:                              1992                                     | 1992                                    
+FirstName:                              Jack                                     | Jack                                    
+Gender:                                 M                                        | M                                       
+LastName:                               Isaacons                                 | Isaacons                                
+MiddleName:                             Michael                                  | Michael                                 
+ObjectId:                               34                                       | 62                                      
+Phone1:                                 385-801-4548                             | 385-801-4548                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1992 61052                               |                                         
+------------------------------------
+BirthDay:                               19                                       | 19                                      
+BirthMonth:                             9                                        | 9                                       
+BirthYear:                              1992                                     | 1992                                    
+FirstName:                              Jack                                     |                                         
+Gender:                                 M                                        | M                                       
+LastName:                               Isaacons                                 |                                         
+MiddleName:                             Michael                                  | Zack                                    
+ObjectId:                               34                                       | 68                                      
+Phone1:                                 385-801-4548                             | 385-801-4548                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1992 61052                               |                                         
+------------------------------------
+BirthDay:                               11                                       | 22                                      
+BirthMonth:                             5                                        | 1                                       
+BirthYear:                              1970                                     | 1970                                    
+FirstName:                                                                       |                                         
+Gender:                                 M                                        | M                                       
+LastName:                               Oscarson                                 | Oscarson                                
+MiddleName:                                                                      |                                         
+ObjectId:                               36                                       | 49                                      
+Phone1:                                 435-979-2373                             | 435-979-2373                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1970 38240                               |                                         
+------------------------------------
+BirthDay:                               11                                       | 22                                      
+BirthMonth:                             5                                        | 1                                       
+BirthYear:                              1970                                     | 1970                                    
+FirstName:                                                                       |                                         
+Gender:                                 M                                        | M                                       
+LastName:                               Oscarson                                 | Oscarson                                
+MiddleName:                                                                      |                                         
+ObjectId:                               36                                       | 61                                      
+Phone1:                                 435-979-2373                             | 435-979-2373                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1970 38240                               |                                         
+------------------------------------
+BirthDay:                               23                                       | 23                                      
+BirthMonth:                             1                                        | 1                                       
+BirthYear:                              1984                                     | 1984                                    
+FirstName:                              Zack                                     | Zack                                    
+Gender:                                 M                                        | M                                       
+LastName:                               Hanks                                    | Hanks                                   
+MiddleName:                             Frank                                    | Frank                                   
+ObjectId:                               38                                       | 50                                      
+Phone1:                                 385-632-9660                             | 385-632-9660                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1984 67034                               |                                         
+------------------------------------
+BirthDay:                               23                                       | 23                                      
+BirthMonth:                             1                                        | 1                                       
+BirthYear:                              1984                                     | 1984                                    
+FirstName:                              Zack                                     | Zack                                    
+Gender:                                 M                                        | M                                       
+LastName:                               Hanks                                    | Hanks                                   
+MiddleName:                             Frank                                    | Frank                                   
+ObjectId:                               38                                       | 69                                      
+Phone1:                                 385-632-9660                             | 385-632-9660                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1984 67034                               |                                         
+------------------------------------
+BirthCountry:                                                                    |                                         
+BirthDay:                               17                                       | 17                                      
+BirthMonth:                             4                                        | 4                                       
+BirthOrder:                             0                                        | 0                                       
+BirthYear:                              2006                                     | 2006                                    
+FirstName:                              Karl                                     | Karl                                    
+Gender:                                 M                                        | M                                       
+IsPartOfMultipleBirth:                  F                                        | F                                       
+LastName:                               Newton                                   | Newton                                  
+MiddleName:                             A:                                       | A:                                      
+MotherFirstName:                                                                 |                                         
+MotherLastName:                         Williamson                               | Williamson                              
+MotherMiddleName:                       Sue                                      | Sue                                     
+NewbornScreeningNumber:                                                          |                                         
+ObjectId:                               40                                       | 52                                      
+SocialSecurityNumber:                   163966807                                |                                         
+StateFileNumber:                        2006 52946                               | 2006 52946                              
+------------------------------------
+BirthCountry:                                                                    |                                         
+BirthDay:                               17                                       | 17                                      
+BirthMonth:                             4                                        | 4                                       
+BirthOrder:                             0                                        | 0                                       
+BirthYear:                              2006                                     | 2006                                    
+FirstName:                              Karl                                     | Karl                                    
+Gender:                                 M                                        | M                                       
+IsPartOfMultipleBirth:                  F                                        | F                                       
+LastName:                               Newton                                   | Newton                                  
+MiddleName:                             A:                                       | A:                                      
+MotherFirstName:                                                                 |                                         
+MotherLastName:                         Williamson                               | Williamson                              
+MotherMiddleName:                       Sue                                      | Sue                                     
+NewbornScreeningNumber:                                                          |                                         
+ObjectId:                               40                                       | 57                                      
+SocialSecurityNumber:                   163966807                                | 163966807                               
+StateFileNumber:                        2006 52946                               |                                         
+------------------------------------
+BirthCountry:                                                                    |                                         
+BirthDay:                               17                                       | 26                                      
+BirthMonth:                             4                                        | 9                                       
+BirthOrder:                             0                                        | 0                                       
+BirthYear:                              2006                                     | 2006                                    
+FirstName:                              Karl                                     | Karl                                    
+Gender:                                 M                                        | M                                       
+IsPartOfMultipleBirth:                  F                                        | F                                       
+LastName:                               Newton                                   | Newton                                  
+MiddleName:                             A:                                       | A:                                      
+MotherFirstName:                                                                 |                                         
+MotherLastName:                         Williamson                               | Williamson                              
+MotherMiddleName:                       Sue                                      | Sue                                     
+NewbornScreeningNumber:                                                          |                                         
+ObjectId:                               40                                       | 64                                      
+SocialSecurityNumber:                   163966807                                | 163966807                               
+StateFileNumber:                        2006 52946                               |                                         
+------------------------------------
+BirthCountry:                                                                    |                                         
+BirthDay:                               13                                       | 13                                      
+BirthMonth:                             9                                        | 9                                       
+BirthOrder:                             0                                        | 0                                       
+BirthYear:                              2012                                     | 2012                                    
+FirstName:                              Zack                                     | Zack                                    
+Gender:                                 M                                        | M                                       
+IsPartOfMultipleBirth:                  F                                        | F                                       
+LastName:                               Johnson                                  | Johnson                                 
+MiddleName:                             Brent                                    | Brent                                   
+MotherFirstName:                                                                 |                                         
+MotherLastName:                                                                  |                                         
+MotherMiddleName:                       Nancy                                    | Nancy                                   
+NewbornScreeningNumber:                                                          |                                         
+ObjectId:                               41                                       | 65                                      
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        2012 52292                               |                                         
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              Edward                                   | David                                   
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Johnson                                 
+MiddleName:                             Karl                                     | Ivan                                    
+ObjectId:                               45                                       | 46                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            | 701678634                               
+StateFileNumber:                        1981 19210                               |                                         
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              Edward                                   |                                         
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Johnson                                 
+MiddleName:                             Karl                                     |                                         
+ObjectId:                               45                                       | 55                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1981 19210                               | 1981 19210                              
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              Edward                                   | Brent                                   
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Larson                                  
+MiddleName:                             Karl                                     |                                         
+ObjectId:                               45                                       | 59                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1981 19210                               |                                         
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              David                                    |                                         
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Johnson                                 
+MiddleName:                             Ivan                                     |                                         
+ObjectId:                               46                                       | 55                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                   701678634                                |                                         
+StateFileNumber:                                                                 | 1981 19210                              
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                              David                                    | Brent                                   
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Larson                                  
+MiddleName:                             Ivan                                     |                                         
+ObjectId:                               46                                       | 59                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                   701678634                                |                                         
+StateFileNumber:                                                                 |                                         
+------------------------------------
+BirthDay:                               19                                       | 19                                      
+BirthMonth:                             9                                        | 9                                       
+BirthYear:                              1992                                     | 1992                                    
+FirstName:                              Jack                                     | Jack                                    
+Gender:                                 M                                        | M                                       
+LastName:                               Isaacons                                 | Isaacons                                
+MiddleName:                             Michael                                  | Michael                                 
+ObjectId:                               47                                       | 62                                      
+Phone1:                                 385-801-4548                             | 385-801-4548                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                                                                 |                                         
+------------------------------------
+BirthDay:                               19                                       | 19                                      
+BirthMonth:                             9                                        | 9                                       
+BirthYear:                              1992                                     | 1992                                    
+FirstName:                              Jack                                     |                                         
+Gender:                                 M                                        | M                                       
+LastName:                               Isaacons                                 |                                         
+MiddleName:                             Michael                                  | Zack                                    
+ObjectId:                               47                                       | 68                                      
+Phone1:                                 385-801-4548                             | 385-801-4548                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                                                                 |                                         
+------------------------------------
+BirthDay:                               22                                       | 22                                      
+BirthMonth:                             1                                        | 1                                       
+BirthYear:                              1970                                     | 1970                                    
+FirstName:                                                                       |                                         
+Gender:                                 M                                        | M                                       
+LastName:                               Oscarson                                 | Oscarson                                
+MiddleName:                                                                      |                                         
+ObjectId:                               49                                       | 61                                      
+Phone1:                                 435-979-2373                             | 435-979-2373                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                                                                 |                                         
+------------------------------------
+BirthDay:                               23                                       | 23                                      
+BirthMonth:                             1                                        | 1                                       
+BirthYear:                              1984                                     | 1984                                    
+FirstName:                              Zack                                     | Zack                                    
+Gender:                                 M                                        | M                                       
+LastName:                               Hanks                                    | Hanks                                   
+MiddleName:                             Frank                                    | Frank                                   
+ObjectId:                               50                                       | 69                                      
+Phone1:                                 385-632-9660                             | 385-632-9660                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                                                                 |                                         
+------------------------------------
+BirthCountry:                                                                    |                                         
+BirthDay:                               17                                       | 17                                      
+BirthMonth:                             4                                        | 4                                       
+BirthOrder:                             0                                        | 0                                       
+BirthYear:                              2006                                     | 2006                                    
+FirstName:                              Karl                                     | Karl                                    
+Gender:                                 M                                        | M                                       
+IsPartOfMultipleBirth:                  F                                        | F                                       
+LastName:                               Newton                                   | Newton                                  
+MiddleName:                             A:                                       | A:                                      
+MotherFirstName:                                                                 |                                         
+MotherLastName:                         Williamson                               | Williamson                              
+MotherMiddleName:                       Sue                                      | Sue                                     
+NewbornScreeningNumber:                                                          |                                         
+ObjectId:                               52                                       | 57                                      
+SocialSecurityNumber:                                                            | 163966807                               
+StateFileNumber:                        2006 52946                               |                                         
+------------------------------------
+BirthCountry:                                                                    |                                         
+BirthDay:                               17                                       | 26                                      
+BirthMonth:                             4                                        | 9                                       
+BirthOrder:                             0                                        | 0                                       
+BirthYear:                              2006                                     | 2006                                    
+FirstName:                              Karl                                     | Karl                                    
+Gender:                                 M                                        | M                                       
+IsPartOfMultipleBirth:                  F                                        | F                                       
+LastName:                               Newton                                   | Newton                                  
+MiddleName:                             A:                                       | A:                                      
+MotherFirstName:                                                                 |                                         
+MotherLastName:                         Williamson                               | Williamson                              
+MotherMiddleName:                       Sue                                      | Sue                                     
+NewbornScreeningNumber:                                                          |                                         
+ObjectId:                               52                                       | 64                                      
+SocialSecurityNumber:                                                            | 163966807                               
+StateFileNumber:                        2006 52946                               |                                         
+------------------------------------
+BirthDay:                               27                                       | 27                                      
+BirthMonth:                             12                                       | 12                                      
+BirthYear:                              1981                                     | 1981                                    
+FirstName:                                                                       | Brent                                   
+Gender:                                                                          |                                         
+LastName:                               Johnson                                  | Larson                                  
+MiddleName:                                                                      |                                         
+ObjectId:                               55                                       | 59                                      
+Phone1:                                 801-206-2175                             | 801-206-2175                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                        1981 19210                               |                                         
+------------------------------------
+BirthCountry:                                                                    |                                         
+BirthDay:                               17                                       | 26                                      
+BirthMonth:                             4                                        | 9                                       
+BirthOrder:                             0                                        | 0                                       
+BirthYear:                              2006                                     | 2006                                    
+FirstName:                              Karl                                     | Karl                                    
+Gender:                                 M                                        | M                                       
+IsPartOfMultipleBirth:                  F                                        | F                                       
+LastName:                               Newton                                   | Newton                                  
+MiddleName:                             A:                                       | A:                                      
+MotherFirstName:                                                                 |                                         
+MotherLastName:                         Williamson                               | Williamson                              
+MotherMiddleName:                       Sue                                      | Sue                                     
+NewbornScreeningNumber:                                                          |                                         
+ObjectId:                               57                                       | 64                                      
+SocialSecurityNumber:                   163966807                                | 163966807                               
+StateFileNumber:                                                                 |                                         
+------------------------------------
+BirthDay:                               19                                       | 19                                      
+BirthMonth:                             9                                        | 9                                       
+BirthYear:                              1992                                     | 1992                                    
+FirstName:                              Jack                                     |                                         
+Gender:                                 M                                        | M                                       
+LastName:                               Isaacons                                 |                                         
+MiddleName:                             Michael                                  | Zack                                    
+ObjectId:                               62                                       | 68                                      
+Phone1:                                 385-801-4548                             | 385-801-4548                            
+Phone2:                                                                          |                                         
+SocialSecurityNumber:                                                            |                                         
+StateFileNumber:                                                                 |                                         
+------------------------------------

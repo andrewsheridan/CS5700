@@ -48,8 +48,7 @@
     <Compile Include="OutputStrategies\OutputTemplate.cs" />
     <Compile Include="OutputStrategies\SingleSolution.cs" />
     <Compile Include="OutputStrategies\Unsolvable.cs" />
-    <Compile Include="Strategies\Guess.cs" />
-    <Compile Include="Strategies\HiddenSubset.cs" />
+    <Compile Include="Strategies\HiddenSingle.cs" />
     <Compile Include="Strategies\NakedSubset.cs" />
     <Compile Include="Strategies\SoleCandidate.cs" />
     <Compile Include="Strategies\Strategy.cs" />

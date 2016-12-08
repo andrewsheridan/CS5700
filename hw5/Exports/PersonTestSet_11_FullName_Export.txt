@@ -1,6 +1,78 @@
-Jane           Mary           Davis           | Jane           Mary           Davis          
-Jane           Mary           Davis           | Jane           Paula          Fitzer         
-Jane           Mary           Davis           | Jane           Mary           Davis          
-Jane           Mary           Davis           | Jane           Paula          Fitzer         
-Jane           Mary           Davis           | Jane           Mary           Davis          
-Jane           Paula          Fitzer          | Jane           Mary           Davis          
+BirthDay:                                                   7                                                           22                                                          
+BirthMonth:                                                 3                                                           6                                                           
+BirthYear:                                                  1995                                                        1995                                                        
+FirstName:                                                  Jane                                                        Jane                                                        
+Gender:                                                     F                                                           F                                                           
+LastName:                                                   Davis                                                       Davis                                                       
+MiddleName:                                                 Mary                                                        Mary                                                        
+ObjectId:                                                   124                                                         126                                                         
+Phone1:                                                     435-700-8142                                                435-700-8142                                                
+Phone2:                                                     828-1786                                                    828-1786                                                    
+SocialSecurityNumber:                                       614485273                                                   614485273                                                   
+StateFileNumber:                                            1995 01598                                                                                                              
+------------------------------------
+BirthDay:                                                   7                                                           7                                                           
+BirthMonth:                                                 3                                                           3                                                           
+BirthYear:                                                  1995                                                        1995                                                        
+FirstName:                                                  Jane                                                        Jane                                                        
+Gender:                                                     F                                                           F                                                           
+LastName:                                                   Davis                                                       Fitzer                                                      
+MiddleName:                                                 Mary                                                        Paula                                                       
+ObjectId:                                                   124                                                         129                                                         
+Phone1:                                                     435-700-8142                                                435-700-8142                                                
+Phone2:                                                     828-1786                                                    828-1786                                                    
+SocialSecurityNumber:                                       614485273                                                                                                               
+StateFileNumber:                                            1995 01598                                                  1995 01598                                                  
+------------------------------------
+BirthDay:                                                   7                                                           22                                                          
+BirthMonth:                                                 3                                                           6                                                           
+BirthYear:                                                  1995                                                        1995                                                        
+FirstName:                                                  Jane                                                        Jane                                                        
+Gender:                                                     F                                                           F                                                           
+LastName:                                                   Davis                                                       Davis                                                       
+MiddleName:                                                 Mary                                                        Mary                                                        
+ObjectId:                                                   124                                                         131                                                         
+Phone1:                                                     435-700-8142                                                435-442-8857                                                
+Phone2:                                                     828-1786                                                    828-1786                                                    
+SocialSecurityNumber:                                       614485273                                                                                                               
+StateFileNumber:                                            1995 01598                                                                                                              
+------------------------------------
+BirthDay:                                                   22                                                          7                                                           
+BirthMonth:                                                 6                                                           3                                                           
+BirthYear:                                                  1995                                                        1995                                                        
+FirstName:                                                  Jane                                                        Jane                                                        
+Gender:                                                     F                                                           F                                                           
+LastName:                                                   Davis                                                       Fitzer                                                      
+MiddleName:                                                 Mary                                                        Paula                                                       
+ObjectId:                                                   126                                                         129                                                         
+Phone1:                                                     435-700-8142                                                435-700-8142                                                
+Phone2:                                                     828-1786                                                    828-1786                                                    
+SocialSecurityNumber:                                       614485273                                                                                                               
+StateFileNumber:                                                                                                        1995 01598                                                  
+------------------------------------
+BirthDay:                                                   22                                                          22                                                          
+BirthMonth:                                                 6                                                           6                                                           
+BirthYear:                                                  1995                                                        1995                                                        
+FirstName:                                                  Jane                                                        Jane                                                        
+Gender:                                                     F                                                           F                                                           
+LastName:                                                   Davis                                                       Davis                                                       
+MiddleName:                                                 Mary                                                        Mary                                                        
+ObjectId:                                                   126                                                         131                                                         
+Phone1:                                                     435-700-8142                                                435-442-8857                                                
+Phone2:                                                     828-1786                                                    828-1786                                                    
+SocialSecurityNumber:                                       614485273                                                                                                               
+StateFileNumber:                                                                                                                                                                    
+------------------------------------
+BirthDay:                                                   7                                                           22                                                          
+BirthMonth:                                                 3                                                           6                                                           
+BirthYear:                                                  1995                                                        1995                                                        
+FirstName:                                                  Jane                                                        Jane                                                        
+Gender:                                                     F                                                           F                                                           
+LastName:                                                   Fitzer                                                      Davis                                                       
+MiddleName:                                                 Paula                                                       Mary                                                        
+ObjectId:                                                   129                                                         131                                                         
+Phone1:                                                     435-700-8142                                                435-442-8857                                                
+Phone2:                                                     828-1786                                                    828-1786                                                    
+SocialSecurityNumber:                                                                                                                                                               
+StateFileNumber:                                            1995 01598                                                                                                              
+------------------------------------
